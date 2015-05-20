@@ -10,6 +10,8 @@ namespace LabyrinthGame
     {
         private Node[,] _board;
 
+        private Graph _boardGraph;
+
         public Board()
         {
             _init();
