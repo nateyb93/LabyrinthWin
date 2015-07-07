@@ -9,7 +9,7 @@ namespace LabyrinthGame
     public enum Pickup
     {
         None,
-        Skeleton,
+        Bone,
         Sword,
         Gold,
         Key,
@@ -35,6 +35,13 @@ namespace LabyrinthGame
         Scroll
     }
 
+    public enum Shape
+    {
+        S,
+        L,
+        T
+    }
+
     public enum Directions
     {
         Left,
@@ -42,11 +49,31 @@ namespace LabyrinthGame
         Right,
         Down
     }
+
+
     /// <summary>
     /// The Node class defines a node in a graph representation of the Labyrinth game board
     /// </summary>
     public class Node
     {
+        public static const int ROTATE_0 = 0;
+        public static const int ROTATE_1 = 1;
+        public static const int ROTATE_2 = 2;
+        public static const int ROTATE_3 = 3;
+
+        private int _rotation;
+        public int Rotation
+        {
+            get
+            {
+                return _rotation;
+            }
+            set
+            {
+                _rotation = value;
+            }
+        }
+        
         private Pickup _pickup;
         /// <summary>
         /// </summary>
@@ -59,6 +86,19 @@ namespace LabyrinthGame
             set
             {
                 _pickup = value;
+            }
+        }
+
+        private Shape _shape;
+        public Shape Shape
+        {
+            get
+            {
+                return _shape;
+            }
+            set
+            {
+                _shape = value;
             }
         }
 
@@ -93,16 +133,13 @@ namespace LabyrinthGame
         /// </summary>
         public void RotateClockwise()
         {
-            for (int i = 0; i < 4; i++)
+            if (_rotation == 3)
             {
-                if (i == 0)
-                {
-                    _open[i] = _open[3];
-                }
-                else
-                {
-                    _open[i] = _open[i - 1];
-                }
+                _rotation = 0;
+            }
+            else
+            {
+                _rotation += 1;
             }
         }
 
@@ -111,38 +148,115 @@ namespace LabyrinthGame
         /// </summary>
         public void RotateCounter()
         {
-            for (int i = 0; i < 4; i++)
+            if (_rotation == 3)
             {
-                if (i == 3)
-                {
-                    _open[i] = _open[0];
-                }
-                else
-                {
-                    _open[i] = _open[i + 1];
-                }
+                _rotation = 0;
+            }
+            else
+            {
+                _rotation += 1;
             }
         }
 
         /// <summary>
-        /// Checks to see if a direction is open in the current node
+        /// Returns whether the top edge of the tile is open
         /// </summary>
-        /// <param name="direction"></param>
         /// <returns></returns>
-        private bool _isOpen(int idx)
+        public bool IsOpenTop()
         {
-            if (idx >= 4)
+            switch (_shape)
             {
-                throw new Exception("'idx' must be less than 4");
+                case Shape.S:
+                    if (_rotation == ROTATE_0 || _rotation == ROTATE_2)
+                        return true;
+                    break;
+                case Shape.L:
+                    if (_rotation == ROTATE_0 || _rotation == ROTATE_3)
+                        return true;
+                    break;
+                case Shape.T:
+                    if (_rotation == ROTATE_1 || _rotation == ROTATE_2 || _rotation == ROTATE_3)
+                        return true;
+                    break;
             }
-            if (_open[idx])
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
+
+        /// <summary>
+        /// Returns whether the bottom edge of the tile is open
+        /// </summary>
+        /// <returns></returns>
+        public bool IsOpenBottom()
+        {
+            switch (_shape)
+            {
+                case Shape.S:
+                    if (_rotation == ROTATE_0 || _rotation == ROTATE_2)
+                        return true;
+                    break;
+                case Shape.L:
+                    if (_rotation == ROTATE_1 || _rotation == ROTATE_2)
+                        return true;
+                    break;
+                case Shape.T:
+                    if (_rotation == ROTATE_0 || _rotation == ROTATE_1 || _rotation == ROTATE_3)
+                        return true;
+                    break;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns whether the left edge of the tile is open
+        /// </summary>
+        /// <returns></returns>
+        public bool IsOpenLeft()
+        {
+            switch (_shape)
+            {
+                case Shape.S:
+                    if (_rotation == ROTATE_1 || _rotation == ROTATE_3)
+                        return true;
+                    break;
+                case Shape.L:
+                    if (_rotation == ROTATE_2 || _rotation == ROTATE_3)
+                        return true;
+                    break;
+                case Shape.T:
+                    if (_rotation == ROTATE_0 || _rotation == ROTATE_1 || _rotation == ROTATE_2)
+                        return true;
+                    break;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns whether the right edge of the tile is open
+        /// </summary>
+        /// <returns></returns>
+        public bool IsOpenRight()
+        {
+            switch (_shape)
+            {
+                case Shape.S:
+                    if (_rotation == ROTATE_1 || _rotation == ROTATE_3)
+                        return true;
+                    break;
+                case Shape.L:
+                    if (_rotation == ROTATE_0 || _rotation == ROTATE_1)
+                        return true;
+                    break;
+                case Shape.T:
+                    if (_rotation == ROTATE_0 || _rotation == ROTATE_2 || _rotation == ROTATE_3)
+                        return true;
+                    break;
+            }
+
+            return false;
+        }
+
     }
 }

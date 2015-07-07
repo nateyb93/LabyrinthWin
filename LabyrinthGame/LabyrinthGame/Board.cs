@@ -23,6 +23,7 @@ namespace LabyrinthGame
             _initFixedPieces();
             _initMovingPieces();
 
+            _boardGraph = new Graph(_board);
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace LabyrinthGame
         {
             //row 0 fixed
             _board[0, 0] = new Node(Pickup.None, new bool[] { false, false, true, true });
-            _board[0, 2] = new Node(Pickup.Skeleton, new bool[] { true, false, true, true });
+            _board[0, 2] = new Node(Pickup.Bone, new bool[] { true, false, true, true });
             _board[0, 4] = new Node(Pickup.Sword, new bool[] { true, false, true, true });
             _board[0, 6] = new Node(Pickup.None, new bool[] { true, false, false, true });
 
@@ -81,7 +82,7 @@ namespace LabyrinthGame
                     y = _getRandom();
 
                     //check if the spot is empty, break if so.
-                    if (_board[x, y] != null)
+                    if (_board[x, y] == null)
                     {
                         break;
                     }
