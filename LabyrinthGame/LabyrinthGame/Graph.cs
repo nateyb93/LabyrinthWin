@@ -121,8 +121,28 @@ namespace LabyrinthGame
                 _adjacencyList[from].Add(to);
         }
 
+        //Checks to see if there's a path from one node to another
         public bool HasPath(Node from, Node to)
-        {   
+        {
+            List<Node> visited = new List<Node>();
+            Queue<Node> queue = new Queue<Node>();
+
+            visited.Add(from);
+            queue.Enqueue(from);
+
+            while (queue.Count != 0)
+            {
+                Node current = queue.Dequeue();
+                foreach (Node n in _adjacencyList[current])
+                {
+                    if (!visited.Contains(n))
+                    {
+                        visited.Add(n);
+                        queue.Enqueue(n);
+                    }
+                }
+            }
+
             return false;
         }
     }
