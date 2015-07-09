@@ -135,7 +135,11 @@ namespace LabyrinthGame
                 Node current = queue.Dequeue();
                 foreach (Node n in _adjacencyList[current])
                 {
-                    if (!visited.Contains(n))
+                    if (n == to)
+                    {
+                        return true;
+                    }
+                    else if (!visited.Contains(n))
                     {
                         visited.Add(n);
                         queue.Enqueue(n);

@@ -56,10 +56,10 @@ namespace LabyrinthGame
     /// </summary>
     public class Node
     {
-        public static const int ROTATE_0 = 0;
-        public static const int ROTATE_1 = 1;
-        public static const int ROTATE_2 = 2;
-        public static const int ROTATE_3 = 3;
+        public const int ROTATE_0 = 0;
+        public const int ROTATE_1 = 1;
+        public const int ROTATE_2 = 2;
+        public const int ROTATE_3 = 3;
 
         private int _rotation;
         public int Rotation
@@ -115,17 +115,11 @@ namespace LabyrinthGame
             }
         }
 
-        private bool[] _open;
-
-        public Node(Pickup pickup, bool[] open)
+        public Node(Pickup pickup, Shape shape, int rotation)
         {
-            if (open.Length != 4)
-            {
-                throw new Exception("Param 'open' must contain exactly 4 entries!");
-            }
-
-            _open = open;
             _pickup = pickup;
+            _shape = shape;
+            _rotation = rotation;
         }
 
         /// <summary>

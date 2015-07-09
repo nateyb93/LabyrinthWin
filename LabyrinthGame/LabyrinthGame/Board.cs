@@ -10,6 +10,8 @@ namespace LabyrinthGame
     {
         private Node[,] _board;
 
+        private Node _freePiece;
+
         private Graph _boardGraph;
 
         public Board()
@@ -32,28 +34,28 @@ namespace LabyrinthGame
         private void _initFixedPieces()
         {
             //row 0 fixed
-            _board[0, 0] = new Node(Pickup.None, new bool[] { false, false, true, true });
-            _board[0, 2] = new Node(Pickup.Bone, new bool[] { true, false, true, true });
-            _board[0, 4] = new Node(Pickup.Sword, new bool[] { true, false, true, true });
-            _board[0, 6] = new Node(Pickup.None, new bool[] { true, false, false, true });
+            _board[0, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_1);
+            _board[0, 2] = new Node(Pickup.Bone, Shape.T, Node.ROTATE_0);
+            _board[0, 4] = new Node(Pickup.Sword, Shape.T, Node.ROTATE_0);
+            _board[0, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_2);
 
             //row 2 fixed
-            _board[2, 0] = new Node(Pickup.Gold, new bool[] { false, true, true, true });
-            _board[2, 2] = new Node(Pickup.Key, new bool[] { false, true, true, true });
-            _board[2, 4] = new Node(Pickup.Gem, new bool[] { true, false, true, true });
-            _board[2, 6] = new Node(Pickup.Helm, new bool[] { true, true, false, true });
+            _board[2, 0] = new Node(Pickup.Gold, Shape.T, Node.ROTATE_3);
+            _board[2, 2] = new Node(Pickup.Key, Shape.T, Node.ROTATE_3);
+            _board[2, 4] = new Node(Pickup.Gem, Shape.T, Node.ROTATE_0);
+            _board[2, 6] = new Node(Pickup.Helm, Shape.T, Node.ROTATE_1);
 
             //row 4 fixed
-            _board[4, 0] = new Node(Pickup.Book, new bool[] { false, true, true, true });
-            _board[4, 2] = new Node(Pickup.Crown, new bool[] { true, true, true, false });
-            _board[4, 4] = new Node(Pickup.Treasure, new bool[] { true, true, false, true });
-            _board[4, 6] = new Node(Pickup.Candle, new bool[] { true, true, false, true });
+            _board[4, 0] = new Node(Pickup.Book, Shape.T, Node.ROTATE_3);
+            _board[4, 2] = new Node(Pickup.Crown, Shape.T, Node.ROTATE_2);
+            _board[4, 4] = new Node(Pickup.Treasure, Shape.T, Node.ROTATE_1);
+            _board[4, 6] = new Node(Pickup.Candle, Shape.T, Node.ROTATE_1);
 
             //row 6 fixed
-            _board[6, 0] = new Node(Pickup.None, new bool[] { false, true, true, false });
-            _board[6, 2] = new Node(Pickup.Map, new bool[] { true, true, true, false });
-            _board[6, 4] = new Node(Pickup.Ring, new bool[] { true, true, true, false });
-            _board[6, 6] = new Node(Pickup.None, new bool[] { true, true, false, false });
+            _board[6, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_0);
+            _board[6, 2] = new Node(Pickup.Map, Shape.T, Node.ROTATE_2);
+            _board[6, 4] = new Node(Pickup.Ring, Shape.T, Node.ROTATE_2);
+            _board[6, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_3);
         }
 
 
@@ -70,6 +72,12 @@ namespace LabyrinthGame
             //1. Insert each pickup-containing piece randomly, rotating each piece 0-3 times before inserting
             //2. Insert each blank piece randomly, rotating each piece 0-3 times before inserting.
             List<Node> remainingPieces = getRemainingPieces();
+
+            int random = new Random().Next(0, remainingPieces.Count);
+
+            //selects a free piece
+            _freePiece = remainingPieces[random];
+            remainingPieces.RemoveAt(random);
 
             foreach (Node node in remainingPieces)
             {
@@ -96,40 +104,60 @@ namespace LabyrinthGame
         private List<Node> getRemainingPieces()
         {
             List<Node> remainingNodes = new List<Node>();
-            remainingNodes.Add(new Node(Pickup.Genie, new bool[] { true, true, true, false }));
-            remainingNodes.Add(new Node(Pickup.Ogre, new bool[] { true, true, true, false }));
-            remainingNodes.Add(new Node(Pickup.Pixie, new bool[] { true, true, true, false }));
-            remainingNodes.Add(new Node(Pickup.Bat, new bool[] { true, true, true, false }));
-            remainingNodes.Add(new Node(Pickup.Ghost, new bool[] { true, true, true, false }));
-            remainingNodes.Add(new Node(Pickup.Dragon, new bool[] { true, true, true, false }));
+            remainingNodes.Add(new Node(Pickup.Genie, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Ogre, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Pixie, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Bat, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Ghost, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Dragon, Shape.T, _getRandomRotation()));
 
-            remainingNodes.Add(new Node(Pickup.Butterfly, new bool[] { true, true, false, false }));
-            remainingNodes.Add(new Node(Pickup.Mouse, new bool[] { true, true, false, false }));
-            remainingNodes.Add(new Node(Pickup.Lizard, new bool[] { true, true, false, false }));
-            remainingNodes.Add(new Node(Pickup.Spider, new bool[] { true, true, false, false }));
-            remainingNodes.Add(new Node(Pickup.Bug, new bool[] { true, true, false, false }));
-            remainingNodes.Add(new Node(Pickup.Scroll, new bool[] { true, true, false, false }));
+            remainingNodes.Add(new Node(Pickup.Butterfly, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Mouse, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Lizard, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Spider, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Bug, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.Scroll, Shape.L, _getRandomRotation()));
 
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
-            remainingNodes.Add(new Node(Pickup.None, new bool[] { true, false, true, false }));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
 
             return remainingNodes;
         }
 
+        private int _getRandomRotation()
+        {
+            return new Random().Next(0, 3);
+        }
+
         private int _getRandom()
         {
-            return new Random().Next(0, 6);
+            return new Random().Next(0, 7);
+        }
+
+        public void Print()
+        {
+
         }
     }
 }
