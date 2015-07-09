@@ -25,6 +25,9 @@ namespace LabyrinthGame
         public MainPage()
         {
             this.InitializeComponent();
+            Board gameBoard = new Board();
+
+            gameBoard.Print();
         }
     }
 }

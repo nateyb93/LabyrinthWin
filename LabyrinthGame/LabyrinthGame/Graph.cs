@@ -13,10 +13,84 @@ namespace LabyrinthGame
     {
         private Dictionary<Node, List<Node>> _adjacencyList;
 
-        public Graph()
+        /// <summary>
+        /// Constructs a graph from a game board
+        /// </summary>
+        /// <param name="nodes"></param>
+        public Graph(Node[,] nodes)
         {
-            _adjacencyList = new Dictionary<Node, List<Node>>();
+            for (int x = 0; x < nodes.GetLength(0); x++)
+            {
+                for (int y = 0; y < nodes.GetLength(1); y++)
+                {
+                    _adjacencyList[nodes[x, y]] = new List<Node>();
+
+                    //Checks each direction from the current node for valid connections
+                    //this should have the effect of building the graph from the game board
+                    if (x != 0)
+                    {
+                        _checkHorizontalConnection(nodes[x - 1, y], nodes[x, y]);
+                    }
+                    if (y != 0)
+                    {
+                        _checkHorizontalConnection(nodes[x, y - 1], nodes[x, y]);
+                    }
+                    if (x != nodes.GetLength(0) - 1)
+                    {
+                        _checkHorizontalConnection(nodes[x, y], nodes[x + 1, y]);
+                    }
+                    if (y != nodes.GetLength(1) - 1)
+                    {
+                        _checkHorizontalConnection(nodes[x, y], nodes[x, y + 1]);
+                    }
+                }
+            }
         }
+
+        public Graph(bool test)
+        {
+            if (test)
+                _initTestValues();
+
+        }
+
+        private void _initTestValues()
+        {
+            
+        }
+
+        /// <summary>
+        /// Checks for a vertical connection between two tiles.
+        /// If it finds that a valid connection exists between the two tiles,
+        /// each node will be added to the other's list of adjacent nodes
+        /// </summary>
+        /// <param name="top"></param>
+        /// <param name="bottom"></param>
+        private void _checkVerticalConnection(Node top, Node bottom)
+        {
+            if (top.IsOpenBottom() && bottom.IsOpenTop())
+            {
+                AddEdge(top, bottom);
+                AddEdge(bottom, top);
+            }
+        }
+
+        /// <summary>
+        /// Checks for a horizontal connection between two tiles.
+        /// If it finds that a valid connection exists between the two tiles,
+        /// each node will be added to the other's list of adjacent nodes
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        private void _checkHorizontalConnection(Node left, Node right)
+        {
+            if (left.IsOpenRight() && right.IsOpenLeft())
+            {
+                AddEdge(left, right);
+                AddEdge(right, left);
+            }
+        }
+
 
 
         /// <summary>
@@ -43,11 +117,36 @@ namespace LabyrinthGame
                 _adjacencyList[from] = new List<Node>();
             }
 
-            _adjacencyList[from].Add(to);
+            if(!_adjacencyList[from].Contains(to))
+                _adjacencyList[from].Add(to);
         }
 
+        //Checks to see if there's a path from one node to another
         public bool HasPath(Node from, Node to)
         {
+            List<Node> visited = new List<Node>();
+            Queue<Node> queue = new Queue<Node>();
+
+            visited.Add(from);
+            queue.Enqueue(from);
+
+            while (queue.Count != 0)
+            {
+                Node current = queue.Dequeue();
+                foreach (Node n in _adjacencyList[current])
+                {
+                    if (n == to)
+                    {
+                        return true;
+                    }
+                    else if (!visited.Contains(n))
+                    {
+                        visited.Add(n);
+                        queue.Enqueue(n);
+                    }
+                }
+            }
+
             return false;
         }
     }
