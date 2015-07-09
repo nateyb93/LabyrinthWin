@@ -19,6 +19,9 @@ namespace LabyrinthGame
             _init();
         }
 
+        /// <summary>
+        /// Initializes the game board
+        /// </summary>
         private void _init()
         {
             _board = new Node[7, 7];
@@ -79,27 +82,42 @@ namespace LabyrinthGame
             _freePiece = remainingPieces[random];
             remainingPieces.RemoveAt(random);
 
-            foreach (Node node in remainingPieces)
+            //this loop inserts the pieces from the 'remaining pieces' collection randomly
+            while (true)
             {
-                int x = 0;
-                int y = 0;
+                //select a piece randomly from the board
+                int index = _getRandom(remainingPieces.Count);
 
-                while (true)
+                //find an empty space in the board
+                for (int i = 0; i < _board.GetLength(0); i++)
                 {
-                    x = _getRandom();
-                    y = _getRandom();
-
-                    //check if the spot is empty, break if so.
-                    if (_board[x, y] == null)
+                    bool breakFor = false;
+                    for (int j = 0; j < _board.GetLength(1); j++)
                     {
-                        break;
-                    }
-                }
+                        //if we find an empty space in the board,
+                        //insert our piece here and remove it from the list
+                        if (_board[i, j] == null)
+                        {
+                            _board[i, j] = remainingPieces[index];
+                            remainingPieces.RemoveAt(index);
+                            breakFor = true;
+                            break;
+                        }
+                    }//for j
 
-                _board[x, y] = node;
+                    //previous break will only break out of the inner loop
+                    if (breakFor)
+                        break;
+
+                }//for i
+
+                //if we've completed our tasks, 
+                if (remainingPieces.Count == 0)
+                    break;
                 
-            }
+            }//while
         }
+
 
         private List<Node> getRemainingPieces()
         {
@@ -150,9 +168,9 @@ namespace LabyrinthGame
             return new Random().Next(0, 3);
         }
 
-        private int _getRandom()
+        private int _getRandom(int max)
         {
-            return new Random().Next(0, 7);
+            return new Random().Next(0, max);
         }
 
         public void Print()

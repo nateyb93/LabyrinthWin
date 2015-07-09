@@ -19,6 +19,7 @@ namespace LabyrinthGame
         /// <param name="nodes"></param>
         public Graph(Node[,] nodes)
         {
+            _adjacencyList = new Dictionary<Node, List<Node>>();
             for (int x = 0; x < nodes.GetLength(0); x++)
             {
                 for (int y = 0; y < nodes.GetLength(1); y++)
