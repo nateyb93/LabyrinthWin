@@ -76,7 +76,7 @@ namespace LabyrinthGame
             //2. Insert each blank piece randomly, rotating each piece 0-3 times before inserting.
             List<Node> remainingPieces = getRemainingPieces();
 
-            int random = new Random().Next(0, remainingPieces.Count);
+            int random = _getRandom(remainingPieces.Count);
 
             //selects a free piece
             _freePiece = remainingPieces[random];
@@ -118,10 +118,15 @@ namespace LabyrinthGame
             }//while
         }
 
-
+        /// <summary>
+        /// Initializes the non-fixed pieces on the board
+        /// </summary>
+        /// <returns></returns>
         private List<Node> getRemainingPieces()
         {
             List<Node> remainingNodes = new List<Node>();
+
+            //organized by shape and pickup vs. no-pickup
             remainingNodes.Add(new Node(Pickup.Genie, Shape.T, _getRandomRotation()));
             remainingNodes.Add(new Node(Pickup.Ogre, Shape.T, _getRandomRotation()));
             remainingNodes.Add(new Node(Pickup.Pixie, Shape.T, _getRandomRotation()));
@@ -165,7 +170,7 @@ namespace LabyrinthGame
 
         private int _getRandomRotation()
         {
-            return new Random().Next(0, 3);
+            return _getRandom(3);
         }
 
         private int _getRandom(int max)
@@ -173,9 +178,5 @@ namespace LabyrinthGame
             return new Random().Next(0, max);
         }
 
-        public void Print()
-        {
-
-        }
     }
 }

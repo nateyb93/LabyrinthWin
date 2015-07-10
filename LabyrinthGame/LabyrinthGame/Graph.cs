@@ -48,10 +48,13 @@ namespace LabyrinthGame
             }
         }
 
-        public Graph(bool test)
+        /// <summary>
+        /// Initializes an empty graph with test values
+        /// </summary>
+        /// <param name="test"></param>
+        public Graph()
         {
-            if (test)
-                _initTestValues();
+            _initTestValues();
 
         }
 
@@ -62,6 +65,7 @@ namespace LabyrinthGame
 
         /// <summary>
         /// Checks for a vertical connection between two tiles.
+        /// 
         /// If it finds that a valid connection exists between the two tiles,
         /// each node will be added to the other's list of adjacent nodes
         /// </summary>

@@ -8,7 +8,7 @@
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad</PackageIdentityName>
     <IntermediateOutputPath>D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\obj\Debug\</IntermediateOutputPath>
-    <RegisteredManifestChecksum>AE44D91E66D0679A3D69F885BCC9F4EBC30DE4FE7070D94B12D0369F55C48302</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>B705096E274CDDF938DEC650B30C4880ADFDFA723B17464AFED231AA34D1A3F0</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad_1.0.0.0_neutral__ajc0x0rvn3gg0</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad_ajc0x0rvn3gg0!App</RegisteredUserModeAppID>
     <RegisteredPackageID>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad</RegisteredPackageID>
@@ -20,13 +20,21 @@
     <AppXManifest Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-09T04:37:57.407</Modified>
+      <Modified>2015-07-10T19:07:26.476</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.exe">
       <PackagePath>LabyrinthGame.exe</PackagePath>
-      <Modified>2015-07-09T05:19:18.126</Modified>
+      <Modified>2015-07-10T20:47:23.449</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\BehaviorsXamlSDKManaged\12.0\References\CommonConfiguration\Neutral\Microsoft.Xaml.Interactions.dll">
+      <PackagePath>Microsoft.Xaml.Interactions.dll</PackagePath>
+      <Modified>2014-04-29T21:23:50.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\BehaviorsXamlSDKManaged\12.0\References\CommonConfiguration\Neutral\Microsoft.Xaml.Interactivity.dll">
+      <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
+      <Modified>2014-04-29T21:23:50.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
@@ -50,19 +58,19 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-07-09T04:37:56.756</Modified>
+      <Modified>2015-07-10T19:07:26.017</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-07-09T04:37:56.756</Modified>
+      <Modified>2015-07-10T20:47:23.300</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.xr.xml">
       <PackagePath>LabyrinthGame.xr.xml</PackagePath>
-      <Modified>2015-07-09T03:54:09.671</Modified>
+      <Modified>2015-07-10T20:45:48.834</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-07-09T04:37:57.264</Modified>
+      <Modified>2015-07-10T19:07:26.347</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

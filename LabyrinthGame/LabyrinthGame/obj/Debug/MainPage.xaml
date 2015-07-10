@@ -5,9 +5,161 @@
     xmlns:local="using:LabyrinthGame"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    x:Name="MainPageElement">
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="SquareButton">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="AppBarButton" x:Key="PlayerButton">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Name="PlayingArea" Grid.Column="0" Background="Black" Width="{Binding ActualHeight, ElementName=MainGrid, Mode=OneWay}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Name="LeftButtons" Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Button Name="LeftButton1" Grid.Row="1" Style="{StaticResource SquareButton}"/>
+                <Button Name="LeftButton2" Grid.Row="3" Style="{StaticResource SquareButton}"/>
+                <Button Name="LeftButton3" Grid.Row="5" Style="{StaticResource SquareButton}"/>
+            </Grid>
+            
+            <AppBarButton Grid.Column="0" Grid.Row="0" Icon="Contact" Label="Player 1" Foreground="Blue" Style="{StaticResource PlayerButton}"/>
+            
+            <Grid Name="TopButtons" Grid.Column="1" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Name="TopButton1" Grid.Column="1" Style="{StaticResource SquareButton}"/>
+                <Button Name="TopButton2" Grid.Column="3" Style="{StaticResource SquareButton}"/>
+                <Button Name="TopButton3" Grid.Column="5" Style="{StaticResource SquareButton}"/>
+            </Grid>
+
+            <AppBarButton Grid.Column="2" Grid.Row="0" Icon="Contact" Label="Player 2" Foreground="Lime" Style="{StaticResource PlayerButton}"/>
+
+            <Grid Name="RightButtons" Grid.Column="2" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Name="RightButton1" Grid.Row="1" Style="{StaticResource SquareButton}"/>
+                <Button Name="RightButton2" Grid.Row="3" Style="{StaticResource SquareButton}"/>
+                <Button Name="RightButton3" Grid.Row="5" Style="{StaticResource SquareButton}"/>
+            </Grid>
+
+            <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Contact" Label="Player 3" Foreground="Red" Style="{StaticResource PlayerButton}"/>
+
+            <Grid Name="BottomButtons" Grid.Column="1" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Name="BottomButton1" Grid.Column="1" Style="{StaticResource SquareButton}"/>
+                <Button Name="BottomButton2" Grid.Column="3" Style="{StaticResource SquareButton}"/>
+                <Button Name="BottomButton3" Grid.Column="5" Style="{StaticResource SquareButton}"/>
+            </Grid>
+
+            <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}"/>
+
+            <Grid Name="GameBoard" Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Canvas Height="200" Width="200" Background="White"/>
+                <AppBarButton Icon="RepeatAll" Label="Rotate" HorizontalAlignment="Center"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Canvas Background="White" Height="200" Width="150"/>
+                <Grid Height="200" Width="250" Margin="10,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Canvas Background="White" Grid.Row="0" Grid.Column="0" Margin="5,0,5,5"/>
+                    <Canvas Background="Gray" Grid.Row="0" Grid.Column="1" Margin="5,0,5,5"/>
+                    <Canvas Background="White" Grid.Row="0" Grid.Column="2" Margin="5,0,5,5"/>
+                    <Canvas Background="Gray" Grid.Row="1" Grid.Column="0" Margin="5,5,5,0"/>
+                    <Canvas Background="White" Grid.Row="1" Grid.Column="1" Margin="5,5,5,0"/>
+                    <Canvas Background="Gray" Grid.Row="1" Grid.Column="2" Margin="5,5,5,0"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Page>
