@@ -26,7 +26,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Name="PlayingArea" Grid.Column="0" Background="Black" Width="{Binding ActualHeight, ElementName=MainGrid, Mode=OneWay}">
+        <Grid Name="PlayingArea" Grid.Column="0" Width="{Binding ActualHeight, ElementName=MainGrid, Mode=OneWay}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="7*"/>
@@ -128,7 +128,7 @@
                 </Grid.ColumnDefinitions>
             </Grid>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="Black">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>

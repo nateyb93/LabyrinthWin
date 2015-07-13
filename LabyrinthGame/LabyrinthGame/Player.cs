@@ -9,12 +9,46 @@ namespace LabyrinthGame
     public class Player
     {
         public List<Pickup> LostTreasures;
+        public int CurrentTreasure;
         public List<Pickup> FoundTreasures;
         public int StartX;
         public int StartY;
 
         public int CurrentX;
         public int CurrentY;
+
+        /// <summary>
+        /// Default constructor for the player class
+        /// </summary>
+        /// <param name="index">Index the players appear in the players array;</param>
+        public Player(int index)
+        {
+            CurrentTreasure = 0;
+
+            switch (index)
+            {
+                case 0:
+                default:
+                    StartX = 0;
+                    StartY = 0;
+                    break;
+                case 1:
+                    StartX = 6;
+                    StartY = 0;
+                    break;
+                case 2:
+                    StartX = 6;
+                    StartY = 6;
+                    break;
+                case 3:
+                    StartX = 0;
+                    StartY = 6;
+                    break;
+            }
+
+            CurrentX = StartX;
+            CurrentY = StartY;
+        }
 
         /// <summary>
         /// Checks to see if the player has won or not
@@ -41,6 +75,7 @@ namespace LabyrinthGame
             {
                 FoundTreasures.Add(pickup);
                 LostTreasures.Remove(pickup);
+                CurrentTreasure++;
             }
         }
     }

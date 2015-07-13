@@ -26,7 +26,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Name="PlayingArea" Grid.Column="0" Background="Black" Width="{Binding ActualHeight, ElementName=MainGrid, Mode=OneWay}">
+        <Grid Name="PlayingArea" Grid.Column="0" Width="{Binding ActualHeight, ElementName=MainGrid, Mode=OneWay}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="7*"/>
@@ -48,10 +48,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
-                <Button Name="LeftButton1" Grid.Row="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="LeftButton2" Grid.Row="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="LeftButton3" Grid.Row="5" Style="{StaticResource SquareButton}"/>
+
+                <Button Name="LeftButton1" Grid.Row="1" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <Button Name="LeftButton2" Grid.Row="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <Button Name="LeftButton3" Grid.Row="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
             </Grid>
             
             <AppBarButton Grid.Column="0" Grid.Row="0" Icon="Contact" Label="Player 1" Foreground="Blue" Style="{StaticResource PlayerButton}"/>
@@ -66,9 +66,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="TopButton1" Grid.Column="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="TopButton2" Grid.Column="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="TopButton3" Grid.Column="5" Style="{StaticResource SquareButton}"/>
+                <Button Name="TopButton1" Grid.Column="1" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <Button Name="TopButton2" Grid.Column="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <Button Name="TopButton3" Grid.Column="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="0" Icon="Contact" Label="Player 2" Foreground="Lime" Style="{StaticResource PlayerButton}"/>
@@ -83,9 +83,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Name="RightButton1" Grid.Row="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="RightButton2" Grid.Row="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="RightButton3" Grid.Row="5" Style="{StaticResource SquareButton}"/>
+                <Button Name="RightButton1" Grid.Row="1" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <Button Name="RightButton2" Grid.Row="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <Button Name="RightButton3" Grid.Row="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
             </Grid>
 
             <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Contact" Label="Player 3" Foreground="Red" Style="{StaticResource PlayerButton}"/>
@@ -100,9 +100,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="BottomButton1" Grid.Column="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="BottomButton2" Grid.Column="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="BottomButton3" Grid.Column="5" Style="{StaticResource SquareButton}"/>
+                <Button Name="BottomButton1" Grid.Column="1" Style="{StaticResource SquareButton}"  Click="PlacementButtonClick"/>
+                <Button Name="BottomButton2" Grid.Column="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <Button Name="BottomButton3" Grid.Column="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}"/>
@@ -128,7 +128,7 @@
                 </Grid.ColumnDefinitions>
             </Grid>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="Black">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
