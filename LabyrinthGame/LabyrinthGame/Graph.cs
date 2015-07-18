@@ -19,6 +19,7 @@ namespace LabyrinthGame
         /// <param name="nodes"></param>
         public Graph(Node[,] nodes)
         {
+            _adjacencyList = new Dictionary<Node, List<Node>>();
             for (int x = 0; x < nodes.GetLength(0); x++)
             {
                 for (int y = 0; y < nodes.GetLength(1); y++)
@@ -47,10 +48,13 @@ namespace LabyrinthGame
             }
         }
 
-        public Graph(bool test)
+        /// <summary>
+        /// Initializes an empty graph with test values
+        /// </summary>
+        /// <param name="test"></param>
+        public Graph()
         {
-            if (test)
-                _initTestValues();
+            _initTestValues();
 
         }
 
@@ -61,6 +65,7 @@ namespace LabyrinthGame
 
         /// <summary>
         /// Checks for a vertical connection between two tiles.
+        /// 
         /// If it finds that a valid connection exists between the two tiles,
         /// each node will be added to the other's list of adjacent nodes
         /// </summary>

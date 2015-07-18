@@ -22,12 +22,65 @@ namespace LabyrinthGame
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        /// <summary>
+        /// The game board object
+        /// </summary>
+        private GameBoard _gameBoard;
+
+        /// <summary>
+        /// Stores the players playing the game
+        /// </summary>
+        private Player[] _players;
+
+        /// <summary>
+        /// Toggles whether the user can place a new piece
+        /// </summary>
+        private bool _newTurn;
+
+        /// <summary>
+        /// Index of current player in the _players array
+        /// </summary>
+        private int _currentPlayer;
+
         public MainPage()
         {
             this.InitializeComponent();
-            Board gameBoard = new Board();
-
-            gameBoard.Print();
+            _gameBoard = new GameBoard();
+            _players = new Player[4];
+            _initPlayers(4);
+            _newTurn = true;
         }
+
+        /// <summary>
+        /// Initializes player variables
+        /// </summary>
+        private void _initPlayers(int numPlayers)
+        {
+            for (int i = 0; i < numPlayers; i++ )
+                _players[i] = new Player(i);
+
+            _currentPlayer = new Random().Next(0, 4);
+        }
+
+        /// <summary>
+        /// Advances the game to the next player's turn
+        /// </summary>
+        private void _nextPlayer()
+        {
+            if (_currentPlayer == 3)
+            {
+                _currentPlayer = 0;
+            }
+            else
+            {
+                _currentPlayer++;
+            }
+        }
+
+        private void PlacementButtonClick(object sender, RoutedEventArgs e)
+        {
+            if()
+        }
+
     }
 }

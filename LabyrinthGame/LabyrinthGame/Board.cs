@@ -6,19 +6,54 @@ using System.Threading.Tasks;
 
 namespace LabyrinthGame
 {
-    public class Board
+    public class GameBoard
     {
+        public const int MOVE_RIGHT = 0;
+        public const int MOVE_DOWN = 1;
+        public const int MOVE_LEFT = 2;
+        public const int MOVE_UP = 3;
+
         private Node[,] _board;
+        /// <summary>
+        /// Returns the array representation of the board
+        /// </summary>
+        public Node[,] Board
+        {
+            get
+            {
+                return _board;
+            }
+        }
 
         private Node _freePiece;
+        /// <summary>
+        /// Stores the current free piece of the board
+        /// </summary>
+        public Node FreePiece
+        {
+            get
+            {
+                return _freePiece;
+            }
+            set
+            {
+                _freePiece = value;
+            }
+        }
 
+        /// <summary>
+        /// Stores the graph representation of the board
+        /// </summary>
         private Graph _boardGraph;
 
-        public Board()
+        public GameBoard()
         {
             _init();
         }
 
+        /// <summary>
+        /// Initializes the game board
+        /// </summary>
         private void _init()
         {
             _board = new Node[7, 7];
@@ -35,26 +70,26 @@ namespace LabyrinthGame
         {
             //row 0 fixed
             _board[0, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_1);
-            _board[0, 2] = new Node(Pickup.Bone, Shape.T, Node.ROTATE_0);
-            _board[0, 4] = new Node(Pickup.Sword, Shape.T, Node.ROTATE_0);
+            _board[0, 2] = new Node(Pickup.RedCircle, Shape.T, Node.ROTATE_0);
+            _board[0, 4] = new Node(Pickup.GreenSquare, Shape.T, Node.ROTATE_0);
             _board[0, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_2);
 
             //row 2 fixed
-            _board[2, 0] = new Node(Pickup.Gold, Shape.T, Node.ROTATE_3);
-            _board[2, 2] = new Node(Pickup.Key, Shape.T, Node.ROTATE_3);
-            _board[2, 4] = new Node(Pickup.Gem, Shape.T, Node.ROTATE_0);
-            _board[2, 6] = new Node(Pickup.Helm, Shape.T, Node.ROTATE_1);
+            _board[2, 0] = new Node(Pickup.BlueStar, Shape.T, Node.ROTATE_3);
+            _board[2, 2] = new Node(Pickup.YellowHex, Shape.T, Node.ROTATE_3);
+            _board[2, 4] = new Node(Pickup.RedTriangle, Shape.T, Node.ROTATE_0);
+            _board[2, 6] = new Node(Pickup.GreenHeart, Shape.T, Node.ROTATE_1);
 
             //row 4 fixed
-            _board[4, 0] = new Node(Pickup.Book, Shape.T, Node.ROTATE_3);
-            _board[4, 2] = new Node(Pickup.Crown, Shape.T, Node.ROTATE_2);
-            _board[4, 4] = new Node(Pickup.Treasure, Shape.T, Node.ROTATE_1);
-            _board[4, 6] = new Node(Pickup.Candle, Shape.T, Node.ROTATE_1);
+            _board[4, 0] = new Node(Pickup.BlueSquare, Shape.T, Node.ROTATE_3);
+            _board[4, 2] = new Node(Pickup.YellowStar, Shape.T, Node.ROTATE_2);
+            _board[4, 4] = new Node(Pickup.RedHex, Shape.T, Node.ROTATE_1);
+            _board[4, 6] = new Node(Pickup.GreenCircle, Shape.T, Node.ROTATE_1);
 
             //row 6 fixed
             _board[6, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_0);
-            _board[6, 2] = new Node(Pickup.Map, Shape.T, Node.ROTATE_2);
-            _board[6, 4] = new Node(Pickup.Ring, Shape.T, Node.ROTATE_2);
+            _board[6, 2] = new Node(Pickup.BlueTriangle, Shape.T, Node.ROTATE_2);
+            _board[6, 4] = new Node(Pickup.YellowHeart, Shape.T, Node.ROTATE_2);
             _board[6, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_3);
         }
 
@@ -71,52 +106,72 @@ namespace LabyrinthGame
             //strategy:
             //1. Insert each pickup-containing piece randomly, rotating each piece 0-3 times before inserting
             //2. Insert each blank piece randomly, rotating each piece 0-3 times before inserting.
-            List<Node> remainingPieces = getRemainingPieces();
+            List<Node> remainingPieces = _getRemainingPieces();
 
-            int random = new Random().Next(0, remainingPieces.Count);
+            int random = _getRandom(remainingPieces.Count);
 
             //selects a free piece
             _freePiece = remainingPieces[random];
             remainingPieces.RemoveAt(random);
 
-            foreach (Node node in remainingPieces)
+            //this loop inserts the pieces from the 'remaining pieces' collection randomly
+            while (true)
             {
-                int x = 0;
-                int y = 0;
+                //select a piece randomly from the board
+                int index = _getRandom(remainingPieces.Count);
 
-                while (true)
+                //find an empty space in the board
+                for (int i = 0; i < _board.GetLength(0); i++)
                 {
-                    x = _getRandom();
-                    y = _getRandom();
-
-                    //check if the spot is empty, break if so.
-                    if (_board[x, y] == null)
+                    bool breakFor = false;
+                    for (int j = 0; j < _board.GetLength(1); j++)
                     {
-                        break;
-                    }
-                }
+                        //if we find an empty space in the board,
+                        //insert our piece here and remove it from the list
+                        if (_board[i, j] == null)
+                        {
+                            _board[i, j] = remainingPieces[index];
+                            remainingPieces.RemoveAt(index);
+                            breakFor = true;
+                            break;
+                        }
+                    }//for j
 
-                _board[x, y] = node;
+                    //previous break will only break out of the inner loop
+                    if (breakFor)
+                        break;
+
+                }//for i
+
+                //if we've completed our tasks, 
+                if (remainingPieces.Count == 0)
+                    break;
                 
-            }
+            }//while
         }
 
-        private List<Node> getRemainingPieces()
+        /// <summary>
+        /// Initializes the non-fixed pieces on the board
+        /// </summary>
+        /// <returns></returns>
+        private List<Node> _getRemainingPieces()
         {
             List<Node> remainingNodes = new List<Node>();
-            remainingNodes.Add(new Node(Pickup.Genie, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Ogre, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Pixie, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Bat, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Ghost, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Dragon, Shape.T, _getRandomRotation()));
 
-            remainingNodes.Add(new Node(Pickup.Butterfly, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Mouse, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Lizard, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Spider, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Bug, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.Scroll, Shape.L, _getRandomRotation()));
+            //organized by shape and pickup vs. no-pickup
+            remainingNodes.Add(new Node(Pickup.RedSquare, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.GreenTriangle, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.BlueSquare, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.YellowCircle, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.RedStar, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.GreenStar, Shape.T, _getRandomRotation()));
+
+            remainingNodes.Add(new Node(Pickup.BlueHex, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.YellowTriangle, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.RedHeart, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.GreenHex, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.BlueHeart, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.YellowSquare, Shape.L, _getRandomRotation()));
 
             remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
             remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
@@ -145,19 +200,153 @@ namespace LabyrinthGame
             return remainingNodes;
         }
 
+        /// <summary>
+        /// Gets a random number between 0 and 3
+        /// </summary>
+        /// <returns></returns>
         private int _getRandomRotation()
         {
-            return new Random().Next(0, 3);
+            return _getRandom(4);
         }
 
-        private int _getRandom()
+        /// <summary>
+        /// Gets a random number between 0 and the max
+        /// </summary>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        private int _getRandom(int max)
         {
-            return new Random().Next(0, 7);
+            return new Random().Next(0, max);
         }
 
-        public void Print()
+        /// <summary>
+        /// Checks if there is a valid path between the start and end nodes in the graph
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public bool IsValidPath(Node start, Node end)
         {
-
+            if (_boardGraph.HasPath(start, end))
+            {
+                return true;
+            }
+            return false;
         }
+
+        /// <summary>
+        /// Shifts the board in the specified direction at the specified position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="direction"></param>
+        public void Shift(int position, int direction)
+        {
+            switch (direction)
+            {
+                case MOVE_RIGHT:
+                    _shiftRight(position);
+                    break;
+
+                case MOVE_DOWN:
+                    _shiftDown(position);
+                    break;
+
+                case MOVE_LEFT:
+                    _shiftLeft(position);
+                    break;
+
+                case MOVE_UP:
+                    _shiftUp(position);
+                    break;
+            }
+
+            _boardGraph = new Graph(_board);
+        }
+
+        /// <summary>
+        /// Shifts the board right at the specified position
+        /// </summary>
+        /// <param name="position">Position to shift the board at</param>
+        private void _shiftRight(int position)
+        {
+            int size = _board.GetLength(0);
+          
+            //save the end of the row we're shifting
+            //this will get erased if we don't save it
+            Node temp = _board[size - 1, position];
+
+            //move each node from left to right
+            for (int i = size - 1; i > 0; i--)
+            {
+                _board[i, position] = _board[i - 1, position];
+            }
+
+            //the free piece
+            _board[0, position] = _freePiece;
+
+            //the piece we pushed off becomes our new free piece
+            _freePiece = temp;
+        }
+
+        /// <summary>
+        /// Shifts the board right at the specified position
+        /// </summary>
+        /// <param name="position">Position to shift the board at</param>
+        private void _shiftDown(int position)
+        {
+            int size = _board.GetLength(1);
+
+            Node temp = _board[position, size - 1];
+
+            for (int i = size - 1; i > 0; i--)
+            {
+                _board[position, i] = _board[position, i - 1];
+            }
+
+            _board[position, 0] = _freePiece;
+
+            _freePiece = temp;
+        }
+
+        /// <summary>
+        /// Shifts the board Left at the specified position
+        /// </summary>
+        /// <param name="position">Position to shift the board at</param>
+        private void _shiftLeft(int position)
+        {
+            int size = _board.GetLength(0);
+
+            Node temp = _board[0, position];
+
+            for (int i = 0; i < size - 1; i++)
+            {
+                _board[i, position] = _board[i + 1, position];
+            }
+
+            _board[size - 1, position] = _freePiece;
+
+            _freePiece = temp;
+        }
+
+        /// <summary>
+        /// Shifts the board right at the specified position
+        /// </summary>
+        /// <param name="position">Position to shift the board at</param>
+        private void _shiftUp(int position)
+        {
+            int size = _board.GetLength(1);
+
+            Node temp = _board[position, 0];
+
+            for (int i = 0; i < size - 1; i++)
+            {
+                _board[position, i] = _board[position, i + 1];
+            }
+
+            _board[position, size - 1] = _freePiece;
+
+            _freePiece = temp;
+        }
+
     }
 }
