@@ -107,7 +107,7 @@
 
             <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}"/>
 
-            <Grid Name="GameBoard" Grid.Row="1" Grid.Column="1">
+            <Grid Name="BoardGrid" Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -126,6 +126,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Background="Black">
@@ -135,8 +136,11 @@
             </Grid.RowDefinitions>
             
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Canvas Height="200" Width="200" Background="White"/>
-                <AppBarButton Icon="RepeatAll" Label="Rotate" HorizontalAlignment="Center"/>
+                <Grid Height="200" Width="200" Name="FreePieceGrid">
+                    <Canvas Name="FreePieceCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Margin="5"/>
+                    <Image Name="FreePieceImage" Height="100" Width="100"/>
+                </Grid>
+                <AppBarButton Icon="RepeatAll" Label="Rotate" HorizontalAlignment="Center" Click="RotateButtonClick"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">

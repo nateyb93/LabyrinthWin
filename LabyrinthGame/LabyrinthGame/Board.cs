@@ -62,6 +62,7 @@ namespace LabyrinthGame
 
             _boardGraph = new Graph(_board);
         }
+        
 
         /// <summary>
         /// Initializes the fixed pieces on the board.
@@ -108,17 +109,19 @@ namespace LabyrinthGame
             //2. Insert each blank piece randomly, rotating each piece 0-3 times before inserting.
             List<Node> remainingPieces = _getRemainingPieces();
 
-            int random = _getRandom(remainingPieces.Count);
+            Random random = new Random();
+
+            int randomNum = random.Next(0, remainingPieces.Count);
 
             //selects a free piece
-            _freePiece = remainingPieces[random];
-            remainingPieces.RemoveAt(random);
+            _freePiece = remainingPieces[randomNum];
+            remainingPieces.RemoveAt(randomNum);
 
             //this loop inserts the pieces from the 'remaining pieces' collection randomly
             while (true)
             {
                 //select a piece randomly from the board
-                int index = _getRandom(remainingPieces.Count);
+                int index = random.Next(0, remainingPieces.Count);
 
                 //find an empty space in the board
                 for (int i = 0; i < _board.GetLength(0); i++)
@@ -158,66 +161,50 @@ namespace LabyrinthGame
         {
             List<Node> remainingNodes = new List<Node>();
 
+            Random random = new Random();
+
             //organized by shape and pickup vs. no-pickup
-            remainingNodes.Add(new Node(Pickup.RedSquare, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.GreenTriangle, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.BlueSquare, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.YellowCircle, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.RedStar, Shape.T, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.GreenStar, Shape.T, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.RedSquare, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.GreenTriangle, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.BlueSquare, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.YellowCircle, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.RedStar, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.GreenStar, Shape.T, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Pickup.BlueHex, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.YellowTriangle, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.RedHeart, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.GreenHex, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.BlueHeart, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.YellowSquare, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.BlueHex, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.YellowTriangle, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.RedHeart, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.GreenHex, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.BlueHeart, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.YellowSquare, Shape.L, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, _getRandomRotation()));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
 
             return remainingNodes;
         }
 
-        /// <summary>
-        /// Gets a random number between 0 and 3
-        /// </summary>
-        /// <returns></returns>
-        private int _getRandomRotation()
-        {
-            return _getRandom(4);
-        }
-
-        /// <summary>
-        /// Gets a random number between 0 and the max
-        /// </summary>
-        /// <param name="max"></param>
-        /// <returns></returns>
-        private int _getRandom(int max)
-        {
-            return new Random().Next(0, max);
-        }
 
         /// <summary>
         /// Checks if there is a valid path between the start and end nodes in the graph
@@ -233,6 +220,7 @@ namespace LabyrinthGame
             }
             return false;
         }
+
 
         /// <summary>
         /// Shifts the board in the specified direction at the specified position

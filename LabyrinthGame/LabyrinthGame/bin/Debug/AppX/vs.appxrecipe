@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>NATHAN-PC</Machine>
+    <Machine>NATHAN-SURFACE3</Machine>
     <WindowsUser>Nathan</WindowsUser>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad</PackageIdentityName>
-    <IntermediateOutputPath>D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\obj\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug\</IntermediateOutputPath>
     <RegisteredManifestChecksum>B705096E274CDDF938DEC650B30C4880ADFDFA723B17464AFED231AA34D1A3F0</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad_1.0.0.0_neutral__ajc0x0rvn3gg0</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad_ajc0x0rvn3gg0!App</RegisteredUserModeAppID>
@@ -17,16 +17,16 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-10T19:07:26.476</Modified>
+      <Modified>2015-07-19T15:19:13.058</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.exe">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.exe">
       <PackagePath>LabyrinthGame.exe</PackagePath>
-      <Modified>2015-07-12T19:03:33.818</Modified>
+      <Modified>2015-07-19T18:01:42.445</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\BehaviorsXamlSDKManaged\12.0\References\CommonConfiguration\Neutral\Microsoft.Xaml.Interactions.dll">
       <PackagePath>Microsoft.Xaml.Interactions.dll</PackagePath>
@@ -36,41 +36,137 @@
       <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
       <Modified>2014-04-29T21:23:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\BlueCircle.png">
+      <PackagePath>Assets\BlueCircle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\BlueHeart.png">
+      <PackagePath>Assets\BlueHeart.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\BlueHex.png">
+      <PackagePath>Assets\BlueHex.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\BlueSquare.png">
+      <PackagePath>Assets\BlueSquare.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\BlueStar.png">
+      <PackagePath>Assets\BlueStar.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\BlueTriangle.png">
+      <PackagePath>Assets\BlueTriangle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\GreenCircle.png">
+      <PackagePath>Assets\GreenCircle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\GreenHeart.png">
+      <PackagePath>Assets\GreenHeart.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\GreenHex.png">
+      <PackagePath>Assets\GreenHex.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\GreenSquare.png">
+      <PackagePath>Assets\GreenSquare.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\GreenStar.png">
+      <PackagePath>Assets\GreenStar.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\GreenTriangle.png">
+      <PackagePath>Assets\GreenTriangle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.960</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\SmallLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\RedCircle.png">
+      <PackagePath>Assets\RedCircle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\RedHeart.png">
+      <PackagePath>Assets\RedHeart.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\RedHex.png">
+      <PackagePath>Assets\RedHex.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.715</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\RedSquare.png">
+      <PackagePath>Assets\RedSquare.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\RedStar.png">
+      <PackagePath>Assets\RedStar.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\RedTriangle.png">
+      <PackagePath>Assets\RedTriangle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\SmallLogo.scale-100.png">
       <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.961</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.961</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\StoreLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.962</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\YellowCircle.png">
+      <PackagePath>Assets\YellowCircle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\YellowHeart.png">
+      <PackagePath>Assets\YellowHeart.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\YellowHex.png">
+      <PackagePath>Assets\YellowHex.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\YellowSquare.png">
+      <PackagePath>Assets\YellowSquare.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\YellowStar.png">
+      <PackagePath>Assets\YellowStar.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\YellowTriangle.png">
+      <PackagePath>Assets\YellowTriangle.png</PackagePath>
+      <Modified>2015-07-18T19:57:30.731</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-07-10T19:07:26.017</Modified>
+      <Modified>2015-07-08T22:17:26.805</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-07-11T05:09:58.463</Modified>
+      <Modified>2015-07-19T17:53:02.989</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.xr.xml">
       <PackagePath>LabyrinthGame.xr.xml</PackagePath>
-      <Modified>2015-07-10T20:45:48.834</Modified>
+      <Modified>2015-07-19T17:53:02.937</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-07-10T19:07:26.347</Modified>
+      <Modified>2015-07-19T15:19:12.782</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

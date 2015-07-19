@@ -48,10 +48,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
-                <Button Name="LeftButton1" Grid.Row="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="LeftButton2" Grid.Row="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="LeftButton3" Grid.Row="5" Style="{StaticResource SquareButton}"/>
+
+                <Button x:ConnectionId='11' Name="LeftButton1" Grid.Row="1" Style="{StaticResource SquareButton}"                             />
+                <Button x:ConnectionId='12' Name="LeftButton2" Grid.Row="3" Style="{StaticResource SquareButton}"                             />
+                <Button x:ConnectionId='13' Name="LeftButton3" Grid.Row="5" Style="{StaticResource SquareButton}"                             />
             </Grid>
             
             <AppBarButton Grid.Column="0" Grid.Row="0" Icon="Contact" Label="Player 1" Foreground="Blue" Style="{StaticResource PlayerButton}"/>
@@ -66,9 +66,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="TopButton1" Grid.Column="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="TopButton2" Grid.Column="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="TopButton3" Grid.Column="5" Style="{StaticResource SquareButton}"/>
+                <Button x:ConnectionId='8' Name="TopButton1" Grid.Column="1" Style="{StaticResource SquareButton}"                             />
+                <Button x:ConnectionId='9' Name="TopButton2" Grid.Column="3" Style="{StaticResource SquareButton}"                             />
+                <Button x:ConnectionId='10' Name="TopButton3" Grid.Column="5" Style="{StaticResource SquareButton}"                             />
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="0" Icon="Contact" Label="Player 2" Foreground="Lime" Style="{StaticResource PlayerButton}"/>
@@ -83,9 +83,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Name="RightButton1" Grid.Row="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="RightButton2" Grid.Row="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="RightButton3" Grid.Row="5" Style="{StaticResource SquareButton}"/>
+                <Button x:ConnectionId='5' Name="RightButton1" Grid.Row="1" Style="{StaticResource SquareButton}"                             />
+                <Button x:ConnectionId='6' Name="RightButton2" Grid.Row="3" Style="{StaticResource SquareButton}"                             />
+                <Button x:ConnectionId='7' Name="RightButton3" Grid.Row="5" Style="{StaticResource SquareButton}"                             />
             </Grid>
 
             <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Contact" Label="Player 3" Foreground="Red" Style="{StaticResource PlayerButton}"/>
@@ -100,14 +100,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="BottomButton1" Grid.Column="1" Style="{StaticResource SquareButton}"/>
-                <Button Name="BottomButton2" Grid.Column="3" Style="{StaticResource SquareButton}"/>
-                <Button Name="BottomButton3" Grid.Column="5" Style="{StaticResource SquareButton}"/>
+                <Button x:ConnectionId='2' Name="BottomButton1" Grid.Column="1" Style="{StaticResource SquareButton}"                              />
+                <Button x:ConnectionId='3' Name="BottomButton2" Grid.Column="3" Style="{StaticResource SquareButton}"                             />
+                <Button x:ConnectionId='4' Name="BottomButton3" Grid.Column="5" Style="{StaticResource SquareButton}"                             />
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}"/>
 
-            <Grid Name="GameBoard" Grid.Row="1" Grid.Column="1">
+            <Grid Name="BoardGrid" Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -126,6 +126,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Background="Black">
@@ -135,8 +136,11 @@
             </Grid.RowDefinitions>
             
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Canvas Height="200" Width="200" Background="White"/>
-                <AppBarButton Icon="RepeatAll" Label="Rotate" HorizontalAlignment="Center"/>
+                <Grid Height="200" Width="200" Name="FreePieceGrid">
+                    <Canvas Name="FreePieceCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Margin="5"/>
+                    <Image Name="FreePieceImage" Height="100" Width="100"/>
+                </Grid>
+                <AppBarButton x:ConnectionId='1' Icon="RepeatAll" Label="Rotate" HorizontalAlignment="Center"                          />
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
