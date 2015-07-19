@@ -113,13 +113,51 @@ namespace LabyrinthGame
         /// <param name="e"></param>
         private void PlacementButtonClick(object sender, RoutedEventArgs e)
         {
-            if(sender == )
+            if (sender == TopButton1)
+                _gameBoard.Shift(1, GameBoard.MOVE_DOWN);
+            else if(sender == TopButton2)
+                _gameBoard.Shift(3, GameBoard.MOVE_DOWN);
+            else if(sender == TopButton3)
+                _gameBoard.Shift(5, GameBoard.MOVE_DOWN);
+
+            else if(sender == RightButton1)
+                _gameBoard.Shift(1, GameBoard.MOVE_LEFT);
+            else if (sender == RightButton2)
+                _gameBoard.Shift(3, GameBoard.MOVE_LEFT);
+            else if (sender == RightButton3)
+                _gameBoard.Shift(5, GameBoard.MOVE_LEFT);
+
+            else if (sender == BottomButton1)
+                _gameBoard.Shift(1, GameBoard.MOVE_UP);
+            else if (sender == BottomButton2)
+                _gameBoard.Shift(3, GameBoard.MOVE_UP);
+            else if (sender == BottomButton3)
+                _gameBoard.Shift(5, GameBoard.MOVE_UP);
+
+            else if (sender == LeftButton1)
+                _gameBoard.Shift(1, GameBoard.MOVE_RIGHT);
+            else if (sender == LeftButton2)
+                _gameBoard.Shift(3, GameBoard.MOVE_RIGHT);
+            else if (sender == LeftButton3)
+                _gameBoard.Shift(5, GameBoard.MOVE_RIGHT);
+
+            //redraws the game board
+            _initGameBoardImages();
+            
         }
 
         /// <summary>
         /// Initializes the images for the game board, including paths and pickups
         /// </summary>
         private void _initGameBoardImages()
+        {
+            BoardGrid.Children.Clear();
+            _drawBoard();
+            _drawFreePiece();
+        }
+
+
+        private void _drawBoard()
         {
             Node[,] spaces = _gameBoard.Board;
 
@@ -131,7 +169,6 @@ namespace LabyrinthGame
                 }
             }
 
-            _drawFreePiece();
         }
 
 
@@ -156,7 +193,7 @@ namespace LabyrinthGame
         /// <param name="node"></param>
         /// <param name="row"></param>
         /// <param name="col"></param>
-        private void _drawNewSquare(Node node, int row, int col)
+        private void _drawNewSquare(Node node, int col, int row)
         {
             //1 square is gameboard.width / 7
             Canvas newCanvas = new Canvas();

@@ -71,26 +71,27 @@ namespace LabyrinthGame
         {
             //row 0 fixed
             _board[0, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_1);
-            _board[0, 2] = new Node(Pickup.RedCircle, Shape.T, Node.ROTATE_0);
-            _board[0, 4] = new Node(Pickup.GreenSquare, Shape.T, Node.ROTATE_0);
-            _board[0, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_2);
+            _board[2, 0] = new Node(Pickup.BlueStar, Shape.T, Node.ROTATE_0);
+            _board[4, 0] = new Node(Pickup.BlueSquare, Shape.T, Node.ROTATE_0);
+            _board[6, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_2);
 
             //row 2 fixed
-            _board[2, 0] = new Node(Pickup.BlueStar, Shape.T, Node.ROTATE_3);
+            _board[0, 2] = new Node(Pickup.RedCircle, Shape.T, Node.ROTATE_3);
             _board[2, 2] = new Node(Pickup.YellowHex, Shape.T, Node.ROTATE_3);
-            _board[2, 4] = new Node(Pickup.RedTriangle, Shape.T, Node.ROTATE_0);
-            _board[2, 6] = new Node(Pickup.GreenHeart, Shape.T, Node.ROTATE_1);
+            _board[4, 2] = new Node(Pickup.YellowStar, Shape.T, Node.ROTATE_3);
+            _board[6, 2] = new Node(Pickup.BlueTriangle, Shape.T, Node.ROTATE_1);
 
             //row 4 fixed
-            _board[4, 0] = new Node(Pickup.BlueSquare, Shape.T, Node.ROTATE_3);
-            _board[4, 2] = new Node(Pickup.YellowStar, Shape.T, Node.ROTATE_2);
+            _board[0, 4] = new Node(Pickup.GreenSquare, Shape.T, Node.ROTATE_3);
+            _board[2, 4] = new Node(Pickup.RedTriangle, Shape.T, Node.ROTATE_2);
             _board[4, 4] = new Node(Pickup.RedHex, Shape.T, Node.ROTATE_1);
-            _board[4, 6] = new Node(Pickup.GreenCircle, Shape.T, Node.ROTATE_1);
+            _board[6, 4] = new Node(Pickup.YellowHeart, Shape.T, Node.ROTATE_1);
+            
 
             //row 6 fixed
-            _board[6, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_0);
-            _board[6, 2] = new Node(Pickup.BlueTriangle, Shape.T, Node.ROTATE_2);
-            _board[6, 4] = new Node(Pickup.YellowHeart, Shape.T, Node.ROTATE_2);
+            _board[0, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_0);
+            _board[2, 6] = new Node(Pickup.GreenHeart, Shape.T, Node.ROTATE_2);
+            _board[4, 6] = new Node(Pickup.GreenCircle, Shape.T, Node.ROTATE_2);
             _board[6, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_3);
         }
 
@@ -221,7 +222,7 @@ namespace LabyrinthGame
             return false;
         }
 
-
+        
         /// <summary>
         /// Shifts the board in the specified direction at the specified position
         /// </summary>
