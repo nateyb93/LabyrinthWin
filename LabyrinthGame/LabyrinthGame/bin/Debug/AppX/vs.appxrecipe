@@ -20,13 +20,13 @@
     <AppXManifest Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-19T15:19:13.058</Modified>
+      <Modified>2015-07-20T20:34:48.509</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.exe">
       <PackagePath>LabyrinthGame.exe</PackagePath>
-      <Modified>2015-07-19T18:55:17.076</Modified>
+      <Modified>2015-07-20T22:46:46.914</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\BehaviorsXamlSDKManaged\12.0\References\CommonConfiguration\Neutral\Microsoft.Xaml.Interactions.dll">
       <PackagePath>Microsoft.Xaml.Interactions.dll</PackagePath>
@@ -154,19 +154,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-07-08T22:17:26.805</Modified>
+      <Modified>2015-07-20T20:34:47.865</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\CanvasButton.xbf">
+      <PackagePath>CanvasButton.xbf</PackagePath>
+      <Modified>2015-07-20T22:46:46.734</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-07-19T17:53:02.989</Modified>
+      <Modified>2015-07-20T22:46:46.734</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.xr.xml">
       <PackagePath>LabyrinthGame.xr.xml</PackagePath>
-      <Modified>2015-07-19T17:53:02.937</Modified>
+      <Modified>2015-07-20T22:46:46.723</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-07-19T15:19:12.782</Modified>
+      <Modified>2015-07-20T20:34:48.445</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

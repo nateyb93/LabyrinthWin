@@ -116,6 +116,9 @@
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\CanvasButton.xbf">
+      <PackagePath>CanvasButton.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
     </AppxPackagedFile>

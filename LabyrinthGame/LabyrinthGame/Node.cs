@@ -3,38 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace LabyrinthGame
 {
-    public enum Pickup
-    {
-        None,
-        RedCircle,
-        RedStar,
-        RedSquare,
-        RedTriangle,
-        RedHex,
-        RedHeart,
-        GreenCircle,
-        GreenStar,
-        GreenSquare,
-        GreenTriangle,
-        GreenHex,
-        GreenHeart,
-        BlueCircle,
-        BlueStar,
-        BlueSquare,
-        BlueTriangle,
-        BlueHex,
-        BlueHeart,
-        YellowCircle,
-        YellowStar,
-        YellowSquare,
-        YellowTriangle,
-        YellowHex,
-        YellowHeart
-    }
-
     public enum Shape
     {
         S,
@@ -74,18 +46,18 @@ namespace LabyrinthGame
             }
         }
         
-        private Pickup _pickup;
+        private Color _color;
         /// <summary>
         /// </summary>
-        public Pickup Pickup
+        public Color Color
         {
             get
             {
-                return _pickup;
+                return _color;
             }
             set
             {
-                _pickup = value;
+                _color = value;
             }
         }
 
@@ -115,9 +87,9 @@ namespace LabyrinthGame
             }
         }
 
-        public Node(Pickup pickup, Shape shape, int rotation)
+        public Node(Color pickup, Shape shape, int rotation)
         {
-            _pickup = pickup;
+            Color = pickup;
             _shape = shape;
             _rotation = rotation;
         }

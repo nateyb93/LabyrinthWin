@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace LabyrinthGame
 {
     public class Player
     {
-        public List<Pickup> LostTreasures;
+        public List<Color> LostTreasures;
         public int CurrentTreasure;
-        public List<Pickup> FoundTreasures;
+        public List<Color> FoundTreasures;
         public int StartX;
         public int StartY;
 
@@ -69,12 +70,12 @@ namespace LabyrinthGame
         /// <summary>
         /// Performs the actions associated with finding a treasure on the game board
         /// </summary>
-        public void FindTreasure(Pickup pickup)
+        public void FindTreasure(Color color)
         {
-            if (LostTreasures.Contains(pickup))
+            if (LostTreasures.Contains(color))
             {
-                FoundTreasures.Add(pickup);
-                LostTreasures.Remove(pickup);
+                FoundTreasures.Add(color);
+                LostTreasures.Remove(color);
                 CurrentTreasure++;
             }
         }

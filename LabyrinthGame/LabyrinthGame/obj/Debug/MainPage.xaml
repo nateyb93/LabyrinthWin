@@ -49,9 +49,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:ConnectionId='11' Name="LeftButton1" Grid.Row="1" Style="{StaticResource SquareButton}"                             />
-                <Button x:ConnectionId='12' Name="LeftButton2" Grid.Row="3" Style="{StaticResource SquareButton}"                             />
-                <Button x:ConnectionId='13' Name="LeftButton3" Grid.Row="5" Style="{StaticResource SquareButton}"                             />
+                <local:CanvasButton x:ConnectionId='11' x:Name="LeftButton1" Grid.Row="1"                             />
+                <local:CanvasButton x:ConnectionId='12' x:Name="LeftButton2" Grid.Row="3"                             />
+                <local:CanvasButton x:ConnectionId='13' x:Name="LeftButton3" Grid.Row="5"                             />
             </Grid>
             
             <AppBarButton Grid.Column="0" Grid.Row="0" Icon="Contact" Label="Player 1" Foreground="Blue" Style="{StaticResource PlayerButton}"/>
@@ -66,9 +66,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:ConnectionId='8' Name="TopButton1" Grid.Column="1" Style="{StaticResource SquareButton}"                             />
-                <Button x:ConnectionId='9' Name="TopButton2" Grid.Column="3" Style="{StaticResource SquareButton}"                             />
-                <Button x:ConnectionId='10' Name="TopButton3" Grid.Column="5" Style="{StaticResource SquareButton}"                             />
+                <local:CanvasButton x:ConnectionId='8' x:Name="TopButton1" Grid.Column="1"                             />
+                <local:CanvasButton x:ConnectionId='9' x:Name="TopButton2" Grid.Column="3"                             />
+                <local:CanvasButton x:ConnectionId='10' x:Name="TopButton3" Grid.Column="5"                             />
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="0" Icon="Contact" Label="Player 2" Foreground="Lime" Style="{StaticResource PlayerButton}"/>
@@ -83,9 +83,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button x:ConnectionId='5' Name="RightButton1" Grid.Row="1" Style="{StaticResource SquareButton}"                             />
-                <Button x:ConnectionId='6' Name="RightButton2" Grid.Row="3" Style="{StaticResource SquareButton}"                             />
-                <Button x:ConnectionId='7' Name="RightButton3" Grid.Row="5" Style="{StaticResource SquareButton}"                             />
+                <local:CanvasButton x:ConnectionId='5' x:Name="RightButton1" Grid.Row="1"                             />
+                <local:CanvasButton x:ConnectionId='6' x:Name="RightButton2" Grid.Row="3"                             />
+                <local:CanvasButton x:ConnectionId='7' x:Name="RightButton3" Grid.Row="5"                             />
             </Grid>
 
             <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Contact" Label="Player 3" Foreground="Red" Style="{StaticResource PlayerButton}"/>
@@ -100,14 +100,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:ConnectionId='2' Name="BottomButton1" Grid.Column="1" Style="{StaticResource SquareButton}"                              />
-                <Button x:ConnectionId='3' Name="BottomButton2" Grid.Column="3" Style="{StaticResource SquareButton}"                             />
-                <Button x:ConnectionId='4' Name="BottomButton3" Grid.Column="5" Style="{StaticResource SquareButton}"                             />
+                <local:CanvasButton x:ConnectionId='2' x:Name="BottomButton1" Grid.Column="1"                             />
+                <local:CanvasButton x:ConnectionId='3' x:Name="BottomButton2" Grid.Column="3"                             />
+                <local:CanvasButton x:ConnectionId='4' x:Name="BottomButton3" Grid.Column="5"                             />
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}"/>
 
-            <Grid Name="BoardGrid" Grid.Row="1" Grid.Column="1">
+            <Grid Name="BoardGrid" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

@@ -8,17 +8,5 @@ namespace LabyrinthGame
 {
     public class Treasure
     {
-        private Pickup _type;
-        public Pickup Type
-        {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                _type = value;
-            }
-        }
     }
 }

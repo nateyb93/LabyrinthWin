@@ -49,9 +49,9 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button Name="LeftButton1" Grid.Row="1" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
-                <Button Name="LeftButton2" Grid.Row="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
-                <Button Name="LeftButton3" Grid.Row="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="LeftButton1" Grid.Row="1" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="LeftButton2" Grid.Row="3" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="LeftButton3" Grid.Row="5" Click="PlacementButtonClick"/>
             </Grid>
             
             <AppBarButton Grid.Column="0" Grid.Row="0" Icon="Contact" Label="Player 1" Foreground="Blue" Style="{StaticResource PlayerButton}"/>
@@ -66,9 +66,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="TopButton1" Grid.Column="1" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
-                <Button Name="TopButton2" Grid.Column="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
-                <Button Name="TopButton3" Grid.Column="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="TopButton1" Grid.Column="1" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="TopButton2" Grid.Column="3" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="TopButton3" Grid.Column="5" Click="PlacementButtonClick"/>
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="0" Icon="Contact" Label="Player 2" Foreground="Lime" Style="{StaticResource PlayerButton}"/>
@@ -83,9 +83,9 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button Name="RightButton1" Grid.Row="1" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
-                <Button Name="RightButton2" Grid.Row="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
-                <Button Name="RightButton3" Grid.Row="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="RightButton1" Grid.Row="1" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="RightButton2" Grid.Row="3" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="RightButton3" Grid.Row="5" Click="PlacementButtonClick"/>
             </Grid>
 
             <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Contact" Label="Player 3" Foreground="Red" Style="{StaticResource PlayerButton}"/>
@@ -100,14 +100,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="BottomButton1" Grid.Column="1" Style="{StaticResource SquareButton}"  Click="PlacementButtonClick"/>
-                <Button Name="BottomButton2" Grid.Column="3" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
-                <Button Name="BottomButton3" Grid.Column="5" Style="{StaticResource SquareButton}" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="BottomButton1" Grid.Column="1" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="BottomButton2" Grid.Column="3" Click="PlacementButtonClick"/>
+                <local:CanvasButton x:Name="BottomButton3" Grid.Column="5" Click="PlacementButtonClick"/>
             </Grid>
 
             <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}"/>
 
-            <Grid Name="BoardGrid" Grid.Row="1" Grid.Column="1">
+            <Grid Name="BoardGrid" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

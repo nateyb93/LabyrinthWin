@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace LabyrinthGame
 {
@@ -70,29 +71,28 @@ namespace LabyrinthGame
         private void _initFixedPieces()
         {
             //row 0 fixed
-            _board[0, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_1);
-            _board[2, 0] = new Node(Pickup.BlueStar, Shape.T, Node.ROTATE_0);
-            _board[4, 0] = new Node(Pickup.BlueSquare, Shape.T, Node.ROTATE_0);
-            _board[6, 0] = new Node(Pickup.None, Shape.L, Node.ROTATE_2);
+            _board[0, 0] = new Node(Colors.White, Shape.L, Node.ROTATE_1);
+            _board[2, 0] = new Node(Colors.Teal, Shape.T, Node.ROTATE_0);
+            _board[4, 0] = new Node(Colors.Aquamarine, Shape.T, Node.ROTATE_0);
+            _board[6, 0] = new Node(Colors.White, Shape.L, Node.ROTATE_2);
 
             //row 2 fixed
-            _board[0, 2] = new Node(Pickup.RedCircle, Shape.T, Node.ROTATE_3);
-            _board[2, 2] = new Node(Pickup.YellowHex, Shape.T, Node.ROTATE_3);
-            _board[4, 2] = new Node(Pickup.YellowStar, Shape.T, Node.ROTATE_3);
-            _board[6, 2] = new Node(Pickup.BlueTriangle, Shape.T, Node.ROTATE_1);
+            _board[0, 2] = new Node(Colors.Blue, Shape.T, Node.ROTATE_3);
+            _board[2, 2] = new Node(Colors.Brown, Shape.T, Node.ROTATE_3);
+            _board[4, 2] = new Node(Colors.Coral, Shape.T, Node.ROTATE_3);
+            _board[6, 2] = new Node(Colors.Crimson, Shape.T, Node.ROTATE_1);
 
             //row 4 fixed
-            _board[0, 4] = new Node(Pickup.GreenSquare, Shape.T, Node.ROTATE_3);
-            _board[2, 4] = new Node(Pickup.RedTriangle, Shape.T, Node.ROTATE_2);
-            _board[4, 4] = new Node(Pickup.RedHex, Shape.T, Node.ROTATE_1);
-            _board[6, 4] = new Node(Pickup.YellowHeart, Shape.T, Node.ROTATE_1);
+            _board[0, 4] = new Node(Colors.DarkMagenta, Shape.T, Node.ROTATE_3);
+            _board[2, 4] = new Node(Colors.RosyBrown, Shape.T, Node.ROTATE_2);
+            _board[4, 4] = new Node(Colors.Goldenrod, Shape.T, Node.ROTATE_1);
+            _board[6, 4] = new Node(Colors.Indigo, Shape.T, Node.ROTATE_1);
             
-
             //row 6 fixed
-            _board[0, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_0);
-            _board[2, 6] = new Node(Pickup.GreenHeart, Shape.T, Node.ROTATE_2);
-            _board[4, 6] = new Node(Pickup.GreenCircle, Shape.T, Node.ROTATE_2);
-            _board[6, 6] = new Node(Pickup.None, Shape.L, Node.ROTATE_3);
+            _board[0, 6] = new Node(Colors.White, Shape.L, Node.ROTATE_0);
+            _board[2, 6] = new Node(Colors.ForestGreen, Shape.T, Node.ROTATE_2);
+            _board[4, 6] = new Node(Colors.Lime, Shape.T, Node.ROTATE_2);
+            _board[6, 6] = new Node(Colors.White, Shape.L, Node.ROTATE_3);
         }
 
 
@@ -165,43 +165,43 @@ namespace LabyrinthGame
             Random random = new Random();
 
             //organized by shape and pickup vs. no-pickup
-            remainingNodes.Add(new Node(Pickup.RedSquare, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.GreenTriangle, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.BlueSquare, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.YellowCircle, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.RedStar, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.GreenStar, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Maroon, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.MidnightBlue, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Fuchsia, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Olive, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Orange, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Orchid, Shape.T, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Pickup.BlueHex, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.YellowTriangle, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.RedHeart, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.GreenHex, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.BlueHeart, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.YellowSquare, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Turquoise, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Thistle, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.Salmon, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.RoyalBlue, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.SlateBlue, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.SpringGreen, Shape.L, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Pickup.None, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
 
             return remainingNodes;
         }

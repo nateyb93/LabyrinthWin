@@ -41,9 +41,24 @@ namespace LabyrinthGame
         private bool _newTurn;
 
         /// <summary>
+        /// Direction of pending board shift
+        /// </summary>
+        private int _pendingDirection;
+
+        /// <summary>
+        /// Location of pending board shift
+        /// </summary>
+        private int _pendingLocation;
+
+        /// <summary>
         /// Index of current player in the _players array
         /// </summary>
         private int _currentPlayer;
+
+        /// <summary>
+        /// Stores whether the board has been initialized.
+        /// </summary>
+        private bool _initialized = false;
 
         public MainPage()
         {
@@ -52,12 +67,17 @@ namespace LabyrinthGame
             Loaded += delegate
             {
                 _initGameBoardImages();
+                _initPlayers(4);
+                _initButtons();
             };
 
+            _pendingDirection = -1;
+            _pendingLocation = -1;
+
             _gameBoard = new GameBoard();
-            _players = new Player[4];
-            _initPlayers(4);
+            
             _newTurn = true;
+
         }
 
         /// <summary>
@@ -65,10 +85,34 @@ namespace LabyrinthGame
         /// </summary>
         private void _initPlayers(int numPlayers)
         {
+            _players = new Player[numPlayers];
             for (int i = 0; i < numPlayers; i++ )
                 _players[i] = new Player(i);
 
             _currentPlayer = new Random().Next(0, 4);
+        }
+
+        /// <summary>
+        /// Sets the buttons' MainPage reference so we can
+        /// backwards reference the class
+        /// </summary>
+        private void _initButtons()
+        {
+            LeftButton1.MainPage = this;
+            LeftButton2.MainPage = this;
+            LeftButton3.MainPage = this;
+
+            TopButton1.MainPage = this;
+            TopButton2.MainPage = this;
+            TopButton3.MainPage = this;
+
+            RightButton1.MainPage = this;
+            RightButton2.MainPage = this;
+            RightButton3.MainPage = this;
+
+            BottomButton1.MainPage = this;
+            BottomButton2.MainPage = this;
+            BottomButton3.MainPage = this;
         }
 
         /// <summary>
@@ -106,45 +150,7 @@ namespace LabyrinthGame
             _rotateFreePiece();
         }
 
-        /// <summary>
-        /// Handles the click event for placing the free piece
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PlacementButtonClick(object sender, RoutedEventArgs e)
-        {
-            if (sender == TopButton1)
-                _gameBoard.Shift(1, GameBoard.MOVE_DOWN);
-            else if(sender == TopButton2)
-                _gameBoard.Shift(3, GameBoard.MOVE_DOWN);
-            else if(sender == TopButton3)
-                _gameBoard.Shift(5, GameBoard.MOVE_DOWN);
-
-            else if(sender == RightButton1)
-                _gameBoard.Shift(1, GameBoard.MOVE_LEFT);
-            else if (sender == RightButton2)
-                _gameBoard.Shift(3, GameBoard.MOVE_LEFT);
-            else if (sender == RightButton3)
-                _gameBoard.Shift(5, GameBoard.MOVE_LEFT);
-
-            else if (sender == BottomButton1)
-                _gameBoard.Shift(1, GameBoard.MOVE_UP);
-            else if (sender == BottomButton2)
-                _gameBoard.Shift(3, GameBoard.MOVE_UP);
-            else if (sender == BottomButton3)
-                _gameBoard.Shift(5, GameBoard.MOVE_UP);
-
-            else if (sender == LeftButton1)
-                _gameBoard.Shift(1, GameBoard.MOVE_RIGHT);
-            else if (sender == LeftButton2)
-                _gameBoard.Shift(3, GameBoard.MOVE_RIGHT);
-            else if (sender == LeftButton3)
-                _gameBoard.Shift(5, GameBoard.MOVE_RIGHT);
-
-            //redraws the game board
-            _initGameBoardImages();
-            
-        }
+        
 
         /// <summary>
         /// Initializes the images for the game board, including paths and pickups
@@ -154,9 +160,13 @@ namespace LabyrinthGame
             BoardGrid.Children.Clear();
             _drawBoard();
             _drawFreePiece();
+            _initialized = true;
         }
 
 
+        /// <summary>
+        /// Draws the squares on the board
+        /// </summary>
         private void _drawBoard()
         {
             Node[,] spaces = _gameBoard.Board;
@@ -168,7 +178,6 @@ namespace LabyrinthGame
                     _drawNewSquare(spaces[i, j], i, j);
                 }
             }
-
         }
 
 
@@ -180,11 +189,13 @@ namespace LabyrinthGame
             //clear images from the canvas
             FreePieceCanvas.Children.Clear();
 
-            _drawPath(FreePieceCanvas, _gameBoard.FreePiece.Shape, _gameBoard.FreePiece.Rotation);
-
-            BitmapImage bmp = new BitmapImage();
-            bmp.UriSource = new Uri("ms-appx:/Assets/" + _gameBoard.FreePiece.Pickup.ToString() + ".png");
-            FreePieceImage.Source = bmp;
+            _drawPath(FreePieceCanvas, _gameBoard.FreePiece.Shape, _gameBoard.FreePiece.Rotation, (int)FreePieceCanvas.ActualWidth + 10);
+            _drawPickup(FreePieceCanvas,
+                        (int)(FreePieceCanvas.ActualWidth / 2 - 25),
+                        (int)(FreePieceCanvas.ActualHeight / 2 - 25),
+                        50,
+                        50,
+                        _gameBoard.FreePiece.Color);
         }
 
         /// <summary>
@@ -197,8 +208,12 @@ namespace LabyrinthGame
         {
             //1 square is gameboard.width / 7
             Canvas newCanvas = new Canvas();
-            int squareWidth = (int)(BoardGrid.ActualWidth);
+            int squareWidth;
 
+            if (!_initialized)
+                squareWidth = (int)(BoardGrid.ActualWidth);
+            else
+                squareWidth = (int)(BoardGrid.ActualWidth / 7);
             newCanvas.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch;
             newCanvas.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch;
             newCanvas.Margin = new Thickness(5, 5, 5, 5);
@@ -208,8 +223,14 @@ namespace LabyrinthGame
 
             BoardGrid.Children.Add(newCanvas);
 
-            _drawPath(newCanvas, node.Shape, node.Rotation);
-            _drawImage(row, col, node);
+            _drawPath(newCanvas, node.Shape, node.Rotation, squareWidth);
+            _drawPickup(newCanvas,
+                        squareWidth / 2 - 20,
+                        squareWidth / 2 - 20,
+                        30,
+                        30,
+                        node.Color);
+            //_drawImage(row, col, node);
         }
 
 
@@ -218,14 +239,8 @@ namespace LabyrinthGame
         /// </summary>
         /// <param name="shape"></param>
         /// <param name="rotation"></param>
-        private void _drawPath(Canvas canvas, Shape shape, int rotation)
+        private void _drawPath(Canvas canvas, Shape shape, int rotation, int squareWidth)
         {
-            int squareWidth;
-            if (canvas != FreePieceCanvas)
-                squareWidth = (int)(BoardGrid.ActualWidth);
-            else
-                squareWidth = (int)canvas.ActualWidth + 10;
-
             //S 0: |   1: --  2: |   3: --
             //            _     _
             //L 0: |_  1:|    2: |   3: _|
@@ -240,6 +255,7 @@ namespace LabyrinthGame
                         _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
                     break;
 
+
                 case Shape.L:
                     //vertical line
                     if (rotation == 0 || rotation == 3)
@@ -252,7 +268,6 @@ namespace LabyrinthGame
                         _drawLine(canvas, squareWidth / 2 - 15, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
                     else
                         _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth / 2 + 5, squareWidth / 2 - 5, 20);
-
                     break;
 
 
@@ -280,28 +295,30 @@ namespace LabyrinthGame
 
 
         /// <summary>
-        /// Draws a pickup image on a tile
+        /// Draws an ellipse to represent a pickup on the game board
         /// </summary>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        /// <param name="n"></param>
-        private void _drawImage(int row, int col, Node n)
+        /// <param name="canvas"></param>
+        /// <param name="left"></param>
+        /// <param name="top"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="color"></param>
+        private void _drawPickup(Canvas canvas, int left, int top, int width, int height, Color color)
         {
-            //<Image Source="Assets/GreenStar.png" Width="50" Height="50"/>
+            if (color == Colors.White)
+                return;
 
-            Image image = new Image();
+            Ellipse ellipse = new Ellipse();
 
-            BitmapImage bmp = new BitmapImage();
-            bmp.UriSource = new Uri("ms-appx:/Assets/" + n.Pickup.ToString() + ".png");
+            Canvas.SetLeft(ellipse, left);
+            Canvas.SetTop(ellipse, top);
+            ellipse.Width = width;
+            ellipse.Height = height;
 
-            image.Width = 50;
-            image.Height = 50;
-            image.Source = bmp;
+            ellipse.Stroke = new SolidColorBrush(color);
+            ellipse.Fill = new SolidColorBrush(color);
 
-            Grid.SetColumn(image, col);
-            Grid.SetRow(image, row);
-
-            BoardGrid.Children.Add(image);
+            canvas.Children.Add(ellipse);
         }
 
         /// <summary>
@@ -324,8 +341,111 @@ namespace LabyrinthGame
 
             line.StrokeThickness = strokeWidth;
 
-            line.Stroke = new SolidColorBrush(Colors.White);
+            line.Stroke = new SolidColorBrush(Colors.Gray);
             canvas.Children.Add(line);
+        }
+
+        private void _drawOnButton(Canvas canvas)
+        {
+            canvas.Children.Clear();
+
+            int squareWidth = (int)canvas.ActualWidth;
+
+            _drawPath(canvas, _gameBoard.FreePiece.Shape, _gameBoard.FreePiece.Rotation, squareWidth + 10);
+            _drawPickup(canvas,
+                        squareWidth / 2 - 20,
+                        squareWidth / 2 - 20,
+                        30,
+                        30,
+                        _gameBoard.FreePiece.Color);
+        }
+
+        /// <summary>
+        /// Handles the click event for placing the free piece
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlacementButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (sender == TopButton1.Button)
+            {
+                _drawOnButton(TopButton1.Canvas);
+                _pendingLocation = 1;
+                _pendingDirection = GameBoard.MOVE_DOWN;
+            }
+            else if (sender == TopButton2.Button)
+            {
+                _drawOnButton(TopButton2.Canvas);
+                _pendingLocation = 3;
+                _pendingDirection = GameBoard.MOVE_DOWN;
+            }
+            else if (sender == TopButton3.Button)
+            {
+                _drawOnButton(TopButton3.Canvas);
+                _pendingLocation = 5;
+                _pendingDirection = GameBoard.MOVE_DOWN;
+            }
+
+            else if (sender == RightButton1.Button)
+            {
+                _drawOnButton(RightButton1.Canvas);
+                _pendingLocation = 1;
+                _pendingDirection = GameBoard.MOVE_LEFT;
+            }
+            else if (sender == RightButton2.Button)
+            {
+                _drawOnButton(RightButton2.Canvas);
+                _pendingLocation = 3;
+                _pendingDirection = GameBoard.MOVE_LEFT;
+            }
+            else if (sender == RightButton3.Button)
+            {
+                _drawOnButton(RightButton3.Canvas);
+                _pendingLocation = 5;
+                _pendingDirection = GameBoard.MOVE_LEFT;
+            }
+
+            else if (sender == BottomButton1.Button)
+            {
+                _drawOnButton(BottomButton1.Canvas);
+                _pendingLocation = 1;
+                _pendingDirection = GameBoard.MOVE_UP;
+            }
+            else if (sender == BottomButton2.Button)
+            {
+                _drawOnButton(BottomButton2.Canvas);
+                _pendingLocation = 3;
+                _pendingDirection = GameBoard.MOVE_UP;
+            }
+            else if (sender == BottomButton3.Button)
+            {
+                _drawOnButton(BottomButton3.Canvas);
+                _pendingLocation = 5;
+                _pendingDirection = GameBoard.MOVE_UP;
+            }
+
+            else if (sender == LeftButton1.Button)
+            {
+                _drawOnButton(LeftButton1.Canvas);
+                _pendingLocation = 1;
+                _pendingDirection = GameBoard.MOVE_RIGHT;
+            }
+            else if (sender == LeftButton2.Button)
+            {
+                _drawOnButton(LeftButton2.Canvas);
+                _pendingLocation = 3;
+                _pendingDirection = GameBoard.MOVE_RIGHT;
+            }
+            else if (sender == LeftButton3.Button)
+            {
+                _drawOnButton(LeftButton3.Canvas);
+                _pendingLocation = 5;
+                _pendingDirection = GameBoard.MOVE_RIGHT;
+            }
+
+            //redraws the game board
+            _initGameBoardImages();
+
         }
 
     }
