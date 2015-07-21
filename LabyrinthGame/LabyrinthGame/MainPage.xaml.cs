@@ -149,7 +149,6 @@ namespace LabyrinthGame
         {
             _rotateFreePiece();
         }
-
         
 
         /// <summary>
@@ -345,6 +344,11 @@ namespace LabyrinthGame
             canvas.Children.Add(line);
         }
 
+
+        /// <summary>
+        /// Draws the free piece on thespecified spot on the board
+        /// </summary>
+        /// <param name="canvas"></param>
         private void _drawOnButton(Canvas canvas)
         {
             canvas.Children.Clear();
@@ -359,6 +363,21 @@ namespace LabyrinthGame
                         30,
                         _gameBoard.FreePiece.Color);
         }
+
+        /// <summary>
+        /// Executes the currently pending board shift
+        /// </summary>
+        public void MakePendingBoardShift()
+        {
+            if(_pendingLocation != -1 && _pendingDirection != -1)
+                _gameBoard.Shift(_pendingLocation, _pendingDirection);
+
+            _pendingLocation = -1;
+            _pendingDirection = -1;
+
+            _initGameBoardImages();
+        }
+
 
         /// <summary>
         /// Handles the click event for placing the free piece
@@ -442,9 +461,6 @@ namespace LabyrinthGame
                 _pendingLocation = 5;
                 _pendingDirection = GameBoard.MOVE_RIGHT;
             }
-
-            //redraws the game board
-            _initGameBoardImages();
 
         }
 

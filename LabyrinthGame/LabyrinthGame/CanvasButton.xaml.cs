@@ -38,12 +38,19 @@ namespace LabyrinthGame
             if (this.Click != null)
             {
                 this.Click(sender, e);
+                ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
         }
 
-        protected void OnClick(EventArgs e)
+        private void ConfirmationClick(object sender, RoutedEventArgs e)
         {
+            canvas.Children.Clear();
+            if (sender == YesButton)
+            {
+                MainPage.MakePendingBoardShift();
+            }
 
+            ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
     }
 }

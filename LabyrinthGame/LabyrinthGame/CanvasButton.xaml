@@ -12,5 +12,14 @@
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="canvas" Margin="10"/>
         <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="button" Click="HandleClick" Margin="2"/>
+        <Grid Name="ConfirmationButtons" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Name="YesButton" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="Yes" Foreground="Lime" Click="ConfirmationClick"/>
+            <Button Name="NoButton" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content ="No" Foreground="Red" Click="ConfirmationClick"/>
+        </Grid>
     </Grid>
+    
 </UserControl>
