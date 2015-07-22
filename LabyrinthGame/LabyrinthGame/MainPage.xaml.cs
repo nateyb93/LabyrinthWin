@@ -20,6 +20,12 @@ using Windows.UI.Xaml.Shapes;
 
 namespace LabyrinthGame
 {
+
+    struct Deck
+    {
+        public List<Color> Cards;
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -31,14 +37,14 @@ namespace LabyrinthGame
         private GameBoard _gameBoard;
 
         /// <summary>
+        /// Deck of cards
+        /// </summary>
+        private Deck Deck;
+
+        /// <summary>
         /// Stores the players playing the game
         /// </summary>
         private Player[] _players;
-
-        /// <summary>
-        /// Toggles whether the user can place a new piece
-        /// </summary>
-        private bool _newTurn;
 
         /// <summary>
         /// Direction of pending board shift
@@ -67,16 +73,152 @@ namespace LabyrinthGame
             Loaded += delegate
             {
                 _initGameBoardImages();
+                _initDeck();
                 _initPlayers(4);
                 _initButtons();
+                _drawPlayerCards();
             };
 
             _pendingDirection = -1;
             _pendingLocation = -1;
 
             _gameBoard = new GameBoard();
-            
-            _newTurn = true;
+        }
+
+        /// <summary>
+        /// Switches the current player
+        /// </summary>
+        public void SwitchPlayer()
+        {
+            _currentPlayer++;
+            if (_currentPlayer >= _players.Length)
+            {
+                _currentPlayer = 0;
+            }
+
+            _playerSwitchBackgroundChange();
+
+            _drawPlayerCards();
+        }
+
+
+        /// <summary>
+        /// Updates the background for each player button based on whose turn it is
+        /// </summary>
+        private void _playerSwitchBackgroundChange()
+        {
+            switch (_currentPlayer)
+            {
+                case 0:
+                    //Make background light and reverse theme for contrast reasons
+                    Player1ButtonGrid.Background = new SolidColorBrush(Colors.White);
+                    Player1Button.RequestedTheme = ElementTheme.Light;
+
+                    //this switch determines whose turn it was prior; this differs
+                    //based on how many players are in the game
+                    switch (_players.Length)
+                    {
+                        case 2:
+                            Player2ButtonGrid.Background = new SolidColorBrush(Colors.Transparent);
+                            Player2Button.RequestedTheme = ElementTheme.Default;
+                            break;
+                        case 3:
+                            Player3ButtonGrid.Background = new SolidColorBrush(Colors.Transparent);
+                            Player3Button.RequestedTheme = ElementTheme.Default;
+                            break;
+                        case 4:
+                            Player4ButtonGrid.Background = new SolidColorBrush(Colors.Transparent);
+                            Player4Button.RequestedTheme = ElementTheme.Default;
+                            break;
+                    }
+                    break;
+
+                case 1:
+                    Player2ButtonGrid.Background = new SolidColorBrush(Colors.White);
+                    Player2Button.RequestedTheme = ElementTheme.Light;
+                    
+                    Player1ButtonGrid.Background = new SolidColorBrush(Colors.Transparent);
+                    Player1Button.RequestedTheme = ElementTheme.Default;
+
+                    break;
+
+                case 2:
+                    if (_players.Length < 3)
+                        break;
+                    Player3ButtonGrid.Background = new SolidColorBrush(Colors.White);
+                    Player3Button.RequestedTheme = ElementTheme.Light;
+
+                    Player2ButtonGrid.Background = new SolidColorBrush(Colors.Transparent);
+                    Player2Button.RequestedTheme = ElementTheme.Default;
+
+                    break;
+
+                case 3:
+                    if (_players.Length < 4)
+                        break;
+                    Player4ButtonGrid.Background = new SolidColorBrush(Colors.White);
+                    Player4Button.RequestedTheme = ElementTheme.Light;
+
+                    Player3ButtonGrid.Background = new SolidColorBrush(Colors.Transparent);
+                    Player3Button.RequestedTheme = ElementTheme.Default;
+                    break;
+            }
+
+        }
+
+
+        /// <summary>
+        /// Draws the current player's cards on the current player interface
+        /// </summary>
+        private void _drawPlayerCards()
+        {
+            Player player = _players[_currentPlayer];
+
+            //Draw current lost treasure
+            if (_players[_currentPlayer].LostTreasures.Count != 0)
+            {
+                _drawPickup(CurrentCardCanvas,
+                            (int)(CurrentCardCanvas.ActualWidth / 2 - 25),
+                            (int)(CurrentCardCanvas.ActualHeight / 2 - 25),
+                            50,
+                            50,
+                            player.LostTreasures[player.CurrentTreasure]);
+            }
+
+            //Draw the found treasures
+            for(int i = 0; i < player.FoundTreasures.Count; i++)
+            {
+                Canvas canvas = null;
+
+                switch (i)
+                {
+                    case 0:
+                        canvas = FoundCard1;
+                        break;
+                    case 1:
+                        canvas = FoundCard2;
+                        break;
+                    case 2:
+                        canvas = FoundCard3;
+                        break;
+                    case 3:
+                        canvas = FoundCard4;
+                        break;
+                    case 4:
+                        canvas = FoundCard5;
+                        break;
+                    case 5:
+                        canvas = FoundCard6;
+                        break;
+                }
+
+                _drawPickup(canvas,
+                            (int)(canvas.ActualWidth / 2 - 25),
+                            (int)(canvas.ActualHeight / 2 - 25),
+                            50,
+                            50,
+                            player.FoundTreasures[i]);
+            }
 
         }
 
@@ -85,11 +227,67 @@ namespace LabyrinthGame
         /// </summary>
         private void _initPlayers(int numPlayers)
         {
+            Random random = new Random();
             _players = new Player[numPlayers];
             for (int i = 0; i < numPlayers; i++ )
                 _players[i] = new Player(i);
 
-            _currentPlayer = new Random().Next(0, 4);
+            //set current player to 0 for 'hand' initialization
+            _currentPlayer = 0;
+
+            //while deck
+            while(Deck.Cards.Count != 0)
+            {
+                //pick a color, remove it from the list add it to current player's hand,
+                //and remove it from the deck.
+                int randomNum = random.Next(0, Deck.Cards.Count);
+
+                Color color = Deck.Cards[randomNum];
+                _players[_currentPlayer].LostTreasures.Add(color);
+                Deck.Cards.RemoveAt(randomNum);
+
+                //if current player's hand is full, move to next player.
+                if (_players[_currentPlayer].LostTreasures.Count >= 24 / _players.Length)
+                {
+                    _currentPlayer++;
+                }
+            }
+
+            //randomly set current player index
+            _currentPlayer = random.Next(0, _players.Length);
+        }
+        
+        /// <summary>
+        /// Initializes the deck of pickups
+        /// </summary>
+        private void _initDeck()
+        {
+            Deck.Cards = new List<Color>();
+
+            Deck.Cards.Add(Colors.Teal);
+            Deck.Cards.Add(Colors.Aquamarine);
+            Deck.Cards.Add(Colors.Blue);
+            Deck.Cards.Add(Colors.Brown);
+            Deck.Cards.Add(Colors.Coral);
+            Deck.Cards.Add(Colors.Crimson);
+            Deck.Cards.Add(Colors.DarkMagenta);
+            Deck.Cards.Add(Colors.RosyBrown);
+            Deck.Cards.Add(Colors.Goldenrod);
+            Deck.Cards.Add(Colors.Indigo);
+            Deck.Cards.Add(Colors.ForestGreen);
+            Deck.Cards.Add(Colors.Lime);
+            Deck.Cards.Add(Colors.Maroon);
+            Deck.Cards.Add(Colors.MidnightBlue);
+            Deck.Cards.Add(Colors.Fuchsia);
+            Deck.Cards.Add(Colors.Olive);
+            Deck.Cards.Add(Colors.Orange);
+            Deck.Cards.Add(Colors.Orchid);
+            Deck.Cards.Add(Colors.Turquoise);
+            Deck.Cards.Add(Colors.Thistle);
+            Deck.Cards.Add(Colors.Salmon);
+            Deck.Cards.Add(Colors.RoyalBlue);
+            Deck.Cards.Add(Colors.SlateBlue);
+            Deck.Cards.Add(Colors.SpringGreen);
         }
 
         /// <summary>
@@ -114,22 +312,6 @@ namespace LabyrinthGame
             BottomButton2.MainPage = this;
             BottomButton3.MainPage = this;
         }
-
-        /// <summary>
-        /// Advances the game to the next player's turn
-        /// </summary>
-        private void _nextPlayer()
-        {
-            if (_currentPlayer == 3)
-            {
-                _currentPlayer = 0;
-            }
-            else
-            {
-                _currentPlayer++;
-            }
-        }
-
 
         /// <summary>
         /// Handles actions associated with rotating the free piece
@@ -168,6 +350,7 @@ namespace LabyrinthGame
         /// </summary>
         private void _drawBoard()
         {
+            //just for easier access
             Node[,] spaces = _gameBoard.Board;
 
             for (int i = 0; i < spaces.GetLength(0); i++)
@@ -200,19 +383,22 @@ namespace LabyrinthGame
         /// <summary>
         /// Draws a square on the game board
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
+        /// <param name="node">Node object square represents</param>
+        /// <param name="row">Row of grid to build canvas on</param>
+        /// <param name="col">Column of grid to build canvas on</param>
         private void _drawNewSquare(Node node, int col, int row)
         {
             //1 square is gameboard.width / 7
             Canvas newCanvas = new Canvas();
             int squareWidth;
 
+            //Board grid's width isn't determined until after the page is drawn
             if (!_initialized)
                 squareWidth = (int)(BoardGrid.ActualWidth);
             else
                 squareWidth = (int)(BoardGrid.ActualWidth / 7);
+
+            //Stretch properties to fill entire grid square
             newCanvas.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch;
             newCanvas.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch;
             newCanvas.Margin = new Thickness(5, 5, 5, 5);
@@ -346,9 +532,11 @@ namespace LabyrinthGame
 
 
         /// <summary>
-        /// Draws the free piece on thespecified spot on the board
+        /// Draws the free piece on thespecified spot on the board.
+        /// Usually used in conjunction with CanvasButton so as to
+        /// draw on the canvas corresponding to its button
         /// </summary>
-        /// <param name="canvas"></param>
+        /// <param name="canvas">Canvas of CanvasButton to draw on</param>
         private void _drawOnButton(Canvas canvas)
         {
             canvas.Children.Clear();
@@ -372,6 +560,7 @@ namespace LabyrinthGame
             if(_pendingLocation != -1 && _pendingDirection != -1)
                 _gameBoard.Shift(_pendingLocation, _pendingDirection);
 
+            //invalidate pending location and direction
             _pendingLocation = -1;
             _pendingDirection = -1;
 
@@ -464,5 +653,15 @@ namespace LabyrinthGame
 
         }
 
+
+        /// <summary>
+        /// Handles action for player button clicks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void PlayerButtonClick(object sender, RoutedEventArgs e)
+        {
+            SwitchPlayer();
+        }
     }
 }

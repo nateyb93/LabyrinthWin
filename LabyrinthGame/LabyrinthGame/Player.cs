@@ -24,6 +24,9 @@ namespace LabyrinthGame
         /// <param name="index">Index the players appear in the players array;</param>
         public Player(int index)
         {
+            LostTreasures = new List<Color>();
+            FoundTreasures = new List<Color>();
+
             CurrentTreasure = 0;
 
             switch (index)

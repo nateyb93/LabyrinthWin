@@ -53,8 +53,11 @@
                 <local:CanvasButton x:Name="LeftButton2" Grid.Row="3" Click="PlacementButtonClick"/>
                 <local:CanvasButton x:Name="LeftButton3" Grid.Row="5" Click="PlacementButtonClick"/>
             </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="0" Name="Player1ButtonGrid">
+                <AppBarButton Icon="Contact" Label="Player 1" Foreground="Blue" Style="{StaticResource PlayerButton}" Name="Player1Button" Click="PlayerButtonClick"/>
+            </Grid>
             
-            <AppBarButton Grid.Column="0" Grid.Row="0" Icon="Contact" Label="Player 1" Foreground="Blue" Style="{StaticResource PlayerButton}"/>
             
             <Grid Name="TopButtons" Grid.Column="1" Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -71,7 +74,9 @@
                 <local:CanvasButton x:Name="TopButton3" Grid.Column="5" Click="PlacementButtonClick"/>
             </Grid>
 
-            <AppBarButton Grid.Column="2" Grid.Row="0" Icon="Contact" Label="Player 2" Foreground="Lime" Style="{StaticResource PlayerButton}"/>
+            <Grid Grid.Row="0" Grid.Column="2" Name="Player2ButtonGrid">
+                <AppBarButton Grid.Column="2" Grid.Row="0" Icon="Contact" Label="Player 2" Foreground="Lime" Style="{StaticResource PlayerButton}" Name="Player2Button"/>
+            </Grid>
 
             <Grid Name="RightButtons" Grid.Column="2" Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -88,7 +93,10 @@
                 <local:CanvasButton x:Name="RightButton3" Grid.Row="5" Click="PlacementButtonClick"/>
             </Grid>
 
-            <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Contact" Label="Player 3" Foreground="Red" Style="{StaticResource PlayerButton}"/>
+            <Grid Grid.Row="2" Grid.Column="0" Name="Player3ButtonGrid">
+                <AppBarButton Grid.Column="0" Grid.Row="2" Icon="Contact" Label="Player 3" Foreground="Red" Style="{StaticResource PlayerButton}" Name="Player3Button"/>
+            </Grid>
+            
 
             <Grid Name="BottomButtons" Grid.Column="1" Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -105,7 +113,9 @@
                 <local:CanvasButton x:Name="BottomButton3" Grid.Column="5" Click="PlacementButtonClick"/>
             </Grid>
 
-            <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}"/>
+            <Grid Grid.Row="2" Grid.Column="2" Name="Player4ButtonGrid">
+                <AppBarButton Grid.Column="2" Grid.Row="2" Icon="Contact" Label="Player 4" Foreground="Yellow" Style="{StaticResource PlayerButton}" Name="Player4Button"/>
+            </Grid>
 
             <Grid Name="BoardGrid" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -141,7 +151,7 @@
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Canvas Background="Gray" Height="200" Width="150"/>
+                <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Height="200" Width="150" Name="CurrentCardCanvas"/>
                 <Grid Height="200" Width="250" Margin="10,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -152,12 +162,12 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="0" Grid.Column="0" Margin="5,0,5,5"/>
-                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="0" Grid.Column="1" Margin="5,0,5,5"/>
-                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="0" Grid.Column="2" Margin="5,0,5,5"/>
-                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="1" Grid.Column="0" Margin="5,5,5,0"/>
-                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="1" Grid.Column="1" Margin="5,5,5,0"/>
-                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="1" Grid.Column="2" Margin="5,5,5,0"/>
+                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="0" Grid.Column="0" Margin="5,0,5,5" Name="FoundCard1"/>
+                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="0" Grid.Column="1" Margin="5,0,5,5" Name="FoundCard2"/>
+                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="0" Grid.Column="2" Margin="5,0,5,5" Name="FoundCard3"/>
+                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" Name="FoundCard4"/>
+                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="1" Grid.Column="1" Margin="5,5,5,0" Name="FoundCard5"/>
+                    <Canvas Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.Row="1" Grid.Column="2" Margin="5,5,5,0" Name="FoundCard6"/>
                 </Grid>
             </StackPanel>
         </Grid>
