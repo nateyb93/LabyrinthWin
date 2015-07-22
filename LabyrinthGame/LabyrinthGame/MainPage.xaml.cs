@@ -389,7 +389,9 @@ namespace LabyrinthGame
         private void _drawNewSquare(Node node, int col, int row)
         {
             //1 square is gameboard.width / 7
-            Canvas newCanvas = new Canvas();
+            CanvasButton canvasButton = new CanvasButton();
+
+            Canvas newCanvas = canvasButton.Canvas;
             int squareWidth;
 
             //Board grid's width isn't determined until after the page is drawn
@@ -399,15 +401,14 @@ namespace LabyrinthGame
                 squareWidth = (int)(BoardGrid.ActualWidth / 7);
 
             //Stretch properties to fill entire grid square
-            newCanvas.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch;
-            newCanvas.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch;
-            newCanvas.Margin = new Thickness(5, 5, 5, 5);
+            canvasButton.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch;
+            canvasButton.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch;
             newCanvas.Background = new SolidColorBrush(Colors.Black);
 
-            Grid.SetColumn(newCanvas, col);
-            Grid.SetRow(newCanvas, row);
+            Grid.SetColumn(canvasButton, col);
+            Grid.SetRow(canvasButton, row);
 
-            BoardGrid.Children.Add(newCanvas);
+            BoardGrid.Children.Add(canvasButton);
 
             _drawPath(newCanvas, node.Shape, node.Rotation, squareWidth);
             _drawPickup(newCanvas,

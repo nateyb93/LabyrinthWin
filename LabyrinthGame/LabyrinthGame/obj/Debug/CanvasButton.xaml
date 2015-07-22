@@ -10,8 +10,8 @@
     d:DesignWidth="400">
     
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="canvas" Margin="10"/>
-        <Button x:ConnectionId='1' HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="button"                     Margin="2"/>
+        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="canvas" Margin="5"/>
+        <Button x:ConnectionId='1' HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="button"                     Margin="2" BorderBrush="Transparent"/>
         <Grid Name="ConfirmationButtons" Visibility="Collapsed" Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition/>
