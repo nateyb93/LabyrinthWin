@@ -402,6 +402,7 @@ namespace LabyrinthGame
             newCanvas.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch;
             newCanvas.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Stretch;
             newCanvas.Margin = new Thickness(5, 5, 5, 5);
+            newCanvas.Background = new SolidColorBrush(Colors.Black);
 
             Grid.SetColumn(newCanvas, col);
             Grid.SetRow(newCanvas, row);
