@@ -110,3 +110,5 @@ C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug
 C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug\MainMenuPage.g.cs
 C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug\MainMenuPage.xaml
 C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug\MainMenuPage.xbf
+C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\Callisto.dll
+C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\Callisto.xml

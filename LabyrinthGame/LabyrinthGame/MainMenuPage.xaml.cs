@@ -31,5 +31,15 @@ namespace LabyrinthGame
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HowToButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

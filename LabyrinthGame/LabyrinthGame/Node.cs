@@ -26,7 +26,7 @@ namespace LabyrinthGame
     /// <summary>
     /// The Node class defines a node in a graph representation of the Labyrinth game board
     /// </summary>
-    public class Node
+    public class BoardNode
     {
         public const int ROTATE_0 = 0;
         public const int ROTATE_1 = 1;
@@ -76,7 +76,7 @@ namespace LabyrinthGame
 
         public List<Player> Players;
 
-        public Node(Color pickup, Shape shape, int rotation)
+        public BoardNode(Color pickup, Shape shape, int rotation)
         {
             Players = new List<Player>();
             Color = pickup;

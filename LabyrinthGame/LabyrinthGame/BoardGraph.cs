@@ -11,20 +11,20 @@ namespace LabyrinthGame
     /// </summary>
     public class BoardGraph
     {
-        private Dictionary<Node, List<Node>> _adjacencyList;
+        private Dictionary<BoardNode, List<BoardNode>> _adjacencyList;
 
         /// <summary>
         /// Constructs a graph from a game board
         /// </summary>
         /// <param name="nodes"></param>
-        public BoardGraph(Node[,] nodes)
+        public BoardGraph(BoardNode[,] nodes)
         {
-            _adjacencyList = new Dictionary<Node, List<Node>>();
+            _adjacencyList = new Dictionary<BoardNode, List<BoardNode>>();
             for (int x = 0; x < nodes.GetLength(0); x++)
             {
                 for (int y = 0; y < nodes.GetLength(1); y++)
                 {
-                    _adjacencyList[nodes[x, y]] = new List<Node>();
+                    _adjacencyList[nodes[x, y]] = new List<BoardNode>();
                     _adjacencyList[nodes[x, y]].Add(nodes[x, y]);
 
                     //Checks each direction from the current node for valid connections
@@ -66,7 +66,7 @@ namespace LabyrinthGame
         /// </summary>
         /// <param name="top"></param>
         /// <param name="bottom"></param>
-        private void _checkVerticalConnection(Node top, Node bottom)
+        private void _checkVerticalConnection(BoardNode top, BoardNode bottom)
         {
             if (top.IsOpenBottom() && bottom.IsOpenTop())
             {
@@ -82,7 +82,7 @@ namespace LabyrinthGame
         /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
-        private void _checkHorizontalConnection(Node left, Node right)
+        private void _checkHorizontalConnection(BoardNode left, BoardNode right)
         {
             if (left.IsOpenRight() && right.IsOpenLeft())
             {
@@ -96,11 +96,11 @@ namespace LabyrinthGame
         /// Adds a node to the graph
         /// </summary>
         /// <param name="n"></param>
-        public void AddNode(Node n)
+        public void AddNode(BoardNode n)
         {
             if (!_adjacencyList.ContainsKey(n))
             {
-                _adjacencyList[n] = new List<Node>();
+                _adjacencyList[n] = new List<BoardNode>();
             }
         }
 
@@ -109,11 +109,11 @@ namespace LabyrinthGame
         /// </summary>
         /// <param name="from">First node in edge</param>
         /// <param name="to">End node in edge</param>
-        public void AddEdge(Node from, Node to)
+        public void AddEdge(BoardNode from, BoardNode to)
         {
             if (!_adjacencyList.ContainsKey(from))
             {
-                _adjacencyList[from] = new List<Node>();
+                _adjacencyList[from] = new List<BoardNode>();
             }
 
             if(!_adjacencyList[from].Contains(to))
@@ -121,18 +121,18 @@ namespace LabyrinthGame
         }
 
         //Checks to see if there's a path from one node to another
-        public bool HasPath(Node from, Node to)
+        public bool HasPath(BoardNode from, BoardNode to)
         {
-            List<Node> visited = new List<Node>();
-            Queue<Node> queue = new Queue<Node>();
+            List<BoardNode> visited = new List<BoardNode>();
+            Queue<BoardNode> queue = new Queue<BoardNode>();
 
             visited.Add(from);
             queue.Enqueue(from);
 
             while (queue.Count != 0)
             {
-                Node current = queue.Dequeue();
-                foreach (Node n in _adjacencyList[current])
+                BoardNode current = queue.Dequeue();
+                foreach (BoardNode n in _adjacencyList[current])
                 {
                     if (n == to)
                     {

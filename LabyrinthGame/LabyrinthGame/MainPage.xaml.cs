@@ -380,7 +380,7 @@ namespace LabyrinthGame
         private void _drawBoard()
         {
             //just for easier access
-            Node[,] spaces = _gameBoard.Board;
+            BoardNode[,] spaces = _gameBoard.Board;
 
             for (int i = 0; i < spaces.GetLength(0); i++)
             {
@@ -415,7 +415,7 @@ namespace LabyrinthGame
         /// <param name="node">Node object square represents</param>
         /// <param name="row">Row of grid to build canvas on</param>
         /// <param name="col">Column of grid to build canvas on</param>
-        private void _drawNewSquare(Node node, int col, int row)
+        private void _drawNewSquare(BoardNode node, int col, int row)
         {
             //1 square is gameboard.width / 7
             CanvasButton canvasButton = new CanvasButton();
@@ -683,7 +683,7 @@ namespace LabyrinthGame
         {
             Player player = _players[_currentPlayer];
 
-            Node[,] board = _gameBoard.Board;
+            BoardNode[,] board = _gameBoard.Board;
 
             if (_pendingMoveX != -1 && _pendingMoveY != -1)
             {
@@ -693,6 +693,7 @@ namespace LabyrinthGame
                 if (valid)
                 {
                     board[player.CurrentX, player.CurrentY].Players.Remove(player);
+                    board[_pendingMoveX, _pendingMoveY].Players.Add(player);
                     player.Move(_pendingMoveX, _pendingMoveY);
                     player.FindTreasure(board[player.CurrentX, player.CurrentY].Color);
                 }

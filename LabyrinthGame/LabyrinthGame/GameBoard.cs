@@ -14,11 +14,11 @@ namespace LabyrinthGame
         public const int MOVE_LEFT = 2;
         public const int MOVE_UP = 3;
 
-        private Node[,] _board;
+        private BoardNode[,] _board;
         /// <summary>
         /// Returns the array representation of the board
         /// </summary>
-        public Node[,] Board
+        public BoardNode[,] Board
         {
             get
             {
@@ -26,11 +26,11 @@ namespace LabyrinthGame
             }
         }
 
-        private Node _freePiece;
+        private BoardNode _freePiece;
         /// <summary>
         /// Stores the current free piece of the board
         /// </summary>
-        public Node FreePiece
+        public BoardNode FreePiece
         {
             get
             {
@@ -57,7 +57,7 @@ namespace LabyrinthGame
         /// </summary>
         private void _init()
         {
-            _board = new Node[7, 7];
+            _board = new BoardNode[7, 7];
             _initFixedPieces();
             _initMovingPieces();
 
@@ -71,28 +71,28 @@ namespace LabyrinthGame
         private void _initFixedPieces()
         {
             //row 0 fixed
-            _board[0, 0] = new Node(Colors.White, Shape.L, Node.ROTATE_1);
-            _board[2, 0] = new Node(Colors.Teal, Shape.T, Node.ROTATE_0);
-            _board[4, 0] = new Node(Colors.Aquamarine, Shape.T, Node.ROTATE_0);
-            _board[6, 0] = new Node(Colors.White, Shape.L, Node.ROTATE_2);
+            _board[0, 0] = new BoardNode(Colors.White, Shape.L, BoardNode.ROTATE_1);
+            _board[2, 0] = new BoardNode(Colors.Teal, Shape.T, BoardNode.ROTATE_0);
+            _board[4, 0] = new BoardNode(Colors.Aquamarine, Shape.T, BoardNode.ROTATE_0);
+            _board[6, 0] = new BoardNode(Colors.White, Shape.L, BoardNode.ROTATE_2);
 
             //row 2 fixed
-            _board[0, 2] = new Node(Colors.Blue, Shape.T, Node.ROTATE_3);
-            _board[2, 2] = new Node(Colors.Brown, Shape.T, Node.ROTATE_3);
-            _board[4, 2] = new Node(Colors.Coral, Shape.T, Node.ROTATE_3);
-            _board[6, 2] = new Node(Colors.Crimson, Shape.T, Node.ROTATE_1);
+            _board[0, 2] = new BoardNode(Colors.Blue, Shape.T, BoardNode.ROTATE_3);
+            _board[2, 2] = new BoardNode(Colors.Brown, Shape.T, BoardNode.ROTATE_3);
+            _board[4, 2] = new BoardNode(Colors.Coral, Shape.T, BoardNode.ROTATE_3);
+            _board[6, 2] = new BoardNode(Colors.Crimson, Shape.T, BoardNode.ROTATE_1);
 
             //row 4 fixed
-            _board[0, 4] = new Node(Colors.DarkMagenta, Shape.T, Node.ROTATE_3);
-            _board[2, 4] = new Node(Colors.RosyBrown, Shape.T, Node.ROTATE_2);
-            _board[4, 4] = new Node(Colors.Goldenrod, Shape.T, Node.ROTATE_1);
-            _board[6, 4] = new Node(Colors.Indigo, Shape.T, Node.ROTATE_1);
+            _board[0, 4] = new BoardNode(Colors.DarkMagenta, Shape.T, BoardNode.ROTATE_3);
+            _board[2, 4] = new BoardNode(Colors.RosyBrown, Shape.T, BoardNode.ROTATE_2);
+            _board[4, 4] = new BoardNode(Colors.Goldenrod, Shape.T, BoardNode.ROTATE_1);
+            _board[6, 4] = new BoardNode(Colors.Indigo, Shape.T, BoardNode.ROTATE_1);
             
             //row 6 fixed
-            _board[0, 6] = new Node(Colors.White, Shape.L, Node.ROTATE_0);
-            _board[2, 6] = new Node(Colors.ForestGreen, Shape.T, Node.ROTATE_2);
-            _board[4, 6] = new Node(Colors.Lime, Shape.T, Node.ROTATE_2);
-            _board[6, 6] = new Node(Colors.White, Shape.L, Node.ROTATE_3);
+            _board[0, 6] = new BoardNode(Colors.White, Shape.L, BoardNode.ROTATE_0);
+            _board[2, 6] = new BoardNode(Colors.ForestGreen, Shape.T, BoardNode.ROTATE_2);
+            _board[4, 6] = new BoardNode(Colors.Lime, Shape.T, BoardNode.ROTATE_2);
+            _board[6, 6] = new BoardNode(Colors.White, Shape.L, BoardNode.ROTATE_3);
         }
 
 
@@ -108,7 +108,7 @@ namespace LabyrinthGame
             //strategy:
             //1. Insert each pickup-containing piece randomly, rotating each piece 0-3 times before inserting
             //2. Insert each blank piece randomly, rotating each piece 0-3 times before inserting.
-            List<Node> remainingPieces = _getRemainingPieces();
+            List<BoardNode> remainingPieces = _getRemainingPieces();
 
             Random random = new Random();
 
@@ -158,50 +158,50 @@ namespace LabyrinthGame
         /// Initializes the non-fixed pieces on the board
         /// </summary>
         /// <returns></returns>
-        private List<Node> _getRemainingPieces()
+        private List<BoardNode> _getRemainingPieces()
         {
-            List<Node> remainingNodes = new List<Node>();
+            List<BoardNode> remainingNodes = new List<BoardNode>();
 
             Random random = new Random();
 
             //organized by shape and pickup vs. no-pickup
-            remainingNodes.Add(new Node(Colors.Maroon, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.MidnightBlue, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.Fuchsia, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.Olive, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.Orange, Shape.T, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.Orchid, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Maroon, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.MidnightBlue, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Fuchsia, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Olive, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Orange, Shape.T, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Orchid, Shape.T, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Colors.Turquoise, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.Thistle, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.Salmon, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.RoyalBlue, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.SlateBlue, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.SpringGreen, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Turquoise, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Thistle, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.Salmon, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.RoyalBlue, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.SlateBlue, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.SpringGreen, Shape.L, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.S, random.Next(0, 4)));
 
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
-            remainingNodes.Add(new Node(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
+            remainingNodes.Add(new BoardNode(Colors.White, Shape.L, random.Next(0, 4)));
 
             return remainingNodes;
         }
@@ -213,7 +213,7 @@ namespace LabyrinthGame
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns></returns>
-        public bool IsValidPath(Node start, Node end)
+        public bool IsValidPath(BoardNode start, BoardNode end)
         {
             if (_boardGraph.HasPath(start, end))
             {
@@ -262,7 +262,15 @@ namespace LabyrinthGame
           
             //save the end of the row we're shifting
             //this will get erased if we don't save it
-            Node temp = _board[size - 1, position];
+            BoardNode temp = _board[size - 1, position];
+
+            while (temp.Players.Count != 0)
+            {
+                Player p = temp.Players[0];
+                _freePiece.Players.Add(p);
+                p.Move(0, position);
+                temp.Players.Remove(p);
+            }
 
             //move each node from left to right
             for (int i = size - 1; i > 0; i--)
@@ -285,7 +293,15 @@ namespace LabyrinthGame
         {
             int size = _board.GetLength(1);
 
-            Node temp = _board[position, size - 1];
+            BoardNode temp = _board[position, size - 1];
+
+            while (temp.Players.Count != 0)
+            {
+                Player p = temp.Players[0];
+                _freePiece.Players.Add(p);
+                p.Move(position, 0);
+                temp.Players.Remove(p);
+            }
 
             for (int i = size - 1; i > 0; i--)
             {
@@ -305,7 +321,15 @@ namespace LabyrinthGame
         {
             int size = _board.GetLength(0);
 
-            Node temp = _board[0, position];
+            BoardNode temp = _board[0, position];
+
+            while (temp.Players.Count != 0)
+            {
+                Player p = temp.Players[0];
+                _freePiece.Players.Add(p);
+                p.Move(size - 1, position);
+                temp.Players.Remove(p);
+            }
 
             for (int i = 0; i < size - 1; i++)
             {
@@ -325,7 +349,15 @@ namespace LabyrinthGame
         {
             int size = _board.GetLength(1);
 
-            Node temp = _board[position, 0];
+            BoardNode temp = _board[position, 0];
+
+            while (temp.Players.Count != 0)
+            {
+                Player p = temp.Players[0];
+                _freePiece.Players.Add(p);
+                p.Move(position, size - 1);
+                temp.Players.Remove(p);
+            }
 
             for (int i = 0; i < size - 1; i++)
             {
