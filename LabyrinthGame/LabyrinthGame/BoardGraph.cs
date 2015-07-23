@@ -25,6 +25,7 @@ namespace LabyrinthGame
                 for (int y = 0; y < nodes.GetLength(1); y++)
                 {
                     _adjacencyList[nodes[x, y]] = new List<Node>();
+                    _adjacencyList[nodes[x, y]].Add(nodes[x, y]);
 
                     //Checks each direction from the current node for valid connections
                     //this should have the effect of building the graph from the game board

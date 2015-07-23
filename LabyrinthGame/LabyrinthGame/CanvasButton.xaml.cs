@@ -52,6 +52,10 @@ namespace LabyrinthGame
             {
                 this.Click(sender, e);
 
+                if (!MainPage.ValidShift)
+                {
+                    return;
+                }
                 //conditions for clickable button types
                 if((MainPage.Movable && ButtonType == ButtonType.PlayerMove) || (ButtonType == ButtonType.BoardShift && !MainPage.Movable))
                     ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;

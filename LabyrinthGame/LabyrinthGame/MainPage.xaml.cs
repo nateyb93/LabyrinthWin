@@ -76,6 +76,10 @@ namespace LabyrinthGame
         /// </summary>
         private bool _initialized = false;
 
+        public bool ValidShift = false;
+
+        private CanvasButton _cantPressButton;
+
         /// <summary>
         /// Toggles whether the current player is movable
         /// </summary>
@@ -86,7 +90,9 @@ namespace LabyrinthGame
             this.InitializeComponent();
             Movable = false;
 
+            _cantPressButton = new CanvasButton();
             _gameBoard = new GameBoard();
+            ValidShift = true;
 
             Loaded += delegate
             {
@@ -205,7 +211,7 @@ namespace LabyrinthGame
                             (int)(CurrentCardCanvas.ActualHeight / 2 - 25),
                             50,
                             50,
-                            player.LostTreasures[player.CurrentTreasure]);
+                            player.LostTreasures[0]);
             }
 
             //Draw the found treasures
@@ -654,6 +660,10 @@ namespace LabyrinthGame
         /// </summary>
         public void MakePendingBoardShift()
         {
+            if (!ValidShift)
+            {
+                return;
+            }
             if(_pendingLocation != -1 && _pendingDirection != -1)
                 _gameBoard.Shift(_pendingLocation, _pendingDirection);
 
@@ -711,70 +721,89 @@ namespace LabyrinthGame
         /// <param name="e"></param>
         private void PlacementButtonClick(object sender, RoutedEventArgs e)
         {
+            if (sender == _cantPressButton.Button)
+            {
+                ValidShift = false;
+                return;
+            }
             //determine location and direction of board move for camera
             if (sender == TopButton1.Button)
             {
+                _cantPressButton = BottomButton1;
                 _pendingLocation = 1;
                 _pendingDirection = GameBoard.MOVE_DOWN;
             }
             else if (sender == TopButton2.Button)
             {
+                _cantPressButton = BottomButton2;
                 _pendingLocation = 3;
                 _pendingDirection = GameBoard.MOVE_DOWN;
             }
             else if (sender == TopButton3.Button)
             {
+                _cantPressButton = BottomButton3;
                 _pendingLocation = 5;
                 _pendingDirection = GameBoard.MOVE_DOWN;
             }
 
             else if (sender == RightButton1.Button)
             {
+                _cantPressButton = LeftButton1;
                 _pendingLocation = 1;
                 _pendingDirection = GameBoard.MOVE_LEFT;
             }
             else if (sender == RightButton2.Button)
             {
+                _cantPressButton = LeftButton2;
                 _pendingLocation = 3;
                 _pendingDirection = GameBoard.MOVE_LEFT;
             }
             else if (sender == RightButton3.Button)
             {
+                _cantPressButton = LeftButton3;
                 _pendingLocation = 5;
                 _pendingDirection = GameBoard.MOVE_LEFT;
             }
 
             else if (sender == BottomButton1.Button)
             {
+                _cantPressButton = TopButton1;
                 _pendingLocation = 1;
                 _pendingDirection = GameBoard.MOVE_UP;
             }
             else if (sender == BottomButton2.Button)
             {
+                _cantPressButton = TopButton2;
                 _pendingLocation = 3;
                 _pendingDirection = GameBoard.MOVE_UP;
             }
             else if (sender == BottomButton3.Button)
             {
+                _cantPressButton = TopButton3;
                 _pendingLocation = 5;
                 _pendingDirection = GameBoard.MOVE_UP;
             }
 
             else if (sender == LeftButton1.Button)
             {
+                _cantPressButton = RightButton1;
                 _pendingLocation = 1;
                 _pendingDirection = GameBoard.MOVE_RIGHT;
             }
             else if (sender == LeftButton2.Button)
             {
+                _cantPressButton = RightButton2;
                 _pendingLocation = 3;
                 _pendingDirection = GameBoard.MOVE_RIGHT;
             }
             else if (sender == LeftButton3.Button)
             {
+                _cantPressButton = RightButton3;
                 _pendingLocation = 5;
                 _pendingDirection = GameBoard.MOVE_RIGHT;
             }
+
+            ValidShift = true;
 
         }
 

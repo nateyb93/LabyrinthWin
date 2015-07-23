@@ -9,12 +9,10 @@ namespace LabyrinthGame
 {
     public class Player
     {
-        public List<Color> LostTreasures;
-
         /// <summary>
-        /// Index of current
+        /// Collection of objectives to find
         /// </summary>
-        public int CurrentTreasure;
+        public List<Color> LostTreasures;
 
         /// <summary>
         /// Player's collection of found objects
@@ -56,8 +54,6 @@ namespace LabyrinthGame
 
             LostTreasures = new List<Color>();
             FoundTreasures = new List<Color>();
-
-            CurrentTreasure = 0;
 
             switch (index)
             {

@@ -116,6 +116,9 @@
       <DependentUpon>CanvasButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="BoardGraph.cs" />
+    <Compile Include="MainMenuPage.xaml.cs">
+      <DependentUpon>MainMenuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -130,34 +133,10 @@
     <None Include="LabyrinthGame_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\BlueCircle.png" />
-    <Content Include="Assets\BlueHeart.png" />
-    <Content Include="Assets\BlueHex.png" />
-    <Content Include="Assets\BlueSquare.png" />
-    <Content Include="Assets\BlueStar.png" />
-    <Content Include="Assets\BlueTriangle.png" />
-    <Content Include="Assets\GreenCircle.png" />
-    <Content Include="Assets\GreenHeart.png" />
-    <Content Include="Assets\GreenHex.png" />
-    <Content Include="Assets\GreenSquare.png" />
-    <Content Include="Assets\GreenStar.png" />
-    <Content Include="Assets\GreenTriangle.png" />
     <Content Include="Assets\Logo.scale-100.png" />
-    <Content Include="Assets\RedCircle.png" />
-    <Content Include="Assets\RedHeart.png" />
-    <Content Include="Assets\RedHex.png" />
-    <Content Include="Assets\RedSquare.png" />
-    <Content Include="Assets\RedStar.png" />
-    <Content Include="Assets\RedTriangle.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
-    <Content Include="Assets\YellowCircle.png" />
-    <Content Include="Assets\YellowHeart.png" />
-    <Content Include="Assets\YellowHex.png" />
-    <Content Include="Assets\YellowSquare.png" />
-    <Content Include="Assets\YellowStar.png" />
-    <Content Include="Assets\YellowTriangle.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -165,6 +144,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CanvasButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
