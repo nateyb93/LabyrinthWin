@@ -10,13 +10,41 @@ namespace LabyrinthGame
     public class Player
     {
         public List<Color> LostTreasures;
+
+        /// <summary>
+        /// Index of current
+        /// </summary>
         public int CurrentTreasure;
+
+        /// <summary>
+        /// Player's collection of found objects
+        /// </summary>
         public List<Color> FoundTreasures;
+
+        /// <summary>
+        /// Start X coordinate of player object
+        /// </summary>
         public int StartX;
+
+        /// <summary>
+        /// Start Y coordinate of player object
+        /// </summary>
         public int StartY;
 
+        /// <summary>
+        /// Current X coordinate of player
+        /// </summary>
         public int CurrentX;
+
+        /// <summary>
+        /// Current Y coordinate of player
+        /// </summary>
         public int CurrentY;
+
+        /// <summary>
+        /// Index of the player object in the MainPage array
+        /// </summary>
+        public int Index;
 
         /// <summary>
         /// Default constructor for the player class
@@ -79,7 +107,6 @@ namespace LabyrinthGame
             {
                 FoundTreasures.Add(color);
                 LostTreasures.Remove(color);
-                CurrentTreasure++;
             }
         }
     }

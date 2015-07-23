@@ -50,6 +50,7 @@
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="LabyrinthGame.CanvasButton">
+      <RootProperty Name="ButtonType" />
       <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
@@ -87,6 +88,12 @@
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="ElementName" />
       <RootProperty Name="Mode" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="FontSize" />
     </RootType>
     <RootType FullName="LabyrinthGame.MainPage" />
   </Roots.RootTypes>

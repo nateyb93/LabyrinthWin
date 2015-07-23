@@ -17,10 +17,18 @@ using Windows.UI.Xaml.Navigation;
 
 namespace LabyrinthGame
 {
+    public enum ButtonType
+    {
+        BoardShift,
+        PlayerMove
+    }
     public partial class CanvasButton : UserControl
     {
+        
         public Button Button;
         public Canvas Canvas;
+
+        public ButtonType ButtonType { get; set; }
 
         public MainPage MainPage;
 
@@ -33,24 +41,47 @@ namespace LabyrinthGame
             Canvas = canvas;
         }
 
+        /// <summary>
+        /// Handles the routed click event for the CanvasButton parent object
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HandleClick(object sender, RoutedEventArgs e)
         {
             if (this.Click != null)
             {
                 this.Click(sender, e);
-                ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
+                //conditions for clickable button types
+                if((MainPage.Movable && ButtonType == ButtonType.PlayerMove) || (ButtonType == ButtonType.BoardShift && !MainPage.Movable))
+                    ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
         }
 
+        /// <summary>
+        /// Handles confirmation buttons, which actually perform the actions on the board
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmationClick(object sender, RoutedEventArgs e)
         {
-            canvas.Children.Clear();
             if (sender == YesButton)
             {
-                MainPage.MakePendingBoardShift();
+                switch (ButtonType)
+                {
+                    case ButtonType.BoardShift:
+                        MainPage.MakePendingBoardShift();
+                        break;
+
+                    case ButtonType.PlayerMove:
+                        MainPage.MakePendingPlayerMove();
+                        break;
+                }
+                
             }
 
             ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
+
     }
 }

@@ -87,8 +87,11 @@ namespace LabyrinthGame
             }
         }
 
+        public List<Player> Players;
+
         public Node(Color pickup, Shape shape, int rotation)
         {
+            Players = new List<Player>();
             Color = pickup;
             _shape = shape;
             _rotation = rotation;
