@@ -52,6 +52,8 @@ namespace LabyrinthGame
         /// <param name="index">Index the players appear in the players array;</param>
         public Player(int index)
         {
+            Index = index;
+
             LostTreasures = new List<Color>();
             FoundTreasures = new List<Color>();
 
@@ -80,6 +82,12 @@ namespace LabyrinthGame
 
             CurrentX = StartX;
             CurrentY = StartY;
+        }
+
+        public void Move(int x, int y)
+        {
+            CurrentX = x;
+            CurrentY = y;
         }
 
         /// <summary>

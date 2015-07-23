@@ -74,19 +74,6 @@ namespace LabyrinthGame
             }
         }
 
-        private int _index;
-        public int Index
-        {
-            get
-            {
-                return _index;
-            }
-            set
-            {
-                _index = value;
-            }
-        }
-
         public List<Player> Players;
 
         public Node(Color pickup, Shape shape, int rotation)
@@ -108,7 +95,7 @@ namespace LabyrinthGame
             }
             else
             {
-                _rotation += 1;
+                _rotation++;
             }
         }
 
@@ -123,7 +110,7 @@ namespace LabyrinthGame
             }
             else
             {
-                _rotation += 1;
+                _rotation++;
             }
         }
 

@@ -570,14 +570,18 @@ namespace LabyrinthGame
         private void _drawPlayersOnSquare(Canvas canvas, int row, int column)
         {
             int squareWidth = -1;
+
             if (!_initialized)
                 squareWidth = (int)(BoardGrid.ActualWidth);
             else
                 squareWidth = (int)(BoardGrid.ActualWidth / 7);
 
+            //loop throught players.
+            //if a player is found to be at the specified spot on the board,
+            //draw their representation on the game board
             for (int i = 0; i < _players.Length; i++)
             {
-                if (_players[_currentPlayer].CurrentX == column && _players[_currentPlayer].CurrentY == row)
+                if (_players[i].CurrentX == column && _players[i].CurrentY == row)
                 {
                     switch (i)
                     {
@@ -635,7 +639,8 @@ namespace LabyrinthGame
 
             rect.Width = w;
             rect.Height = h;
-            rect.Stroke = new SolidColorBrush(color);
+            rect.Stroke = new SolidColorBrush(Colors.White);
+            rect.StrokeThickness = 2;
             rect.Fill = new SolidColorBrush(color);
 
             Canvas.SetLeft(rect, x);
@@ -666,10 +671,25 @@ namespace LabyrinthGame
         /// </summary>
         public void MakePendingPlayerMove()
         {
+            Player player = _players[_currentPlayer];
+
+            Node[,] board = _gameBoard.Board;
+
             if (_pendingMoveX != -1 && _pendingMoveY != -1)
             {
-                _players[_currentPlayer].CurrentX = _pendingMoveX;
-                _players[_currentPlayer].CurrentY = _pendingMoveY;
+                //check if there's a valid path between the two active nodes
+                bool valid = _gameBoard.IsValidPath(board[player.CurrentX, player.CurrentY],
+                                                    board[_pendingMoveX, _pendingMoveY]);
+                if (valid)
+                {
+                    board[player.CurrentX, player.CurrentY].Players.Remove(player);
+                    player.Move(_pendingMoveX, _pendingMoveY);
+                    player.FindTreasure(board[player.CurrentX, player.CurrentY].Color);
+                }
+                else
+                {
+                    return;
+                }
             }
 
             //invalidate pending location and direction
