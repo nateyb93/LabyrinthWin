@@ -20,26 +20,16 @@ namespace LabyrinthGame
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainMenuPage : Page
+    public sealed partial class HowToPage : Page
     {
-        public MainMenuPage()
+        public HowToPage()
         {
             this.InitializeComponent();
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
-        }
-
-        private void AboutButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(AboutPage));
-        }
-
-        private void HowToButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(HowToPage));
+            this.Frame.Navigate(typeof(MainMenuPage));
         }
     }
 }

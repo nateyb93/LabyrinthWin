@@ -148,41 +148,37 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[16];
-            _typeNameTable[0] = "LabyrinthGame.AboutPage";
-            _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "LabyrinthGame.CanvasButton";
-            _typeNameTable[4] = "LabyrinthGame.ButtonType";
-            _typeNameTable[5] = "System.Enum";
-            _typeNameTable[6] = "System.ValueType";
-            _typeNameTable[7] = "Object";
-            _typeNameTable[8] = "LabyrinthGame.HowToPage";
-            _typeNameTable[9] = "LabyrinthGame.MainMenuPage";
-            _typeNameTable[10] = "Microsoft.Advertising.WinRT.UI.AdControl";
-            _typeNameTable[11] = "Windows.UI.Xaml.Controls.Control";
-            _typeNameTable[12] = "String";
-            _typeNameTable[13] = "Double";
-            _typeNameTable[14] = "Boolean";
-            _typeNameTable[15] = "LabyrinthGame.MainPage";
+            _typeNameTable = new string[14];
+            _typeNameTable[0] = "LabyrinthGame.CanvasButton";
+            _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[2] = "LabyrinthGame.ButtonType";
+            _typeNameTable[3] = "System.Enum";
+            _typeNameTable[4] = "System.ValueType";
+            _typeNameTable[5] = "Object";
+            _typeNameTable[6] = "LabyrinthGame.MainMenuPage";
+            _typeNameTable[7] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[8] = "Microsoft.Advertising.WinRT.UI.AdControl";
+            _typeNameTable[9] = "Windows.UI.Xaml.Controls.Control";
+            _typeNameTable[10] = "String";
+            _typeNameTable[11] = "Double";
+            _typeNameTable[12] = "Boolean";
+            _typeNameTable[13] = "LabyrinthGame.MainPage";
 
-            _typeTable = new global::System.Type[16];
-            _typeTable[0] = typeof(global::LabyrinthGame.AboutPage);
-            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::LabyrinthGame.CanvasButton);
-            _typeTable[4] = typeof(global::LabyrinthGame.ButtonType);
-            _typeTable[5] = typeof(global::System.Enum);
-            _typeTable[6] = typeof(global::System.ValueType);
-            _typeTable[7] = typeof(global::System.Object);
-            _typeTable[8] = typeof(global::LabyrinthGame.HowToPage);
-            _typeTable[9] = typeof(global::LabyrinthGame.MainMenuPage);
-            _typeTable[10] = typeof(global::Microsoft.Advertising.WinRT.UI.AdControl);
-            _typeTable[11] = typeof(global::Windows.UI.Xaml.Controls.Control);
-            _typeTable[12] = typeof(global::System.String);
-            _typeTable[13] = typeof(global::System.Double);
-            _typeTable[14] = typeof(global::System.Boolean);
-            _typeTable[15] = typeof(global::LabyrinthGame.MainPage);
+            _typeTable = new global::System.Type[14];
+            _typeTable[0] = typeof(global::LabyrinthGame.CanvasButton);
+            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[2] = typeof(global::LabyrinthGame.ButtonType);
+            _typeTable[3] = typeof(global::System.Enum);
+            _typeTable[4] = typeof(global::System.ValueType);
+            _typeTable[5] = typeof(global::System.Object);
+            _typeTable[6] = typeof(global::LabyrinthGame.MainMenuPage);
+            _typeTable[7] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[8] = typeof(global::Microsoft.Advertising.WinRT.UI.AdControl);
+            _typeTable[9] = typeof(global::Windows.UI.Xaml.Controls.Control);
+            _typeTable[10] = typeof(global::System.String);
+            _typeTable[11] = typeof(global::System.Double);
+            _typeTable[12] = typeof(global::System.Boolean);
+            _typeTable[13] = typeof(global::LabyrinthGame.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -217,12 +213,10 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_AboutPage() { return new global::LabyrinthGame.AboutPage(); }
-        private object Activate_3_CanvasButton() { return new global::LabyrinthGame.CanvasButton(); }
-        private object Activate_8_HowToPage() { return new global::LabyrinthGame.HowToPage(); }
-        private object Activate_9_MainMenuPage() { return new global::LabyrinthGame.MainMenuPage(); }
-        private object Activate_10_AdControl() { return new global::Microsoft.Advertising.WinRT.UI.AdControl(); }
-        private object Activate_15_MainPage() { return new global::LabyrinthGame.MainPage(); }
+        private object Activate_0_CanvasButton() { return new global::LabyrinthGame.CanvasButton(); }
+        private object Activate_6_MainMenuPage() { return new global::LabyrinthGame.MainMenuPage(); }
+        private object Activate_8_AdControl() { return new global::Microsoft.Advertising.WinRT.UI.AdControl(); }
+        private object Activate_13_MainPage() { return new global::LabyrinthGame.MainPage(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -234,30 +228,19 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  LabyrinthGame.AboutPage
-                userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_AboutPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 1:   //  Windows.UI.Xaml.Controls.Page
-                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 2:   //  Windows.UI.Xaml.Controls.UserControl
-                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 3:   //  LabyrinthGame.CanvasButton
+            case 0:   //  LabyrinthGame.CanvasButton
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_3_CanvasButton;
+                userType.Activator = Activate_0_CanvasButton;
                 userType.AddMemberName("ButtonType");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 4:   //  LabyrinthGame.ButtonType
+            case 1:   //  Windows.UI.Xaml.Controls.UserControl
+                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 2:   //  LabyrinthGame.ButtonType
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
                 userType.AddEnumValue("BoardShift", global::LabyrinthGame.ButtonType.BoardShift);
                 userType.AddEnumValue("PlayerMove", global::LabyrinthGame.ButtonType.PlayerMove);
@@ -265,37 +248,34 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 5:   //  System.Enum
+            case 3:   //  System.Enum
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
                 xamlType = userType;
                 break;
 
-            case 6:   //  System.ValueType
+            case 4:   //  System.ValueType
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 xamlType = userType;
                 break;
 
-            case 7:   //  Object
+            case 5:   //  Object
                 xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  LabyrinthGame.HowToPage
+            case 6:   //  LabyrinthGame.MainMenuPage
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_8_HowToPage;
+                userType.Activator = Activate_6_MainMenuPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  LabyrinthGame.MainMenuPage
-                userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_9_MainMenuPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
+            case 7:   //  Windows.UI.Xaml.Controls.Page
+                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  Microsoft.Advertising.WinRT.UI.AdControl
+            case 8:   //  Microsoft.Advertising.WinRT.UI.AdControl
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_10_AdControl;
+                userType.Activator = Activate_8_AdControl;
                 userType.AddMemberName("ApplicationId");
                 userType.AddMemberName("AdUnitId");
                 userType.AddMemberName("Latitude");
@@ -306,25 +286,25 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 11:   //  Windows.UI.Xaml.Controls.Control
+            case 9:   //  Windows.UI.Xaml.Controls.Control
                 xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 12:   //  String
+            case 10:   //  String
                 xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 13:   //  Double
+            case 11:   //  Double
                 xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 14:   //  Boolean
+            case 12:   //  Boolean
                 xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 15:   //  LabyrinthGame.MainPage
+            case 13:   //  LabyrinthGame.MainPage
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_15_MainPage;
+                userType.Activator = Activate_13_MainPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;

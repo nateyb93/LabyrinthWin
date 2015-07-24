@@ -699,7 +699,7 @@ namespace LabyrinthGame
                 }
                 else
                 {
-                    AlertText("That space can't be reached from your current\nlocation. Try a different spot!");
+                    AlertText("That space can't be reached from your current location. Try a different spot!");
                     return;
                 }
             }
@@ -927,6 +927,11 @@ namespace LabyrinthGame
 
             PreGameGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainMenuPage));
         }
 
 

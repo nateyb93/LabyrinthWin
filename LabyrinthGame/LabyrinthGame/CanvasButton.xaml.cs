@@ -60,7 +60,7 @@ namespace LabyrinthGame
 
                 if (MainPage.WaitingForConfirmation)
                 {
-                    MainPage.AlertText("Waiting for Confirmation of previous move...");
+                    MainPage.AlertText("Waiting for confirmation of previous move...");
                     return;
                 }
                 //conditions for clickable button types
