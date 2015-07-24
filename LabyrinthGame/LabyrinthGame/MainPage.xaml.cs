@@ -47,6 +47,11 @@ namespace LabyrinthGame
         private Player[] _players;
 
         /// <summary>
+        /// Stores how many players there are in the current game
+        /// </summary>
+        private int _numPlayers;
+
+        /// <summary>
         /// Direction of pending board shift
         /// </summary>
         private int _pendingDirection;
@@ -72,23 +77,28 @@ namespace LabyrinthGame
         private int _currentPlayer;
 
         /// <summary>
-        /// Stores whether the board has been initialized.
+        /// Determines whether a location selected for a board shift
+        /// is valid
         /// </summary>
-        private bool _initialized = false;
-
         public bool ValidShift = false;
+
+        /// <summary>
+        /// Says whether the game is waiting for confirmation
+        /// </summary>
+        public bool WaitingForConfirmation;
 
         private CanvasButton _cantPressButton;
 
         /// <summary>
         /// Toggles whether the current player is movable
         /// </summary>
-        public bool Movable;
+        public bool PlayerIsMovable;
 
         public MainPage()
         {
             this.InitializeComponent();
-            Movable = false;
+            PlayerIsMovable = false;
+            _numPlayers = 2;
 
             _cantPressButton = new CanvasButton();
             _gameBoard = new GameBoard();
@@ -96,18 +106,7 @@ namespace LabyrinthGame
 
             Loaded += delegate
             {
-                _initDeck();
-                _initPlayers(4);
-                _initGameBoardImages();
-                _initButtons();
-                _drawPlayerCards();
-                SwitchPlayer();
 
-                //Add players to their starting locations
-                _gameBoard.Board[0, 0].Players.Add(_players[0]);
-                _gameBoard.Board[6, 0].Players.Add(_players[1]);
-                _gameBoard.Board[6, 6].Players.Add(_players[2]);
-                _gameBoard.Board[0, 6].Players.Add(_players[3]);
             };
 
             _pendingDirection = -1;
@@ -120,12 +119,12 @@ namespace LabyrinthGame
         public void SwitchPlayer()
         {
             _currentPlayer++;
-            if (_currentPlayer >= _players.Length)
+            if (_currentPlayer >= _numPlayers)
             {
                 _currentPlayer = 0;
             }
 
-            _playerSwitchBackgroundChange();
+            _playerSwitchUiUpdate();
 
             _drawPlayerCards();
         }
@@ -134,7 +133,7 @@ namespace LabyrinthGame
         /// <summary>
         /// Updates the background for each player button based on whose turn it is
         /// </summary>
-        private void _playerSwitchBackgroundChange()
+        private void _playerSwitchUiUpdate()
         {
             switch (_currentPlayer)
             {
@@ -145,7 +144,7 @@ namespace LabyrinthGame
 
                     //this switch determines whose turn it was prior; this differs
                     //based on how many players are in the game
-                    switch (_players.Length)
+                    switch (_numPlayers)
                     {
                         case 2:
                             Player2ButtonGrid.Background = new SolidColorBrush(Colors.Transparent);
@@ -172,7 +171,7 @@ namespace LabyrinthGame
                     break;
 
                 case 2:
-                    if (_players.Length < 3)
+                    if (_numPlayers < 3)
                         break;
                     Player3ButtonGrid.Background = new SolidColorBrush(Colors.White);
                     Player3Button.RequestedTheme = ElementTheme.Light;
@@ -183,7 +182,7 @@ namespace LabyrinthGame
                     break;
 
                 case 3:
-                    if (_players.Length < 4)
+                    if (_numPlayers < 4)
                         break;
                     Player4ButtonGrid.Background = new SolidColorBrush(Colors.White);
                     Player4Button.RequestedTheme = ElementTheme.Light;
@@ -276,14 +275,14 @@ namespace LabyrinthGame
                 Deck.Cards.RemoveAt(randomNum);
 
                 //if current player's hand is full, move to next player.
-                if (_players[_currentPlayer].LostTreasures.Count >= 24 / _players.Length)
+                if (_players[_currentPlayer].LostTreasures.Count >= 24 / _numPlayers)
                 {
                     _currentPlayer++;
                 }
             }
 
             //randomly set current player index
-            _currentPlayer = random.Next(0, _players.Length);
+            _currentPlayer = random.Next(0, _numPlayers);
         }
         
         /// <summary>
@@ -370,7 +369,6 @@ namespace LabyrinthGame
             BoardGrid.Children.Clear();
             _drawBoard();
             _drawFreePiece();
-            _initialized = true;
         }
 
 
@@ -424,10 +422,7 @@ namespace LabyrinthGame
             int squareWidth;
 
             //Board grid's width isn't determined until after the page is drawn
-            if (!_initialized)
-                squareWidth = (int)(BoardGrid.ActualWidth);
-            else
-                squareWidth = (int)(BoardGrid.ActualWidth / 7);
+            squareWidth = (int)(BoardGrid.ActualWidth / 7);
 
             //Stretch properties to fill entire grid square
             //Set button type and click
@@ -575,17 +570,12 @@ namespace LabyrinthGame
         /// <param name="column"></param>
         private void _drawPlayersOnSquare(Canvas canvas, int row, int column)
         {
-            int squareWidth = -1;
-
-            if (!_initialized)
-                squareWidth = (int)(BoardGrid.ActualWidth);
-            else
-                squareWidth = (int)(BoardGrid.ActualWidth / 7);
+            int squareWidth = (int)(BoardGrid.ActualWidth / 7);
 
             //loop throught players.
             //if a player is found to be at the specified spot on the board,
             //draw their representation on the game board
-            for (int i = 0; i < _players.Length; i++)
+            for (int i = 0; i < _numPlayers; i++)
             {
                 if (_players[i].CurrentX == column && _players[i].CurrentY == row)
                 {
@@ -664,14 +654,14 @@ namespace LabyrinthGame
             {
                 return;
             }
-            if(_pendingLocation != -1 && _pendingDirection != -1)
+            if (_pendingLocation != -1 && _pendingDirection != -1)
+            {
                 _gameBoard.Shift(_pendingLocation, _pendingDirection);
-
+                PlayerIsMovable = true;
+            }
             //invalidate pending location and direction
             _pendingLocation = -1;
             _pendingDirection = -1;
-
-            Movable = true;
 
             _initGameBoardImages();
         }
@@ -696,6 +686,9 @@ namespace LabyrinthGame
                     board[_pendingMoveX, _pendingMoveY].Players.Add(player);
                     player.Move(_pendingMoveX, _pendingMoveY);
                     player.FindTreasure(board[player.CurrentX, player.CurrentY].Color);
+                    PlayerIsMovable = false;
+                    SwitchPlayer();
+                    _initGameBoardImages();
                 }
                 else
                 {
@@ -706,12 +699,6 @@ namespace LabyrinthGame
             //invalidate pending location and direction
             _pendingMoveX = -1;
             _pendingMoveX = -1;
-
-            SwitchPlayer();
-
-            Movable = false;
-
-            _initGameBoardImages();
         }
 
 
@@ -831,7 +818,95 @@ namespace LabyrinthGame
         /// <param name="e"></param>
         public void PlayerButtonClick(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        /// <summary>
+        /// Handles the click event for the add player button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_numPlayers >= 4)
+            {
+                //do nothing if _numPlayers is more than 4
+                return;
+            }
+
+            _numPlayers++;
+            TextBox newPlayer = new TextBox();
+            newPlayer.Margin = new Thickness(5);
+            newPlayer.Text = "Player " + _numPlayers;
+            PlayerStackPanel.Children.Add(newPlayer);
+
+            //remove/add ui restrictions based on number of players
+            RemovePlayerButton.IsEnabled = true;
+
+            if (_numPlayers >= 4)
+            {
+                AddPlayerButton.IsEnabled = false;
+            }
+        }
+        
+        /// <summary>
+        /// Handles the click action for the remove player button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemovePlayerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_numPlayers <= 2)
+            {
+                return;
+            }
+
+            _numPlayers--;
+
+            //remove the last textblock
+            PlayerStackPanel.Children.RemoveAt(PlayerStackPanel.Children.Count - 1);
+
+            AddPlayerButton.IsEnabled = true;
+
+            if (_numPlayers <= 2)
+            {
+                RemovePlayerButton.IsEnabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Handles the click action for PlayButton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            //initialize game objects
+            _initDeck();
+            _initPlayers(_numPlayers);
+            _initGameBoardImages();
+            _initButtons();
+            _drawPlayerCards();
+
+            //the extra call to switch player highlights the player on the ui;
+            //lazy hack so i don't have to make ui changes outside of switchplayer()
             SwitchPlayer();
+
+            //Add players to their starting locations
+            _gameBoard.Board[0, 0].Players.Add(_players[0]);
+            _gameBoard.Board[6, 0].Players.Add(_players[1]);
+
+            //conditionally enable other players
+            if (_numPlayers >= 3)
+            {
+                _gameBoard.Board[6, 6].Players.Add(_players[2]);
+
+                if(_numPlayers == 4)
+                    _gameBoard.Board[0, 6].Players.Add(_players[3]);
+            }
+
+            PreGameGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            
         }
 
 

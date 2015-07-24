@@ -1,6 +1,6 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="c:\users\nathan\documents\github\labyrinth\labyrinthgame\labyrinthgame\obj\debug\intermediatexaml\labyrinthgame.exe" HashGuid="e8ee76bd-5f36-0390-3dcd-1024ed359862" />
+    <LocalAssembly PathName="c:\users\nathan\documents\github\labyrinth\labyrinthgame\labyrinthgame\obj\debug\intermediatexaml\labyrinthgame.exe" HashGuid="0c906d99-4ff0-7247-713c-43b0d13be2e7" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\callisto\1.4.0\references\commonconfiguration\neutral\callisto.dll" HashGuid="b633473d-2317-a737-864f-4254c6e25308" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactions.dll" HashGuid="95a94f94-3917-d473-4f7c-18c4bd437046" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactivity.dll" HashGuid="d25f59e6-dd81-900a-0dfc-55b39f6898ef" />

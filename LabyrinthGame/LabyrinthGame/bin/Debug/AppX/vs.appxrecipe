@@ -26,7 +26,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.exe">
       <PackagePath>LabyrinthGame.exe</PackagePath>
-      <Modified>2015-07-23T17:42:04.668</Modified>
+      <Modified>2015-07-24T01:07:42.898</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Callisto\1.4.0\References\CommonConfiguration\neutral\Callisto.dll">
       <PackagePath>Callisto.dll</PackagePath>
@@ -74,15 +74,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MainMenuPage.xbf">
       <PackagePath>MainMenuPage.xbf</PackagePath>
-      <Modified>2015-07-23T17:23:09.918</Modified>
+      <Modified>2015-07-23T18:30:16.560</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-07-23T06:19:09.018</Modified>
+      <Modified>2015-07-23T18:30:16.560</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.xr.xml">
       <PackagePath>LabyrinthGame.xr.xml</PackagePath>
-      <Modified>2015-07-23T17:23:09.910</Modified>
+      <Modified>2015-07-23T18:23:37.704</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>

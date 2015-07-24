@@ -52,13 +52,16 @@ namespace LabyrinthGame
             {
                 this.Click(sender, e);
 
-                if (!MainPage.ValidShift)
+                if (!MainPage.ValidShift || MainPage.WaitingForConfirmation)
                 {
                     return;
                 }
                 //conditions for clickable button types
-                if((MainPage.Movable && ButtonType == ButtonType.PlayerMove) || (ButtonType == ButtonType.BoardShift && !MainPage.Movable))
+                if ((MainPage.PlayerIsMovable && ButtonType == ButtonType.PlayerMove) || (!MainPage.PlayerIsMovable && ButtonType == ButtonType.BoardShift))
+                {
+                    MainPage.WaitingForConfirmation = true;
                     ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                }
             }
         }
 
@@ -84,6 +87,7 @@ namespace LabyrinthGame
                 
             }
 
+            MainPage.WaitingForConfirmation = false;
             ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
