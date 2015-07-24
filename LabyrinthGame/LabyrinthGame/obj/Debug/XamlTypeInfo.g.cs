@@ -148,7 +148,7 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[9];
+            _typeNameTable = new string[14];
             _typeNameTable[0] = "LabyrinthGame.CanvasButton";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[2] = "LabyrinthGame.ButtonType";
@@ -157,9 +157,14 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
             _typeNameTable[5] = "Object";
             _typeNameTable[6] = "LabyrinthGame.MainMenuPage";
             _typeNameTable[7] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[8] = "LabyrinthGame.MainPage";
+            _typeNameTable[8] = "Microsoft.Advertising.WinRT.UI.AdControl";
+            _typeNameTable[9] = "Windows.UI.Xaml.Controls.Control";
+            _typeNameTable[10] = "String";
+            _typeNameTable[11] = "Double";
+            _typeNameTable[12] = "Boolean";
+            _typeNameTable[13] = "LabyrinthGame.MainPage";
 
-            _typeTable = new global::System.Type[9];
+            _typeTable = new global::System.Type[14];
             _typeTable[0] = typeof(global::LabyrinthGame.CanvasButton);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[2] = typeof(global::LabyrinthGame.ButtonType);
@@ -168,7 +173,12 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
             _typeTable[5] = typeof(global::System.Object);
             _typeTable[6] = typeof(global::LabyrinthGame.MainMenuPage);
             _typeTable[7] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[8] = typeof(global::LabyrinthGame.MainPage);
+            _typeTable[8] = typeof(global::Microsoft.Advertising.WinRT.UI.AdControl);
+            _typeTable[9] = typeof(global::Windows.UI.Xaml.Controls.Control);
+            _typeTable[10] = typeof(global::System.String);
+            _typeTable[11] = typeof(global::System.Double);
+            _typeTable[12] = typeof(global::System.Boolean);
+            _typeTable[13] = typeof(global::LabyrinthGame.MainPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -205,7 +215,8 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
 
         private object Activate_0_CanvasButton() { return new global::LabyrinthGame.CanvasButton(); }
         private object Activate_6_MainMenuPage() { return new global::LabyrinthGame.MainMenuPage(); }
-        private object Activate_8_MainPage() { return new global::LabyrinthGame.MainPage(); }
+        private object Activate_8_AdControl() { return new global::Microsoft.Advertising.WinRT.UI.AdControl(); }
+        private object Activate_13_MainPage() { return new global::LabyrinthGame.MainPage(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -262,9 +273,38 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
                 xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  LabyrinthGame.MainPage
+            case 8:   //  Microsoft.Advertising.WinRT.UI.AdControl
+                userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_8_AdControl;
+                userType.AddMemberName("ApplicationId");
+                userType.AddMemberName("AdUnitId");
+                userType.AddMemberName("Latitude");
+                userType.AddMemberName("Longitude");
+                userType.AddMemberName("IsEngaged");
+                userType.AddMemberName("IsAutoRefreshEnabled");
+                userType.AddMemberName("IsSuspended");
+                xamlType = userType;
+                break;
+
+            case 9:   //  Windows.UI.Xaml.Controls.Control
+                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 10:   //  String
+                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 11:   //  Double
+                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  Boolean
+                xamlType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 13:   //  LabyrinthGame.MainPage
                 userType = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_8_MainPage;
+                userType.Activator = Activate_13_MainPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -282,6 +322,8 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
                     _otherProviders = new global::System.Collections.Generic.List<global::Windows.UI.Xaml.Markup.IXamlMetadataProvider>();
                     global::Windows.UI.Xaml.Markup.IXamlMetadataProvider provider;
                     provider = new global::Callisto.Callisto_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
+                    _otherProviders.Add(provider); 
+                    provider = new global::Microsoft.Advertising.WinRT.UI.XamlAdControl_XamlTypeInfo.XamlMetaDataProvider() as global::Windows.UI.Xaml.Markup.IXamlMetadataProvider;
                     _otherProviders.Add(provider); 
                 }
                 return _otherProviders;
@@ -336,6 +378,66 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
             var that = (global::LabyrinthGame.CanvasButton)instance;
             that.ButtonType = (global::LabyrinthGame.ButtonType)Value;
         }
+        private object get_1_AdControl_ApplicationId(object instance)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            return that.ApplicationId;
+        }
+        private void set_1_AdControl_ApplicationId(object instance, object Value)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            that.ApplicationId = (global::System.String)Value;
+        }
+        private object get_2_AdControl_AdUnitId(object instance)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            return that.AdUnitId;
+        }
+        private void set_2_AdControl_AdUnitId(object instance, object Value)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            that.AdUnitId = (global::System.String)Value;
+        }
+        private object get_3_AdControl_Latitude(object instance)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            return that.Latitude;
+        }
+        private void set_3_AdControl_Latitude(object instance, object Value)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            that.Latitude = (global::System.Double)Value;
+        }
+        private object get_4_AdControl_Longitude(object instance)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            return that.Longitude;
+        }
+        private void set_4_AdControl_Longitude(object instance, object Value)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            that.Longitude = (global::System.Double)Value;
+        }
+        private object get_5_AdControl_IsEngaged(object instance)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            return that.IsEngaged;
+        }
+        private object get_6_AdControl_IsAutoRefreshEnabled(object instance)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            return that.IsAutoRefreshEnabled;
+        }
+        private void set_6_AdControl_IsAutoRefreshEnabled(object instance, object Value)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            that.IsAutoRefreshEnabled = (global::System.Boolean)Value;
+        }
+        private object get_7_AdControl_IsSuspended(object instance)
+        {
+            var that = (global::Microsoft.Advertising.WinRT.UI.AdControl)instance;
+            return that.IsSuspended;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
@@ -349,6 +451,48 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
                 xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "ButtonType", "LabyrinthGame.ButtonType");
                 xamlMember.Getter = get_0_CanvasButton_ButtonType;
                 xamlMember.Setter = set_0_CanvasButton_ButtonType;
+                break;
+            case "Microsoft.Advertising.WinRT.UI.AdControl.ApplicationId":
+                userType = (global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Advertising.WinRT.UI.AdControl");
+                xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "ApplicationId", "String");
+                xamlMember.Getter = get_1_AdControl_ApplicationId;
+                xamlMember.Setter = set_1_AdControl_ApplicationId;
+                break;
+            case "Microsoft.Advertising.WinRT.UI.AdControl.AdUnitId":
+                userType = (global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Advertising.WinRT.UI.AdControl");
+                xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "AdUnitId", "String");
+                xamlMember.Getter = get_2_AdControl_AdUnitId;
+                xamlMember.Setter = set_2_AdControl_AdUnitId;
+                break;
+            case "Microsoft.Advertising.WinRT.UI.AdControl.Latitude":
+                userType = (global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Advertising.WinRT.UI.AdControl");
+                xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "Latitude", "Double");
+                xamlMember.Getter = get_3_AdControl_Latitude;
+                xamlMember.Setter = set_3_AdControl_Latitude;
+                break;
+            case "Microsoft.Advertising.WinRT.UI.AdControl.Longitude":
+                userType = (global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Advertising.WinRT.UI.AdControl");
+                xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "Longitude", "Double");
+                xamlMember.Getter = get_4_AdControl_Longitude;
+                xamlMember.Setter = set_4_AdControl_Longitude;
+                break;
+            case "Microsoft.Advertising.WinRT.UI.AdControl.IsEngaged":
+                userType = (global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Advertising.WinRT.UI.AdControl");
+                xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "IsEngaged", "Boolean");
+                xamlMember.Getter = get_5_AdControl_IsEngaged;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.Advertising.WinRT.UI.AdControl.IsAutoRefreshEnabled":
+                userType = (global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Advertising.WinRT.UI.AdControl");
+                xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "IsAutoRefreshEnabled", "Boolean");
+                xamlMember.Getter = get_6_AdControl_IsAutoRefreshEnabled;
+                xamlMember.Setter = set_6_AdControl_IsAutoRefreshEnabled;
+                break;
+            case "Microsoft.Advertising.WinRT.UI.AdControl.IsSuspended":
+                userType = (global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Advertising.WinRT.UI.AdControl");
+                xamlMember = new global::LabyrinthGame.LabyrinthGame_XamlTypeInfo.XamlMember(this, "IsSuspended", "Boolean");
+                xamlMember.Getter = get_7_AdControl_IsSuspended;
+                xamlMember.SetIsReadOnly();
                 break;
             }
             return xamlMember;
@@ -675,9 +819,5 @@ namespace LabyrinthGame.LabyrinthGame_XamlTypeInfo
         }
     }
 }
-
-
-
-
 
 

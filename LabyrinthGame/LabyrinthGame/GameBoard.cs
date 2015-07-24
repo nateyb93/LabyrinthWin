@@ -263,19 +263,25 @@ namespace LabyrinthGame
             //save the end of the row we're shifting
             //this will get erased if we don't save it
             BoardNode temp = _board[size - 1, position];
-
+            
+            //move players from end of row to free piece and change their position
             while (temp.Players.Count != 0)
             {
-                Player p = temp.Players[0];
-                _freePiece.Players.Add(p);
-                p.Move(0, position);
-                temp.Players.Remove(p);
+                temp.Players[0].MoveRight();
+                _freePiece.Players.Add(temp.Players[0]);
+                temp.Players.RemoveAt(0);
             }
 
             //move each node from left to right
             for (int i = size - 1; i > 0; i--)
             {
                 _board[i, position] = _board[i - 1, position];
+
+                //move players from node being moved
+                foreach (Player p in _board[i - 1, position].Players)
+                {
+                    p.MoveRight();
+                }
             }
 
             //the free piece
@@ -297,15 +303,20 @@ namespace LabyrinthGame
 
             while (temp.Players.Count != 0)
             {
-                Player p = temp.Players[0];
-                _freePiece.Players.Add(p);
-                p.Move(position, 0);
-                temp.Players.Remove(p);
+                temp.Players[0].MoveDown();
+                _freePiece.Players.Add(temp.Players[0]);
+                temp.Players.RemoveAt(0);
             }
 
             for (int i = size - 1; i > 0; i--)
             {
                 _board[position, i] = _board[position, i - 1];
+
+                //move players from node being moved
+                foreach (Player p in _board[position, i - 1].Players)
+                {
+                    p.MoveDown();
+                }
             }
 
             _board[position, 0] = _freePiece;
@@ -325,15 +336,18 @@ namespace LabyrinthGame
 
             while (temp.Players.Count != 0)
             {
-                Player p = temp.Players[0];
-                _freePiece.Players.Add(p);
-                p.Move(size - 1, position);
-                temp.Players.Remove(p);
+                temp.Players[0].MoveLeft();
+                _freePiece.Players.Add(temp.Players[0]);
+                temp.Players.RemoveAt(0);
             }
 
             for (int i = 0; i < size - 1; i++)
             {
                 _board[i, position] = _board[i + 1, position];
+                foreach (Player p in _board[i + 1, position].Players)
+                {
+                    p.MoveLeft();
+                }
             }
 
             _board[size - 1, position] = _freePiece;
@@ -353,21 +367,31 @@ namespace LabyrinthGame
 
             while (temp.Players.Count != 0)
             {
-                Player p = temp.Players[0];
-                _freePiece.Players.Add(p);
-                p.Move(position, size - 1);
-                temp.Players.Remove(p);
+                temp.Players[0].MoveUp();
+                _freePiece.Players.Add(temp.Players[0]);
+                temp.Players.RemoveAt(0);
             }
 
             for (int i = 0; i < size - 1; i++)
             {
                 _board[position, i] = _board[position, i + 1];
+                foreach (Player p in _board[position, i + 1].Players)
+                {
+                    p.MoveUp();
+                }
             }
 
             _board[position, size - 1] = _freePiece;
 
             _freePiece = temp;
         }
+
+        /////////////////////////TODO//////////////////////////
+        ///////////////////////////////////////////////////////
+        ///WE NEED TO MAKE IT SO THAT EACH PLAYER'S POSITION///
+        ///WHEN THE BOARD MOVES////////////////////////////////
+        ///////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////
 
     }
 }

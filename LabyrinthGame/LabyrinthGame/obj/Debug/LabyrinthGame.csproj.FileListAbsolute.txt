@@ -112,3 +112,7 @@ C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug
 C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug\MainMenuPage.xbf
 C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\Callisto.dll
 C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\Callisto.xml
+C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\Microsoft.Advertising.WinRT.UI.winmd
+C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\Microsoft.Advertising.WinRT.UI.xml
+C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MicrosoftAdvertising.winmd
+C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MicrosoftAdvertising.xml

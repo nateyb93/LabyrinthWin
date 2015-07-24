@@ -104,11 +104,6 @@ namespace LabyrinthGame
             _gameBoard = new GameBoard();
             ValidShift = true;
 
-            Loaded += delegate
-            {
-
-            };
-
             _pendingDirection = -1;
             _pendingLocation = -1;
         }
@@ -127,6 +122,10 @@ namespace LabyrinthGame
             _playerSwitchUiUpdate();
 
             _drawPlayerCards();
+
+            CurrentPlayerTextBlock.Text = "Player " + (_currentPlayer + 1);
+
+            MessageText("Player " + (_currentPlayer + 1) + ", please place the free tile.");
         }
 
 
@@ -206,8 +205,8 @@ namespace LabyrinthGame
             if (_players[_currentPlayer].LostTreasures.Count != 0)
             {
                 _drawPickup(CurrentCardCanvas,
-                            (int)(CurrentCardCanvas.ActualWidth / 2 - 25),
-                            (int)(CurrentCardCanvas.ActualHeight / 2 - 25),
+                            0,
+                            0,
                             50,
                             50,
                             player.LostTreasures[0]);
@@ -240,11 +239,13 @@ namespace LabyrinthGame
                         break;
                 }
 
+                canvas.Children.Clear();
+
                 _drawPickup(canvas,
-                            (int)(canvas.ActualWidth / 2 - 25),
-                            (int)(canvas.ActualHeight / 2 - 25),
-                            50,
-                            50,
+                            0,
+                            0,
+                            25,
+                            25,
                             player.FoundTreasures[i]);
             }
 
@@ -275,9 +276,13 @@ namespace LabyrinthGame
                 Deck.Cards.RemoveAt(randomNum);
 
                 //if current player's hand is full, move to next player.
-                if (_players[_currentPlayer].LostTreasures.Count >= 24 / _numPlayers)
+                if (_players[_currentPlayer].LostTreasures.Count == 6)
                 {
                     _currentPlayer++;
+                    if (_currentPlayer > _numPlayers - 1)
+                    {
+                        break;
+                    }
                 }
             }
 
@@ -664,6 +669,8 @@ namespace LabyrinthGame
             _pendingDirection = -1;
 
             _initGameBoardImages();
+
+            MessageText("Player " + (_currentPlayer + 1) + ", please move your piece.");
         }
 
         /// <summary>
@@ -683,8 +690,8 @@ namespace LabyrinthGame
                 if (valid)
                 {
                     board[player.CurrentX, player.CurrentY].Players.Remove(player);
-                    board[_pendingMoveX, _pendingMoveY].Players.Add(player);
                     player.Move(_pendingMoveX, _pendingMoveY);
+                    board[player.CurrentX, player.CurrentY].Players.Add(player);
                     player.FindTreasure(board[player.CurrentX, player.CurrentY].Color);
                     PlayerIsMovable = false;
                     SwitchPlayer();
@@ -692,6 +699,7 @@ namespace LabyrinthGame
                 }
                 else
                 {
+                    AlertText("That space can't be reached from your current\nlocation. Try a different spot!");
                     return;
                 }
             }
@@ -701,6 +709,18 @@ namespace LabyrinthGame
             _pendingMoveX = -1;
         }
 
+
+        public void AlertText(string text)
+        {
+            AlertTextBlock.Text = text;
+            AlertTextBlock.Foreground = new SolidColorBrush(Colors.Red);
+        }
+
+        public void MessageText(string text)
+        {
+            AlertTextBlock.Text = text;
+            AlertTextBlock.Foreground = new SolidColorBrush(Colors.White);
+        }
 
         /// <summary>
         /// Handles the click event for placing the free piece

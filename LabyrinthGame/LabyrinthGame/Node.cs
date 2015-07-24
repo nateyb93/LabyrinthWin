@@ -14,15 +14,6 @@ namespace LabyrinthGame
         T
     }
 
-    public enum Directions
-    {
-        Left,
-        Up,
-        Right,
-        Down
-    }
-
-
     /// <summary>
     /// The Node class defines a node in a graph representation of the Labyrinth game board
     /// </summary>
@@ -34,6 +25,9 @@ namespace LabyrinthGame
         public const int ROTATE_3 = 3;
 
         private int _rotation;
+        /// <summary>
+        /// Rotation of the path
+        /// </summary>
         public int Rotation
         {
             get
@@ -48,6 +42,7 @@ namespace LabyrinthGame
         
         private Color _color;
         /// <summary>
+        /// Color of pickup on this square. White means no pickup
         /// </summary>
         public Color Color
         {
@@ -62,6 +57,9 @@ namespace LabyrinthGame
         }
 
         private Shape _shape;
+        /// <summary>
+        /// Shape of path on node
+        /// </summary>
         public Shape Shape
         {
             get
@@ -74,6 +72,9 @@ namespace LabyrinthGame
             }
         }
 
+        /// <summary>
+        /// List of players present on the node
+        /// </summary>
         public List<Player> Players;
 
         public BoardNode(Color pickup, Shape shape, int rotation)

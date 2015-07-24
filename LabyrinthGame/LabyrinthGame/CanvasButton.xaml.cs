@@ -52,8 +52,15 @@ namespace LabyrinthGame
             {
                 this.Click(sender, e);
 
-                if (!MainPage.ValidShift || MainPage.WaitingForConfirmation)
+                if (!MainPage.ValidShift)
                 {
+                    MainPage.AlertText("Can't place the piece there. Try another location!");
+                    return;
+                }
+
+                if (MainPage.WaitingForConfirmation)
+                {
+                    MainPage.AlertText("Waiting for Confirmation of previous move...");
                     return;
                 }
                 //conditions for clickable button types
@@ -61,6 +68,14 @@ namespace LabyrinthGame
                 {
                     MainPage.WaitingForConfirmation = true;
                     ConfirmationButtons.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                }
+                else if (!MainPage.PlayerIsMovable)
+                {
+                    MainPage.AlertText("Can't move player right now. Try placing the free tile somewhere on the board!");
+                }
+                else if (ButtonType == ButtonType.BoardShift)
+                {
+                    MainPage.AlertText("Can't place the free piece right now. Try moving to a space on the board!");
                 }
             }
         }

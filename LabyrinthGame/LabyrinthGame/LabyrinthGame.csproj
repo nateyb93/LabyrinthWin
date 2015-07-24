@@ -109,6 +109,9 @@
     <SDKReference Include="Callisto, Version=1.4.0">
       <Name>Callisto</Name>
     </SDKReference>
+    <SDKReference Include="MSAdvertisingXaml, Version=8.1">
+      <Name>Microsoft Advertising SDK for Windows 8.1 %28Xaml%29</Name>
+    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -136,6 +139,9 @@
     <None Include="LabyrinthGame_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdSamplePage.xaml.txt">
+      <ConnectedServiceReference>Amazeballs</ConnectedServiceReference>
+    </Content>
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />

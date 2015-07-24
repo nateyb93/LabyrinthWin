@@ -87,6 +87,46 @@ namespace LabyrinthGame
         }
 
         /// <summary>
+        /// Moves the player one space to the left
+        /// </summary>
+        public void MoveLeft()
+        {
+            CurrentX--;
+            if (CurrentX < 0)
+                CurrentX = 6;
+        }
+
+        /// <summary>
+        /// Moves the player one space to the right
+        /// </summary>
+        public void MoveRight()
+        {
+            CurrentX++;
+            if (CurrentX > 6)
+                CurrentX = 0;
+        }
+
+        /// <summary>
+        /// Moves the player one space up
+        /// </summary>
+        public void MoveUp()
+        {
+            CurrentY--;
+            if (CurrentY < 0)
+                CurrentY = 6;
+        }
+
+        /// <summary>
+        /// Moves the player one space down
+        /// </summary>
+        public void MoveDown()
+        {
+            CurrentY++;
+            if (CurrentY > 6)
+                CurrentY = 0;
+        }
+
+        /// <summary>
         /// Checks to see if the player has won or not
         /// </summary>
         /// <returns></returns>
@@ -107,7 +147,7 @@ namespace LabyrinthGame
         /// </summary>
         public void FindTreasure(Color color)
         {
-            if (LostTreasures.Contains(color))
+            if (LostTreasures[0] == color)
             {
                 FoundTreasures.Add(color);
                 LostTreasures.Remove(color);
