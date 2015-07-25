@@ -6,14 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.Resources>
-        <Style TargetType="TextBlock" x:Key="HowToTextBlock">
-            <Setter Property="Margin" Value="20"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="FontWeight" Value="Light"/>
-        </Style>
-    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -24,7 +16,7 @@
             <AppBarButton x:ConnectionId='1' Name="BackButton" Icon="Back"                         />
             <TextBlock Text="{StaticResource ResourceKey=HowToPlayTitleText}" FontSize="54" FontFamily="Segoe" FontWeight="Light"/>
         </StackPanel>
-        <ScrollViewer  Grid.Row="2" Margin="20" VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled">
+        <ScrollViewer  Grid.Row="1" Margin="20" VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled">
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{StaticResource ResourceKey=GameplayText}" FontSize="48" />
                 <TextBlock Text="{StaticResource ResourceKey=BeginText}" Style="{StaticResource ResourceKey=HowToTextBlock}"/>

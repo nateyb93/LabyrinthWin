@@ -4,6 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LabyrinthGame">
     <Application.Resources>
+        <!--Styles-->
+        <Style TargetType="TextBlock" x:Key="HowToTextBlock">
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
         <!--String resources for main menu page-->
         <x:String x:Key="AppTitle">AMAZEBALLS</x:String>
         <x:String x:Key="PlayButtonText">Play!</x:String>
@@ -29,9 +36,18 @@
         <x:String x:Key="Rule4Text">Once you have placed the free tile on the board, you can move as far as you want as long as the square you want to reach is reachable by the visible path on the board. You may also choose to remain in your current location.</x:String>
         <x:String x:Key="Rule5Text">Only one objective can be reached at a time. If an objective is reached during your turn, the new one will be revealed during the followiung turn.</x:String>
         
-        
+        <!--String resources for app main page-->
         <x:String x:Key="LookingForText">Looking for:</x:String>
         <x:String x:Key="FoundText">Found:</x:String>
+        
+        <!--String resources for about page-->
+        <x:String x:Key="AboutTitleText">about</x:String>
+        <x:String x:Key="via">via</x:String>
+        <x:String x:Key="AboutGameTitle">AMAZEBALLS</x:String>
+        <x:String x:Key="AboutGameText1">AMAZEBALLS was created based on Ravensburger's classic board tame "The aMAZEing Labyrinth".</x:String>
+        <x:String x:Key="AboutGameText2">The aMAZEing Labyrinth has spawned a whole line of  Labyrinth games. The game board has a set of tiles fixed solidly onto it; the remaining tiles that make up the labyrinth slide in and out of the rows created by the tiles that are locked in place. One tile always remains outside the labyrinth, and players take turns taking this extra tile and sliding it into a row of the labyrinth, moving all those tiles and pushing one out the other side of the board; this newly removed tile becomes the piece for the next player to add to the maze.</x:String>
+        <x:String x:Key="AboutGameText3">Players move around the shifting paths of the labyrinth in a race to collect various treasures. Whoever collects all of their treasures first and returns to their home space wins!</x:String>
+        <x:String x:Key="AboutGameText4">The aMAZEING Labyrinth is simple at first glance and an excellent puzzle-solving game for children; it can also be played by adults using more strategy and more of a cutthroat approach.</x:String>
     </Application.Resources>
 </Application>
 

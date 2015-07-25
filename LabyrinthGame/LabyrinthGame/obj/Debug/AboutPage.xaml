@@ -8,10 +8,27 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Horizontal"  Margin="10,20,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"  Margin="10,20,0,0" Grid.Row="0">
             <AppBarButton x:ConnectionId='1' Name="BackButton" Icon="Back"                         />
-            <TextBlock Text="about" FontSize="54" FontFamily="Segoe" FontWeight="Light"/>
+            <TextBlock Text="{StaticResource AboutTitleText}" FontSize="54" FontFamily="Segoe" FontWeight="Light"/>
         </StackPanel>
+        <ScrollViewer  Grid.Row="1" Margin="20" VerticalScrollBarVisibility="Hidden" HorizontalScrollMode="Disabled">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{StaticResource AboutGameTitle}" FontSize="48"/>
+                <TextBlock Style="{StaticResource HowToTextBlock}" Text="{StaticResource AboutGameText1}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,-20">
+                    <TextBlock Text="{StaticResource via}" Margin="20,20,-10,20" FontSize="14"/>
+                    <HyperlinkButton NavigateUri="https://boardgamegeek.com/boardgame/1219/amazeing-labyrinth">boardgamegeek.com:</HyperlinkButton>
+                </StackPanel>
+                <TextBlock Style="{StaticResource HowToTextBlock}" Text="{StaticResource AboutGameText2}"/>
+                <TextBlock Style="{StaticResource HowToTextBlock}" Text="{StaticResource AboutGameText3}"/>
+                <TextBlock Style="{StaticResource HowToTextBlock}" Text="{StaticResource AboutGameText4}"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
 
