@@ -45,12 +45,23 @@ namespace LabyrinthGame
         public int Index;
 
         /// <summary>
+        /// Name of the player
+        /// </summary>
+        public string Name;
+
+        /// <summary>
+        /// Color for UI display
+        /// </summary>
+        public Color Color;
+
+        /// <summary>
         /// Default constructor for the player class
         /// </summary>
         /// <param name="index">Index the players appear in the players array;</param>
-        public Player(int index)
+        public Player(int index, string name)
         {
             Index = index;
+            Name = name;
 
             LostTreasures = new List<Color>();
             FoundTreasures = new List<Color>();
@@ -61,18 +72,22 @@ namespace LabyrinthGame
                 default:
                     StartX = 0;
                     StartY = 0;
+                    Color = Colors.Blue;
                     break;
                 case 1:
                     StartX = 6;
                     StartY = 0;
+                    Color = Colors.Lime;
                     break;
                 case 2:
                     StartX = 6;
                     StartY = 6;
+                    Color = Colors.Yellow;
                     break;
                 case 3:
                     StartX = 0;
                     StartY = 6;
+                    Color = Colors.Red;
                     break;
             }
 
@@ -147,6 +162,9 @@ namespace LabyrinthGame
         /// </summary>
         public void FindTreasure(Color color)
         {
+            if (LostTreasures.Count == 0)
+                return;
+
             if (LostTreasures[0] == color)
             {
                 FoundTreasures.Add(color);

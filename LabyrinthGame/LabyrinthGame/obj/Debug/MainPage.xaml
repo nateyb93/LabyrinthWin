@@ -33,7 +33,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="PlayingArea" Grid.Column="0" Width="{Binding ActualHeight, ElementName=MainGrid, Mode=OneWay}">
+        <Grid x:Name="PlayingArea" Grid.Column="0" Width="{Binding Path=ActualHeight, ElementName=PlayingArea}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="7*"/>
@@ -56,11 +56,11 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="▶" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='15' x:Name="LeftButton1" Grid.Row="1"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='18' x:Name="LeftButton1" Grid.Row="1"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="▶" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='16' x:Name="LeftButton2" Grid.Row="3"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='19' x:Name="LeftButton2" Grid.Row="3"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="▶" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='17' x:Name="LeftButton3" Grid.Row="5"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='20' x:Name="LeftButton3" Grid.Row="5"                              ButtonType="BoardShift"/>
             </Grid>
 
             <Grid Grid.Column="0" Grid.Row="0" x:Name="Player1ButtonGrid">
@@ -79,11 +79,11 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="▼" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='12' x:Name="TopButton1" Grid.Column="1"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='15' x:Name="TopButton1" Grid.Column="1"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Text="▼" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='13' x:Name="TopButton2" Grid.Column="3"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='16' x:Name="TopButton2" Grid.Column="3"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Text="▼" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='14' x:Name="TopButton3" Grid.Column="5"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='17' x:Name="TopButton3" Grid.Column="5"                              ButtonType="BoardShift"/>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="2" x:Name="Player2ButtonGrid">
@@ -101,14 +101,14 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Text="◀" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='9' x:Name="RightButton1" Grid.Row="1"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='12' x:Name="RightButton1" Grid.Row="1"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Text="◀" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='10' x:Name="RightButton2" Grid.Row="3"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='13' x:Name="RightButton2" Grid.Row="3"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="5" Text="◀" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='11' x:Name="RightButton3" Grid.Row="5"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='14' x:Name="RightButton3" Grid.Row="5"                              ButtonType="BoardShift"/>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="0" x:Name="Player4ButtonGrid">
+            <Grid Grid.Row="2" Grid.Column="0" x:Name="Player4ButtonGrid" Visibility="Collapsed">
                 <AppBarButton Icon="Contact" Label="Player 4" Foreground="Red" Style="{StaticResource PlayerButton}" x:Name="Player4Button"/>
             </Grid>
 
@@ -124,14 +124,14 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="▲" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='6' x:Name="BottomButton1" Grid.Column="1"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='9' x:Name="BottomButton1" Grid.Column="1"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Text="▲" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='7' x:Name="BottomButton2" Grid.Column="3"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='10' x:Name="BottomButton2" Grid.Column="3"                              ButtonType="BoardShift"/>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Text="▲" FontSize="36"/>
-                <local:CanvasButton x:ConnectionId='8' x:Name="BottomButton3" Grid.Column="5"                              ButtonType="BoardShift"/>
+                <local:CanvasButton x:ConnectionId='11' x:Name="BottomButton3" Grid.Column="5"                              ButtonType="BoardShift"/>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="2" x:Name="Player3ButtonGrid">
+            <Grid Grid.Row="2" Grid.Column="2" x:Name="Player3ButtonGrid" Visibility="Collapsed">
                 <AppBarButton Icon="Contact" Label="Player 3" Foreground="Yellow" Style="{StaticResource PlayerButton}" x:Name="Player3Button"/>
             </Grid>
 
@@ -166,14 +166,14 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                         <Canvas Width="200" Height="200" x:Name="FreePieceCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Margin="5"/>
-                        <AppBarButton x:ConnectionId='5' Icon="RepeatAll" Label="Rotate" HorizontalAlignment="Center"                          />
+                        <AppBarButton x:ConnectionId='8' Icon="RepeatAll" Label="Rotate" HorizontalAlignment="Center"                          />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="10,0,0,0">
                         <TextBlock Text="Player 1" Name="CurrentPlayerTextBlock" FontSize="36" Margin="5"/>
-                        <TextBlock Text="Looking for:" FontSize="18" Margin="5,0,5,0"/>
+                        <TextBlock Text="{StaticResource ResourceKey=LookingForText}" FontSize="18" Margin="5,0,5,0"/>
                         <Canvas Width="50" Height="50" x:Name="CurrentCardCanvas" Grid.Row="1" Margin="5" HorizontalAlignment="Left"/>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Found:" Grid.Column="1" Grid.Row="0" FontSize="18" Margin="5"/>
+                            <TextBlock Text="{StaticResource ResourceKey=FoundText}" Grid.Column="1" Grid.Row="0" FontSize="18" Margin="5"/>
                             <StackPanel Orientation="Horizontal">
                                 <Canvas Style="{StaticResource FoundTreasuresCanvas}" x:Name="FoundCard1" Height="{Binding ElementName=FoundCard1, Path=ActualWidth}">
                                     <Ellipse Width="25" Height="25" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}"/>
@@ -215,28 +215,42 @@
         </Grid>
 
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.ColumnSpan="2" Name="PreGameGrid" Visibility="Visible">
-            <AppBarButton x:ConnectionId='1' Icon="Back" Label="Main Menu" Margin="10,20,0,0" Name="BackButton"                         />
+            <AppBarButton x:ConnectionId='4' Icon="Back" Label="Main Menu" Margin="10,20,0,0" Name="BackButton"                         />
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
                 <TextBlock Text="Game Settings" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontSize="48"/>
                 <StackPanel Orientation="Vertical" Margin="0,10,0,0" Name="PlayerStackPanel">
                     <TextBlock Text="Players" FontSize="24"/>
                     <TextBox Text="Player 1" Name="Player1TextBox" Margin="5"/>
                     <TextBox Text="Player 2" Name="Player2TextBox" Margin="5"/>
+                    <TextBox Text="Player 3" Name="Player3TextBox" Margin="5" Visibility="Collapsed"/>
+                    <TextBox Text="Player 4" Name="Player4TextBox" Margin="5" Visibility="Collapsed"/>
                 </StackPanel>
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button x:ConnectionId='3' Grid.Column="0" HorizontalAlignment="Stretch" Content="+ Add Player" Background="Green" Name="AddPlayerButton"                              />
-                    <Button x:ConnectionId='4' Grid.Column="1" HorizontalAlignment="Stretch" Content="- Remove Player" Background="Red" Name="RemovePlayerButton" IsEnabled="False"                                 />
+                    <Button x:ConnectionId='6' Grid.Column="0" HorizontalAlignment="Stretch" Content="+ Add Player" Background="Green" Name="AddPlayerButton"                              />
+                    <Button x:ConnectionId='7' Grid.Column="1" HorizontalAlignment="Stretch" Content="- Remove Player" Background="Red" Name="RemovePlayerButton" IsEnabled="False"                                 />
                 </Grid>
 
-                <Button x:ConnectionId='2' Content="Play!" Name="PlayButton" HorizontalAlignment="Stretch" Margin="0,25,0,0" Background="Lime" Foreground="Black"                          Height="100" FontSize="24"/>
+                <Button x:ConnectionId='5' Content="{StaticResource PlayButtonText}" Name="PlayButton" HorizontalAlignment="Stretch" Margin="0,25,0,0" Background="Lime" Foreground="Black"                          Height="100" FontSize="24"/>
 
 
             </StackPanel>
         </Grid>
+        <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.ColumnSpan="2" Opacity=".85" Name="GameOverGrid" Visibility="Collapsed">
+            <StackPanel Orientation="Vertical" Opacity="1.0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="GAME OVER" FontSize="120" HorizontalAlignment="Center"/>
+                <TextBlock Text="Player 1 is the winner!" FontSize="48" HorizontalAlignment="Center" Name="WinnerText"/>
+                <Button x:ConnectionId='2' Content="Play Again!" HorizontalAlignment="Stretch" FontSize="36" Margin="20" Background="Lime" Foreground="Black"                         />
+                <Button x:ConnectionId='3' Content="Return to Main Menu" HorizontalAlignment="Stretch" FontSize="36" Margin="20,0,20,0" Background="Red"                         />
+            </StackPanel>
+        </Grid>
+
+        <AppBar Grid.ColumnSpan="2" Height="100" VerticalAlignment="Bottom">
+            <AppBarButton x:ConnectionId='1' Icon="Cancel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Label="Quit"                         />
+        </AppBar>
 
     </Grid>
 </Page>

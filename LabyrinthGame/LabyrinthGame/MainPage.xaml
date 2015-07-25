@@ -33,7 +33,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="PlayingArea" Grid.Column="0" Width="{Binding ActualHeight, ElementName=MainGrid, Mode=OneWay}">
+        <Grid x:Name="PlayingArea" Grid.Column="0" Width="{Binding Path=ActualHeight, ElementName=PlayingArea}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="7*"/>
@@ -108,7 +108,7 @@
                 <local:CanvasButton x:Name="RightButton3" Grid.Row="5" Click="PlacementButtonClick" ButtonType="BoardShift"/>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="0" x:Name="Player4ButtonGrid">
+            <Grid Grid.Row="2" Grid.Column="0" x:Name="Player4ButtonGrid" Visibility="Collapsed">
                 <AppBarButton Icon="Contact" Label="Player 4" Foreground="Red" Style="{StaticResource PlayerButton}" x:Name="Player4Button"/>
             </Grid>
 
@@ -131,7 +131,7 @@
                 <local:CanvasButton x:Name="BottomButton3" Grid.Column="5" Click="PlacementButtonClick" ButtonType="BoardShift"/>
             </Grid>
 
-            <Grid Grid.Row="2" Grid.Column="2" x:Name="Player3ButtonGrid">
+            <Grid Grid.Row="2" Grid.Column="2" x:Name="Player3ButtonGrid" Visibility="Collapsed">
                 <AppBarButton Icon="Contact" Label="Player 3" Foreground="Yellow" Style="{StaticResource PlayerButton}" x:Name="Player3Button"/>
             </Grid>
 
@@ -170,10 +170,10 @@
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="10,0,0,0">
                         <TextBlock Text="Player 1" Name="CurrentPlayerTextBlock" FontSize="36" Margin="5"/>
-                        <TextBlock Text="Looking for:" FontSize="18" Margin="5,0,5,0"/>
+                        <TextBlock Text="{StaticResource ResourceKey=LookingForText}" FontSize="18" Margin="5,0,5,0"/>
                         <Canvas Width="50" Height="50" x:Name="CurrentCardCanvas" Grid.Row="1" Margin="5" HorizontalAlignment="Left"/>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Found:" Grid.Column="1" Grid.Row="0" FontSize="18" Margin="5"/>
+                            <TextBlock Text="{StaticResource ResourceKey=FoundText}" Grid.Column="1" Grid.Row="0" FontSize="18" Margin="5"/>
                             <StackPanel Orientation="Horizontal">
                                 <Canvas Style="{StaticResource FoundTreasuresCanvas}" x:Name="FoundCard1" Height="{Binding ElementName=FoundCard1, Path=ActualWidth}">
                                     <Ellipse Width="25" Height="25" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}"/>
@@ -222,6 +222,8 @@
                     <TextBlock Text="Players" FontSize="24"/>
                     <TextBox Text="Player 1" Name="Player1TextBox" Margin="5"/>
                     <TextBox Text="Player 2" Name="Player2TextBox" Margin="5"/>
+                    <TextBox Text="Player 3" Name="Player3TextBox" Margin="5" Visibility="Collapsed"/>
+                    <TextBox Text="Player 4" Name="Player4TextBox" Margin="5" Visibility="Collapsed"/>
                 </StackPanel>
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
@@ -232,11 +234,23 @@
                     <Button Grid.Column="1" HorizontalAlignment="Stretch" Content="- Remove Player" Background="Red" Name="RemovePlayerButton" IsEnabled="False" Click="RemovePlayerButton_Click"/>
                 </Grid>
 
-                <Button Content="Play!" Name="PlayButton" HorizontalAlignment="Stretch" Margin="0,25,0,0" Background="Lime" Foreground="Black" Click="PlayButton_Click" Height="100" FontSize="24"/>
+                <Button Content="{StaticResource PlayButtonText}" Name="PlayButton" HorizontalAlignment="Stretch" Margin="0,25,0,0" Background="Lime" Foreground="Black" Click="PlayButton_Click" Height="100" FontSize="24"/>
 
 
             </StackPanel>
         </Grid>
+        <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.ColumnSpan="2" Opacity=".85" Name="GameOverGrid" Visibility="Collapsed">
+            <StackPanel Orientation="Vertical" Opacity="1.0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="GAME OVER" FontSize="120" HorizontalAlignment="Center"/>
+                <TextBlock Text="Player 1 is the winner!" FontSize="48" HorizontalAlignment="Center" Name="WinnerText"/>
+                <Button Content="Play Again!" HorizontalAlignment="Stretch" FontSize="36" Margin="20" Background="Lime" Foreground="Black" Click="PlayButton_Click"/>
+                <Button Content="Return to Main Menu" HorizontalAlignment="Stretch" FontSize="36" Margin="20,0,20,0" Background="Red" Click="BackButton_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <AppBar Grid.ColumnSpan="2" Height="100" VerticalAlignment="Bottom">
+            <AppBarButton Icon="Cancel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Label="Quit" Click="BackButton_Click"/>
+        </AppBar>
 
     </Grid>
 </Page>

@@ -109,6 +109,34 @@ namespace LabyrinthGame
         }
 
         /// <summary>
+        /// Initializes images and 
+        /// </summary>
+        private void _beginGame()
+        {
+            //initialize game objects
+            _initDeck();
+            _initPlayers(_numPlayers);
+            _initGameBoardImages();
+            _initButtons();
+            _drawPlayerCards();
+
+            //the extra call to switch player highlights the player on the ui;
+            //lazy hack so i don't have to make ui changes outside of switchplayer()
+            SwitchPlayer();
+
+            //Add players to their starting locations
+
+            PreGameGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            GameOverGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+        }
+
+        private void _endGame()
+        {
+            WinnerText.Text = _players[_currentPlayer].Name + " is the winner!";
+            GameOverGrid.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
         /// Switches the current player
         /// </summary>
         public void SwitchPlayer()
@@ -123,9 +151,12 @@ namespace LabyrinthGame
 
             _drawPlayerCards();
 
-            CurrentPlayerTextBlock.Text = "Player " + (_currentPlayer + 1);
+            Player currentPlayer = _players[_currentPlayer];
 
-            MessageText("Player " + (_currentPlayer + 1) + ", please place the free tile.");
+            CurrentPlayerTextBlock.Text = currentPlayer.Name + "'s turn";
+            CurrentPlayerTextBlock.Foreground = new SolidColorBrush(currentPlayer.Color);
+
+            MessageText(currentPlayer.Name + ", please place the free tile.");
         }
 
 
@@ -213,10 +244,9 @@ namespace LabyrinthGame
             }
 
             //Draw the found treasures
-            for(int i = 0; i < player.FoundTreasures.Count; i++)
+            for(int i = 0; i < 6; i++)
             {
                 Canvas canvas = null;
-
                 switch (i)
                 {
                     case 0:
@@ -241,12 +271,18 @@ namespace LabyrinthGame
 
                 canvas.Children.Clear();
 
+                Color color = Color.FromArgb(255, 29, 29, 29);
+                if (i < player.FoundTreasures.Count)
+                {
+                    color = player.FoundTreasures[i];
+                }
+
                 _drawPickup(canvas,
                             0,
                             0,
                             25,
                             25,
-                            player.FoundTreasures[i]);
+                            color);
             }
 
         }
@@ -258,14 +294,70 @@ namespace LabyrinthGame
         {
             Random random = new Random();
             _players = new Player[numPlayers];
-            for (int i = 0; i < numPlayers; i++ )
-                _players[i] = new Player(i);
 
+            //determine player's name and initialize player object at index
+            for (int i = 0; i < numPlayers; i++)
+            {
+                string name = "";
+                switch (i)
+                {
+                    case 0:
+                        name = Player1TextBox.Text;
+                        break;
+                    case 1:
+                        name = Player2TextBox.Text;
+                        break;
+                    case 2:
+                        name = Player3TextBox.Text;
+                        break;
+                    case 3:
+                        name = Player4TextBox.Text;
+                        break;
+                }
+
+                _players[i] = new Player(i, name);
+            }
+                
             //set current player to 0 for 'hand' initialization
             _currentPlayer = 0;
 
+            _dealCards();
+
+            //randomly set current player index
+            _currentPlayer = random.Next(0, _numPlayers);
+
+            //add players to their starting locations
+            _gameBoard.Board[0, 0].Players.Add(_players[0]);
+            Player1Button.Label = _players[0].Name;
+            _gameBoard.Board[6, 0].Players.Add(_players[1]);
+            Player2Button.Label = _players[1].Name;
+
+            //conditionally enable other players
+            if (_numPlayers >= 3)
+            {
+                _gameBoard.Board[6, 6].Players.Add(_players[2]);
+                Player3Button.Label = _players[2].Name;
+                Player3ButtonGrid.Visibility = Visibility.Visible;
+
+                if (_numPlayers == 4)
+                {
+
+                    Player4ButtonGrid.Visibility = Visibility.Visible;
+                    Player4Button.Label = _players[3].Name;
+                    _gameBoard.Board[0, 6].Players.Add(_players[3]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deals cards to all participating players
+        /// </summary>
+        private void _dealCards()
+        {
+            Random random = new Random();
+
             //while deck
-            while(Deck.Cards.Count != 0)
+            while (Deck.Cards.Count != 0)
             {
                 //pick a color, remove it from the list add it to current player's hand,
                 //and remove it from the deck.
@@ -285,9 +377,6 @@ namespace LabyrinthGame
                     }
                 }
             }
-
-            //randomly set current player index
-            _currentPlayer = random.Next(0, _numPlayers);
         }
         
         /// <summary>
@@ -403,6 +492,7 @@ namespace LabyrinthGame
             //clear images from the canvas
             FreePieceCanvas.Children.Clear();
 
+            _drawRect(FreePieceCanvas, 0, 0, (int)FreePieceCanvas.ActualWidth, (int)FreePieceCanvas.ActualHeight, Colors.Black, Colors.White);
             _drawPath(FreePieceCanvas, _gameBoard.FreePiece.Shape, _gameBoard.FreePiece.Rotation, (int)FreePieceCanvas.ActualWidth + 10);
             _drawPickup(FreePieceCanvas,
                         (int)(FreePieceCanvas.ActualWidth / 2 - 25),
@@ -424,10 +514,8 @@ namespace LabyrinthGame
             CanvasButton canvasButton = new CanvasButton();
 
             Canvas newCanvas = canvasButton.Canvas;
-            int squareWidth;
-
-            //Board grid's width isn't determined until after the page is drawn
-            squareWidth = (int)(BoardGrid.ActualWidth / 7);
+            
+            int squareWidth = (int)(BoardGrid.ActualWidth / 7);
 
             //Stretch properties to fill entire grid square
             //Set button type and click
@@ -444,6 +532,7 @@ namespace LabyrinthGame
 
             BoardGrid.Children.Add(canvasButton);
 
+            _drawBorder(newCanvas, col, row, squareWidth);
             _drawPath(newCanvas, node.Shape, node.Rotation, squareWidth);
             _drawPlayersOnSquare(newCanvas, row, col);
             _drawPickup(newCanvas,
@@ -453,6 +542,52 @@ namespace LabyrinthGame
                         30,
                         node.Color);
             //_drawImage(row, col, node);
+        }
+
+
+        /// <summary>
+        /// Draws a colored border around corner pieces
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="col"></param>
+        /// <param name="row"></param>
+        /// <param name="squareWidth"></param>
+        private void _drawBorder(Canvas canvas, int col, int row, int squareWidth)
+        {
+            //don't do anything if we're not in a corner
+            if((col != 0 && col != 6) || (row != 0 && row != 6))
+            {
+                return;
+            }
+
+            Color outerColor = Colors.Transparent;
+
+            if (col == 0 && row == 0)
+            {
+                //draw outer square for border
+                outerColor = Colors.Blue;
+            }
+            else if (col == 6 && row == 0)
+            {
+                outerColor = Colors.Lime;
+            }
+            else if (col == 6 && row == 6)
+            {
+                outerColor = Colors.Yellow;
+            }
+            else if(col == 0 && row == 6)
+            {
+                outerColor = Colors.Red;
+            }
+
+            _drawRect(canvas, 0, 0, squareWidth - 10, squareWidth - 10, outerColor, outerColor);
+            _drawRect(canvas,
+                      2,
+                      2,
+                      squareWidth - 14,
+                      squareWidth - 14,
+                      Colors.Black,
+                      outerColor);
         }
 
 
@@ -471,48 +606,80 @@ namespace LabyrinthGame
             switch (shape)
             {
                 case Shape.S:
-                    if (rotation == 0 || rotation == 2)
-                        _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth - 10, 20);
-                    else
-                        _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
+                    _drawPathS(canvas, rotation, squareWidth);
                     break;
 
 
                 case Shape.L:
-                    //vertical line
-                    if (rotation == 0 || rotation == 3)
-                        _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth / 2 + 5, 20);
-                    else
-                        _drawLine(canvas, squareWidth / 2 - 5, squareWidth / 2 - 10, squareWidth / 2 - 5, squareWidth - 10, 20);
-
-                    //horizontal line
-                    if (rotation == 0 || rotation == 1)
-                        _drawLine(canvas, squareWidth / 2 - 15, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
-                    else
-                        _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth / 2 + 5, squareWidth / 2 - 5, 20);
+                    _drawPathL(canvas, rotation, squareWidth);
                     break;
 
 
                 case Shape.T:
-                    //long line
-                    if (rotation == 1 || rotation == 3)
-                        _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth - 10, 20);
-                    else
-                        _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
-
-                    //short line
-                    if(rotation == 0)
-                        _drawLine(canvas, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth - 10, 20);
-                    else if(rotation == 1)
-                        _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth / 2 - 5, 20);
-                    else if(rotation == 2)
-                        _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth / 2 - 5, 20);
-                    else
-                        _drawLine(canvas, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
-
-
+                    _drawPathT(canvas, rotation, squareWidth);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Helper method for drawing a straight path
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="rotation"></param>
+        /// <param name="squareWidth"></param>
+        private void _drawPathS(Canvas canvas, int rotation, int squareWidth)
+        {
+            if (rotation == 0 || rotation == 2)
+                _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth - 10, 20);
+            else
+                _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
+        }
+
+        /// <summary>
+        /// Helper method for drawing an L-shaped path
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="rotation"></param>
+        /// <param name="squareWidth"></param>
+        private void _drawPathL(Canvas canvas, int rotation, int squareWidth)
+        {
+            //vertical line
+            if (rotation == 0 || rotation == 3)
+                _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth / 2 + 5, 20);
+            else
+                _drawLine(canvas, squareWidth / 2 - 5, squareWidth / 2 - 10, squareWidth / 2 - 5, squareWidth - 10, 20);
+
+            //horizontal line
+            if (rotation == 0 || rotation == 1)
+                _drawLine(canvas, squareWidth / 2 - 15, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
+            else
+                _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth / 2 + 5, squareWidth / 2 - 5, 20);
+        }
+
+
+        /// <summary>
+        /// Helper method for drawing a T-shaped path
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="rotation"></param>
+        /// <param name="squareWidth"></param>
+        private void _drawPathT(Canvas canvas, int rotation, int squareWidth)
+        {
+            //long line
+            if (rotation == 1 || rotation == 3)
+                _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth - 10, 20);
+            else
+                _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
+
+            //short line
+            if (rotation == 0)
+                _drawLine(canvas, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth - 10, 20);
+            else if (rotation == 1)
+                _drawLine(canvas, 0, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth / 2 - 5, 20);
+            else if (rotation == 2)
+                _drawLine(canvas, squareWidth / 2 - 5, 0, squareWidth / 2 - 5, squareWidth / 2 - 5, 20);
+            else
+                _drawLine(canvas, squareWidth / 2 - 5, squareWidth / 2 - 5, squareWidth - 10, squareWidth / 2 - 5, 20);
         }
 
 
@@ -592,7 +759,8 @@ namespace LabyrinthGame
                                       5,
                                       20,
                                       20,
-                                      Colors.Blue);
+                                      Colors.Blue,
+                                      Colors.White);
                             break;
 
                         case 1:
@@ -601,7 +769,8 @@ namespace LabyrinthGame
                                       5,
                                       20,
                                       20,
-                                      Colors.Lime);
+                                      Colors.Lime,
+                                      Colors.White);
                             break;
 
                         case 2:
@@ -610,7 +779,8 @@ namespace LabyrinthGame
                                       squareWidth - 35,
                                       20,
                                       20,
-                                      Colors.Yellow);
+                                      Colors.Yellow,
+                                      Colors.White);
                             break;
 
                         case 3:
@@ -619,7 +789,8 @@ namespace LabyrinthGame
                                       squareWidth - 35,
                                       20,
                                       20,
-                                      Colors.Red);
+                                      Colors.Red,
+                                      Colors.White);
                             break;
                     }
                 }
@@ -634,13 +805,13 @@ namespace LabyrinthGame
         /// <param name="y"></param>
         /// <param name="w"></param>
         /// <param name="h"></param>
-        private void _drawRect(Canvas canvas, int x, int y, int w, int h, Color color)
+        private void _drawRect(Canvas canvas, int x, int y, int w, int h, Color color, Color stroke)
         {
             Rectangle rect = new Rectangle();
 
             rect.Width = w;
             rect.Height = h;
-            rect.Stroke = new SolidColorBrush(Colors.White);
+            rect.Stroke = new SolidColorBrush(stroke);
             rect.StrokeThickness = 2;
             rect.Fill = new SolidColorBrush(color);
 
@@ -649,6 +820,7 @@ namespace LabyrinthGame
 
             canvas.Children.Add(rect);
         }
+
 
         /// <summary>
         /// Executes the currently pending board shift
@@ -670,7 +842,7 @@ namespace LabyrinthGame
 
             _initGameBoardImages();
 
-            MessageText("Player " + (_currentPlayer + 1) + ", please move your piece.");
+            MessageText(_players[_currentPlayer].Name + ", please move your piece.");
         }
 
         /// <summary>
@@ -694,6 +866,13 @@ namespace LabyrinthGame
                     board[player.CurrentX, player.CurrentY].Players.Add(player);
                     player.FindTreasure(board[player.CurrentX, player.CurrentY].Color);
                     PlayerIsMovable = false;
+
+                    if (player.HasWon())
+                    {
+                        _endGame();
+                        return;
+                    }
+
                     SwitchPlayer();
                     _initGameBoardImages();
                 }
@@ -710,12 +889,20 @@ namespace LabyrinthGame
         }
 
 
+        /// <summary>
+        /// Updates the text display with an alert to the user
+        /// </summary>
+        /// <param name="text"></param>
         public void AlertText(string text)
         {
             AlertTextBlock.Text = text;
             AlertTextBlock.Foreground = new SolidColorBrush(Colors.Red);
         }
 
+        /// <summary>
+        /// Updates the text display with a message to the user
+        /// </summary>
+        /// <param name="text"></param>
         public void MessageText(string text)
         {
             AlertTextBlock.Text = text;
@@ -855,10 +1042,10 @@ namespace LabyrinthGame
             }
 
             _numPlayers++;
-            TextBox newPlayer = new TextBox();
-            newPlayer.Margin = new Thickness(5);
-            newPlayer.Text = "Player " + _numPlayers;
-            PlayerStackPanel.Children.Add(newPlayer);
+            if (_numPlayers == 3)
+                Player3TextBox.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            else
+                Player4TextBox.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
             //remove/add ui restrictions based on number of players
             RemovePlayerButton.IsEnabled = true;
@@ -883,8 +1070,10 @@ namespace LabyrinthGame
 
             _numPlayers--;
 
-            //remove the last textblock
-            PlayerStackPanel.Children.RemoveAt(PlayerStackPanel.Children.Count - 1);
+            if (_numPlayers == 3)
+                Player4TextBox.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            else
+                Player3TextBox.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
             AddPlayerButton.IsEnabled = true;
 
@@ -901,34 +1090,14 @@ namespace LabyrinthGame
         /// <param name="e"></param>
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            //initialize game objects
-            _initDeck();
-            _initPlayers(_numPlayers);
-            _initGameBoardImages();
-            _initButtons();
-            _drawPlayerCards();
-
-            //the extra call to switch player highlights the player on the ui;
-            //lazy hack so i don't have to make ui changes outside of switchplayer()
-            SwitchPlayer();
-
-            //Add players to their starting locations
-            _gameBoard.Board[0, 0].Players.Add(_players[0]);
-            _gameBoard.Board[6, 0].Players.Add(_players[1]);
-
-            //conditionally enable other players
-            if (_numPlayers >= 3)
-            {
-                _gameBoard.Board[6, 6].Players.Add(_players[2]);
-
-                if(_numPlayers == 4)
-                    _gameBoard.Board[0, 6].Players.Add(_players[3]);
-            }
-
-            PreGameGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            
+            _beginGame();
         }
 
+        /// <summary>
+        /// Navigates back to the main menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainMenuPage));
