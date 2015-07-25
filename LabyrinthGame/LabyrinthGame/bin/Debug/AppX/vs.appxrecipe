@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>NATHAN-PC</Machine>
+    <Machine>NATHAN-SURFACE3</Machine>
     <WindowsUser>Nathan</WindowsUser>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad</PackageIdentityName>
-    <IntermediateOutputPath>D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\obj\Debug\</IntermediateOutputPath>
-    <RegisteredManifestChecksum>B705096E274CDDF938DEC650B30C4880ADFDFA723B17464AFED231AA34D1A3F0</RegisteredManifestChecksum>
+    <IntermediateOutputPath>C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\obj\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>C6762D9F4B46643C4F55BD4017E78B555D7E246851738CA74CE176555B06778B</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad_1.0.0.0_neutral__ajc0x0rvn3gg0</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad_ajc0x0rvn3gg0!App</RegisteredUserModeAppID>
     <RegisteredPackageID>f9ae6c91-1549-4052-b7ec-cbdba2a3c0ad</RegisteredPackageID>
@@ -17,16 +17,20 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-07-10T19:07:26.476</Modified>
+      <Modified>2015-07-25T00:27:14.783</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.exe">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.exe">
       <PackagePath>LabyrinthGame.exe</PackagePath>
-      <Modified>2015-07-12T19:03:33.818</Modified>
+      <Modified>2015-07-25T00:28:34.932</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Callisto\1.4.0\References\CommonConfiguration\neutral\Callisto.dll">
+      <PackagePath>Callisto.dll</PackagePath>
+      <Modified>2015-03-14T02:25:18.714</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\BehaviorsXamlSDKManaged\12.0\References\CommonConfiguration\Neutral\Microsoft.Xaml.Interactions.dll">
       <PackagePath>Microsoft.Xaml.Interactions.dll</PackagePath>
@@ -36,41 +40,89 @@
       <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
       <Modified>2014-04-29T21:23:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\MSAdvertisingXaml\8.1\References\CommonConfiguration\neutral\Microsoft.Advertising.WinRT.UI.winmd">
+      <PackagePath>Microsoft.Advertising.WinRT.UI.winmd</PackagePath>
+      <Modified>2013-09-13T18:42:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\MSAdvertisingXaml\8.1\References\CommonConfiguration\neutral\MicrosoftAdvertising.winmd">
+      <PackagePath>MicrosoftAdvertising.winmd</PackagePath>
+      <Modified>2013-09-13T18:42:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\MSAdvertisingXaml\8.1\Redist\CommonConfiguration\neutral\Microsoft.Advertising.WinRT.UI\AdSettingsFlyout.xbf">
+      <PackagePath>Microsoft.Advertising.WinRT.UI\AdSettingsFlyout.xbf</PackagePath>
+      <Modified>2013-09-13T18:42:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Callisto\1.4.0\Redist\CommonConfiguration\neutral\Themes\Generic.xbf">
+      <PackagePath>Callisto\Themes\Generic.xbf</PackagePath>
+      <Modified>2015-03-14T02:25:18.700</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\MSAdvertisingXaml\8.1\Redist\CommonConfiguration\neutral\Microsoft.Advertising.WinRT.UI\Themes\Generic.xbf">
+      <PackagePath>Microsoft.Advertising.WinRT.UI\Themes\Generic.xbf</PackagePath>
+      <Modified>2013-09-13T18:42:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\MSAdvertisingXaml\8.1\Redist\CommonConfiguration\neutral\Microsoft.Advertising.WinRT.UI\bootstrap.html">
+      <PackagePath>Microsoft.Advertising.WinRT.UI\bootstrap.html</PackagePath>
+      <Modified>2013-09-13T18:43:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\MSAdvertisingXaml\8.1\Redist\CommonConfiguration\neutral\Microsoft.Advertising.WinRT.UI\ormma.js">
+      <PackagePath>Microsoft.Advertising.WinRT.UI\ormma.js</PackagePath>
+      <Modified>2013-09-13T18:46:04.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\AdSamplePage.xaml.txt">
+      <PackagePath>AdSamplePage.xaml.txt</PackagePath>
+      <Modified>2015-07-24T03:09:04.393</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.960</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\SmallLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\SmallLogo.scale-100.png">
       <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.961</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.961</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\Assets\StoreLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-05-16T08:29:20.962</Modified>
+      <Modified>2013-07-23T13:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-07-10T19:07:26.017</Modified>
+      <Modified>2015-07-25T00:27:09.213</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\AboutPage.xbf">
+      <PackagePath>AboutPage.xbf</PackagePath>
+      <Modified>2015-07-25T00:27:09.213</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\CanvasButton.xbf">
+      <PackagePath>CanvasButton.xbf</PackagePath>
+      <Modified>2015-07-25T00:27:09.213</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\HowToPage.xbf">
+      <PackagePath>HowToPage.xbf</PackagePath>
+      <Modified>2015-07-25T00:27:09.213</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MainMenuPage.xbf">
+      <PackagePath>MainMenuPage.xbf</PackagePath>
+      <Modified>2015-07-25T00:27:09.214</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-07-11T05:09:58.463</Modified>
+      <Modified>2015-07-25T00:28:34.388</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\LabyrinthGame.xr.xml">
       <PackagePath>LabyrinthGame.xr.xml</PackagePath>
-      <Modified>2015-07-10T20:45:48.834</Modified>
+      <Modified>2015-07-25T00:27:09.157</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\GitHub\LabyrinthWin\LabyrinthGame\LabyrinthGame\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Nathan\Documents\GitHub\Labyrinth\LabyrinthGame\LabyrinthGame\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-07-10T19:07:26.347</Modified>
+      <Modified>2015-07-25T00:27:10.001</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

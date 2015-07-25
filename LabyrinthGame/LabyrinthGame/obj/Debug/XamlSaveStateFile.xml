@@ -1,7 +1,10 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="d:\documents\github\labyrinthwin\labyrinthgame\labyrinthgame\obj\debug\intermediatexaml\labyrinthgame.exe" HashGuid="ed734322-3439-4e13-f37c-9ecf2f3cdd55" />
+    <LocalAssembly PathName="c:\users\nathan\documents\github\labyrinth\labyrinthgame\labyrinthgame\obj\debug\intermediatexaml\labyrinthgame.exe" HashGuid="ddb05652-7a94-164d-7e15-87ec2dff0881" />
+    <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\callisto\1.4.0\references\commonconfiguration\neutral\callisto.dll" HashGuid="b633473d-2317-a737-864f-4254c6e25308" />
+    <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\msadvertisingxaml\8.1\references\commonconfiguration\neutral\microsoft.advertising.winrt.ui.winmd" HashGuid="6588494d-37e3-4bf8-bf82-6a4bc10c0818" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactions.dll" HashGuid="95a94f94-3917-d473-4f7c-18c4bd437046" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\behaviorsxamlsdkmanaged\12.0\references\commonconfiguration\neutral\microsoft.xaml.interactivity.dll" HashGuid="d25f59e6-dd81-900a-0dfc-55b39f6898ef" />
+    <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\msadvertisingxaml\8.1\references\commonconfiguration\neutral\microsoftadvertising.winmd" HashGuid="0dde57b7-8c99-5b9a-0771-4cdcca925c59" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

@@ -3,38 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace LabyrinthGame
 {
-    public enum Pickup
-    {
-        None,
-        RedCircle,
-        RedStar,
-        RedSquare,
-        RedTriangle,
-        RedHex,
-        RedHeart,
-        GreenCircle,
-        GreenStar,
-        GreenSquare,
-        GreenTriangle,
-        GreenHex,
-        GreenHeart,
-        BlueCircle,
-        BlueStar,
-        BlueSquare,
-        BlueTriangle,
-        BlueHex,
-        BlueHeart,
-        YellowCircle,
-        YellowStar,
-        YellowSquare,
-        YellowTriangle,
-        YellowHex,
-        YellowHeart
-    }
-
     public enum Shape
     {
         S,
@@ -42,19 +14,10 @@ namespace LabyrinthGame
         T
     }
 
-    public enum Directions
-    {
-        Left,
-        Up,
-        Right,
-        Down
-    }
-
-
     /// <summary>
     /// The Node class defines a node in a graph representation of the Labyrinth game board
     /// </summary>
-    public class Node
+    public class BoardNode
     {
         public const int ROTATE_0 = 0;
         public const int ROTATE_1 = 1;
@@ -62,6 +25,9 @@ namespace LabyrinthGame
         public const int ROTATE_3 = 3;
 
         private int _rotation;
+        /// <summary>
+        /// Rotation of the path
+        /// </summary>
         public int Rotation
         {
             get
@@ -74,22 +40,26 @@ namespace LabyrinthGame
             }
         }
         
-        private Pickup _pickup;
+        private Color _color;
         /// <summary>
+        /// Color of pickup on this square. White means no pickup
         /// </summary>
-        public Pickup Pickup
+        public Color Color
         {
             get
             {
-                return _pickup;
+                return _color;
             }
             set
             {
-                _pickup = value;
+                _color = value;
             }
         }
 
         private Shape _shape;
+        /// <summary>
+        /// Shape of path on node
+        /// </summary>
         public Shape Shape
         {
             get
@@ -102,22 +72,15 @@ namespace LabyrinthGame
             }
         }
 
-        private int _index;
-        public int Index
-        {
-            get
-            {
-                return _index;
-            }
-            set
-            {
-                _index = value;
-            }
-        }
+        /// <summary>
+        /// List of players present on the node
+        /// </summary>
+        public List<Player> Players;
 
-        public Node(Pickup pickup, Shape shape, int rotation)
+        public BoardNode(Color pickup, Shape shape, int rotation)
         {
-            _pickup = pickup;
+            Players = new List<Player>();
+            Color = pickup;
             _shape = shape;
             _rotation = rotation;
         }
@@ -133,7 +96,7 @@ namespace LabyrinthGame
             }
             else
             {
-                _rotation += 1;
+                _rotation++;
             }
         }
 
@@ -148,7 +111,7 @@ namespace LabyrinthGame
             }
             else
             {
-                _rotation += 1;
+                _rotation++;
             }
         }
 
